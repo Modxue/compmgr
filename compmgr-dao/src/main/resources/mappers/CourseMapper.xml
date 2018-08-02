@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.zut.cs.admin.dao.CourseMapper">
+    <select id="getAllCourse"  resultType="edu.zut.cs.admin.model.Course">
+        select id,courseNum,courseName,period,credit
+        from t_course
+    </select>
+
+</mapper>
