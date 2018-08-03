@@ -5,11 +5,13 @@ import edu.zut.cs.user.model.Teacher;
 import java.util.List;
 
 /**
- * @author: zouguo0212@
+ * @author:zsy0216
  * @Description:
- * @date: 2018/8/2 17:52
+ * @date: 2018-08-03 15:06
  */
 public interface TeacherMapper {
 
-    public List<Teacher> getAllTeacher();
+	public List<Teacher> getAllTeacher();
+
+	public String getNameById(Integer id);
 }
