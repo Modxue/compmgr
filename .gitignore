@@ -8,3 +8,5 @@
 /*/build/
 /*/.gitignore
 /.settings
+*.md
+/*/logs/
