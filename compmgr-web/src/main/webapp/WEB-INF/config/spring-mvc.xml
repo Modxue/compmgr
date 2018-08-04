@@ -58,41 +58,51 @@
         </property>
     </bean>
     <!-- 通过order属性来定义视图解析器的优先级，order的值越小优先级越低 -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="0"></property>
-    </bean>
-    <bean
-            class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="contentNegotiationManager"
-                  ref="contentNegotiationManager" />
-        <property name="viewResolvers">
-            <list>
-                <bean id="viewResolver"
-                      class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-                      p:viewClass="org.springframework.web.servlet.view.JstlView"
-                      p:prefix="/WEB-INF/pages/" p:suffix=".jsp"
-                      p:cacheUnresolved="false" p:exposedContextBeanNames="webProperties"
-                      p:order="1" />
-            </list>
-        </property>
-        <property name="defaultViews">
-            <list>
-                <bean
-                        class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-                    <property name="prefixJson" value="true" />
-                </bean>
-            </list>
-        </property>
-    </bean>
+    <!--<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">-->
+        <!--<property name="order" value="0"></property>-->
+    <!--</bean>-->
+    <!--<bean-->
+            <!--class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
+        <!--<property name="contentNegotiationManager"-->
+                  <!--ref="contentNegotiationManager" />-->
+        <!--<property name="viewResolvers">-->
+            <!--<list>-->
+                <!--<bean id="viewResolver"-->
+                      <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver"-->
+                      <!--p:viewClass="org.springframework.web.servlet.view.JstlView"-->
+                      <!--p:prefix="/WEB-INF/pages/" p:suffix=".jsp"-->
+                      <!--p:cacheUnresolved="false" p:exposedContextBeanNames="webProperties"-->
+                      <!--p:order="1" />-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="defaultViews">-->
+            <!--<list>-->
+                <!--<bean-->
+                        <!--class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">-->
+                    <!--<property name="prefixJson" value="true" />-->
+                <!--</bean>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.JstlView"
+          p:prefix="/main"
+          p:contentType="text/html"
+          p:suffix=".html" />
+
+    <mvc:resources mapping="/pages/main/**"
+                   location="/WEB-INF/pages/main/" />
     <mvc:resources mapping="/js/**"
                    location="/WEB-INF/resources/js/" />
-    <mvc:resources mapping="/style/**"
-                   location="/WEB-INF/resources/style/" />
+    <mvc:resources mapping="/css/**"
+                   location="/WEB-INF/resources/css/" />
     <mvc:resources mapping="/images/**"
                    location="/WEB-INF/resources/images/" />
     <mvc:resources mapping="/json/**"
                    location="/WEB-INF/resources/json/" />
+    <mvc:resources mapping="/lib/**"
+                   location="/WEB-INF/resources/lib/" />
 
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource"
