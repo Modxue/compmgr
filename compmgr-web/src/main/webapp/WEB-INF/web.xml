@@ -78,7 +78,7 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>
-    
+
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>*.jpg</url-pattern>
@@ -90,6 +90,6 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>main/index.html</welcome-file>
+        <welcome-file>pages/main/index.html</welcome-file>
     </welcome-file-list>
 </web-app>

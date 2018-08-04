@@ -6,10 +6,10 @@
 }
 
 .button {
-	color: #FFFFFF;
 	cursor: pointer;
 	border-radius: 5px;
-	padding: 10px 15px;
+	width: 4vw;
+	height: 5vh;
 	background-color: gray;
 	border: none;
 	color: #FFF;
@@ -17,6 +17,6 @@
 }
 
 .input {
-	width: 10vw;
+	width: 12vw;
 	height: 3vh;
 }
