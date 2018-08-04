@@ -90,6 +90,6 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>pages/main/index.html</welcome-file>
+        <welcome-file>pages/html/login.html</welcome-file>
     </welcome-file-list>
 </web-app>
