@@ -1,5 +1,9 @@
 package edu.zut.cs.admin.dao;
 
+import java.util.List;
+
+import edu.zut.cs.admin.model.Record;
+
 /**
  * @PackageName: edu.zut.cs.admin.dao
  * @author:zouguo0212
@@ -8,7 +12,7 @@ package edu.zut.cs.admin.dao;
  */
 public interface RecordMapper {
 	
-    public Integer getArrangeIdById(Integer id);
+	public List<Record> getAllRecord();
 	
-	public Integer getLabIdById(Integer id);
+	public Integer getArrangeIdById(Integer id);
 }
