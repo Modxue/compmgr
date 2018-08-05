@@ -81,6 +81,11 @@
 
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>*.png</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
 
@@ -90,6 +95,6 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>pages/main/index.html</welcome-file>
+        <welcome-file>/html/login.html</welcome-file>
     </welcome-file-list>
 </web-app>
