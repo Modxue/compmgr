@@ -5,18 +5,22 @@
 	padding: 0;
 }
 
+
 .button {
 	cursor: pointer;
 	border-radius: 5px;
 	width: 4vw;
-	height: 5vh;
 	background-color: gray;
 	border: none;
 	color: #FFF;
 	font-size: 14px;
+	padding:1px 4px;
 }
 
-.input {
-	width: 12vw;
-	height: 3vh;
+input {
+	padding: 6px;
+	height: 2vh;
+	width: 11vw;
+	border-radius: 5px;
+	border: 1px solid #999999;
 }

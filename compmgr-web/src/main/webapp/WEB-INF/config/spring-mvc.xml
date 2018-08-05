@@ -91,7 +91,7 @@
           p:contentType="text/html"
           p:suffix=".html" />
 
-    <mvc:resources mapping="/pages/html/**"
+    <mvc:resources mapping="/html/**"
                    location="/WEB-INF/pages/html/" />
     <mvc:resources mapping="/js/**"
                    location="/WEB-INF/resources/js/" />
