@@ -1,0 +1,22 @@
+/* 通用css */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.button {
+	cursor: pointer;
+	border-radius: 5px;
+	width: 4vw;
+	height: 5vh;
+	background-color: gray;
+	border: none;
+	color: #FFF;
+	font-size: 14px;
+}
+
+.input {
+	width: 12vw;
+	height: 3vh;
+}
