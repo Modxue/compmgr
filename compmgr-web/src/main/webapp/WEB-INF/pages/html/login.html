@@ -83,13 +83,14 @@
 				<div id="login-college">
 					<select lay-filter="login-college-select">
 						<option value="">请选择学院</option>
+						<option value="1">计算机学院</option>
 					</select>
 				</div>
 			</div>
 			<div id="login-form-teacher" class="login-message layui-form">
 				<span>教师：</span>
 				<div id="login-teacher">
-					<select lay-filter="login-teacher-select">
+					<select lay-filter="login-teacher-select" id="login-teacher-select">
 						<option value="">请选择教师</option>
 					</select>
 				</div>
@@ -108,40 +109,56 @@
 </body>
 <script type="text/javascript">
     //变量定义
-    var loginData;
+    var loginTeacherData;
 
     //获取教师登录信息
     $.ajax({
         async: false,
-        type: "GET",
-        url: "/compmgr/json/login.json",
+        type: "POST",
+        url: "/compmgr/login/teacherinfo.action",
         dataType: "json",
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            loginData = data;
+            loginTeacherData = data;
+            console.log(data[1].teacherName);
+            fillTeacher ();
         },
         error: function (data) {
             alert(data);
         }
     });
 
-    //验证账号密码
-    $(document).on("click", "#login-enter-btn", function () {
-        var loginId = $("#login-account").val();
-        var loginPWD = $("#login-password").val();
-        for (var i = 0, j = loginData.length; i < j; i++) {
-            if (loginId == loginData[i].id && loginPWD == loginData[i].password) {
-                alert("成功");
-                return;
-            }
-        }
-        alert("失败");
-    });
+    function fillTeacher(){
+        layui.use('form', function () {
+            var form = layui.form;
+            var teachername;
+            var teacherNum;
+            $("#login-teacher-select").html("");
+            $("#login-teacher-select").append("<option value=''>请选择教师</option>");
+            for (var i = 0, j=loginTeacherData.length; i < j; i++) {
 
-    layui.use('form', function () {
-        var form = layui.form;
-        form.render('select');
-    });
+                teacherName = loginTeacherData[i].teacherName;
+                teacherNum = loginTeacherData[i].teacherNum;
+
+                $("#login-teacher-select").append("<option value='" + teacherNum + "'>" + teacherName + "</option>");
+            }
+            form.render('select');
+        });
+	};
+    //验证账号密码
+    // $(document).on("click", "#login-enter-btn", function () {
+    //     var loginId = $("#login-account").val();
+    //     var loginPWD = $("#login-password").val();
+    //     for (var i = 0, j = loginData.length; i < j; i++) {
+    //         if (loginId == loginData[i].id && loginPWD == loginData[i].password) {
+    //             alert("成功");
+    //             return;
+    //         }
+    //     }
+    //     alert("失败");
+    // });
+
+
     //点击事件
 </script>
 

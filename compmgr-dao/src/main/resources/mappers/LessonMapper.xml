@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.zut.cs.curriculum.dao.LessonMapper">
+    <select id="getAllLesson"  resultType="edu.zut.cs.curriculum.model.Lesson">
+        select id,arrangeId,week,weekDay,node,isDoubleWeek,roomNum
+        from t_lesson
+    </select>
+    <select id="getArrangeIdById" parameterType="Integer"  resultType="Integer">
+        select arrangeId
+        from t_lesson
+        where id=#{id}
+    </select>
+    <select id="getNodeByWeekDay" parameterType="Integer"  resultType="Integer">
+        select node
+        from t_lesson
+        where weekDay=#{weekDay}
+    </select>
+    <select id="getRoomNumByIsDoubleWeek" parameterType="Integer"  resultType="java.lang.String">
+        select roomNum
+        from t_lesson
+        where isDoubleWeek=#{isDoubleWeek}
+    </select>
+
+</mapper>
