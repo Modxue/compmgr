@@ -2,8 +2,11 @@ package edu.zut.cs.login.service.impl;
 
 import edu.zut.cs.login.service.LoginService;
 import edu.zut.cs.user.dao.TeacherMapper;
+import edu.zut.cs.user.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @packge_name: edu.zut.cs.login.service.impl
@@ -26,12 +29,15 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public boolean isTruePassword(String teacherNum,String password) {
-
-
-
-
 //        if (password.equals())
 //            return true;
         return false;
     }
+
+    @Override
+    public List<Teacher> getAllTeacherInfo() {
+        return teacherMapper.getAllTeacher();
+    }
+
+
 }
