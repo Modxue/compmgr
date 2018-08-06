@@ -60,6 +60,6 @@ public class Teacher{
                 ", teacherName='" + teacherName + '\'' +
                 ", teacher=" + teacherEmail +
                 ", passWord=" + passWord +
-                '}';
-    }
+				'}';
+	}
 }
