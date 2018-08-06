@@ -1,13 +1,12 @@
 package edu.zut.cs.admin.service.impl;
 
-import java.util.List;
-
+import edu.zut.cs.admin.service.ApplyCourseService;
+import edu.zut.cs.curriculum.dao.CourseMapper;
+import edu.zut.cs.curriculum.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.zut.cs.admin.dao.CourseMapper;
-import edu.zut.cs.admin.model.Course;
-import edu.zut.cs.admin.service.ApplyCourseService;
+import java.util.List;
 
 @Service
 public class ApplyCourseServiceImpl implements ApplyCourseService{
