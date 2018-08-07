@@ -31,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
     public boolean isTruePassword(String teacherNum,String password) {
 //        if (password.equals())
 //            return true;
-        return false;
+        return true;
     }
 
     @Override
