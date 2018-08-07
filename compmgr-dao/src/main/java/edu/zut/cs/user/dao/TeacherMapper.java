@@ -15,5 +15,5 @@ public interface TeacherMapper {
 
 	public String getNameById(Integer id);
 	
-	public String getPassWordById(Integer id);
+	public String getPasswordById(Integer id);
 }

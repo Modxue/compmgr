@@ -56,10 +56,10 @@ public class TeacherTest {
 	 * @author:houjie
 	 * @Description:get all teacher
 	 * @date: 2018-08-04 09:15
-	 */
+	 */  
 	@Test
-	public void getPassWordByIdTest() {
-		String password=teacherMapper.getPassWordById(8322);
+	public void getPasswordByIdTest() {
+		String password=teacherMapper.getPasswordById(8322);
 		System.out.println(password);
 	}
 }
