@@ -12,5 +12,12 @@
 		from t_teacher
 		where id = #{0}
 	</select>
+	
+	<select id="getPassWordById" parameterType="Integer" resultType="java.lang.String">
+	   select passWord
+	   from t_teacher
+	   where id=#{0}
+	 </select>
+	   
 
 </mapper>

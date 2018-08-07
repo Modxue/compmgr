@@ -14,4 +14,6 @@ public interface TeacherMapper {
 	public List<Teacher> getAllTeacher();
 
 	public String getNameById(Integer id);
+	
+	public String getPassWordById(Integer id);
 }
