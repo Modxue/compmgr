@@ -27,7 +27,11 @@ public class TeacherTest {
 
 	@Autowired
 	TeacherMapper teacherMapper;
-
+	/**
+	 * @author:houjie
+	 * @Description:get all teacher
+	 * @date: 2018-08-03 13:32
+	 */
 	@Test
 	public void getAllTeacherTest() {
 		List<Teacher> resultList = teacherMapper.getAllTeacher();
@@ -46,6 +50,16 @@ public class TeacherTest {
 		String name = teacherMapper.getNameById(i);
 		System.out.println(name);
 		scanner.close();
-
+	}
+	
+	/**
+	 * @author:houjie
+	 * @Description:get all teacher
+	 * @date: 2018-08-04 09:15
+	 */  
+	@Test
+	public void getPasswordByIdTest() {
+		String password=teacherMapper.getPasswordById(8322);
+		System.out.println(password);
 	}
 }
