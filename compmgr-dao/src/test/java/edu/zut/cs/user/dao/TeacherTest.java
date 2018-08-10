@@ -41,6 +41,7 @@ public class TeacherTest {
 		// System.out.println(resultList);
 	}
 
+
 	@Test
 	public void getNameByIdTest() {
 		Scanner scanner = new Scanner(System.in);
@@ -54,12 +55,37 @@ public class TeacherTest {
 	
 	/**
 	 * @author:houjie
-	 * @Description:get all teacher
+	 * @Description:get  password by id
 	 * @date: 2018-08-04 09:15
 	 */  
 	@Test
 	public void getPasswordByIdTest() {
 		String password=teacherMapper.getPasswordById(8322);
 		System.out.println(password);
+	}
+	/**
+	 * @author:houjie
+	 * @Description:insert one new teacher
+	 * @date: 2018-08-07 12:47
+	 */
+	@Test
+	public void insertTeacherTest(){
+		Teacher t =new Teacher();
+		t.setTeacherNum("001");
+		t.setTeacherName("王鹏");
+		t.setTeacherEmail("544536");
+		t.setPassword("211222");
+		teacherMapper.insertTeacher(t);
+		//System.out.println("success!");
+	}
+	/**
+	 * @author:houjie
+	 * @Description:get one Teacher by id
+	 * @date: 2018-08-07 12:47
+	 */
+	@Test
+	public void getOneTeacherByIdTest(){
+		List<Teacher> teachers =teacherMapper.getOneTeacherById(8322);
+		System.out.println(teachers);
 	}
 }
