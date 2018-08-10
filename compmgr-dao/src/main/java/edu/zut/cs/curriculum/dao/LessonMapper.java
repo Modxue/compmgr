@@ -11,7 +11,7 @@ import edu.zut.cs.curriculum.model.Lesson;
 
 public interface  LessonMapper {
 	
-	    Integer getArrangeIdById(Integer id);
+	    Lesson getArrangeIdById(Integer id);
 		//通过id查找课程安排id
 	    
 	    Integer getNodeByWeekDay(Integer weekDay);
@@ -23,5 +23,11 @@ public interface  LessonMapper {
 	    List<Lesson>getAllLesson();
 	    //获得所有Lesson
 	
+	    void insertLesson();
+	    //插入一个Lesson
 
+	    void deleteLessonById(Integer id);
+	    //删除一个Lesson
+	    
+	    
 }

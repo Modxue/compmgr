@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import edu.zut.cs.curriculum.model.Lesson;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 /**
 * @author hyx
 * @version 创建时间：2018年8月5日 下午11:21:52
-* 类说明
+* 类说明  测试
 */
 
 
@@ -26,15 +27,25 @@ import java.util.List;
 @ContextConfiguration(locations = "classpath*:applicationContext-dao.xml")
 public class LessonTest {
 	@Autowired
-	LessonMapper LessonMapper;
+	LessonMapper lessonMapper;
 
+	//测试查找所有的Lesson
     @Test
-    public void getAllArrangeTest(){
-        List<Lesson> resultList = LessonMapper.getAllLesson();
+    public void getAllLessonTest(){
+        List<Lesson> resultList = lessonMapper.getAllLesson();
         for (Lesson lesson : resultList) {
             System.out.println(lesson);
         }
        System.out.println(resultList);
     }
-
+  //测试通过id查找课程安排id
+    @Test
+    public void getArrangeIdByIdTest() {
+    	Lesson result=lessonMapper.getArrangeIdById(null);
+    	System.out.println(result);
+    	
+    }
+    
+   
+    
 }
