@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/compmgr/css/style.css" />
+    <link rel="icon" href="/compmgr/images/zut_logo.png" />
+    <script src="/compmgr/lib/jquery.js"></script>
+    <title>register</title>
+    <style type="text/css">
+        #register-main {
+            background-color: #fff;
+        }
+
+        #register-top {
+            background: linear-gradient(#317ba2, #00BFFF);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 100vw;
+            height: 10vh;
+            display: flex;
+        }
+
+        #register-title {
+            left: 28vw;
+            top: 3vh;
+            font-size: 1.7vw;
+            position: absolute;
+            display: flex;
+        }
+
+        #register-title img {
+            width: 2.5vw;
+            height: 4.5vh;
+        }
+
+        #register-middle {
+            height: 82vh;
+        }
+
+        #register-middle-form {
+            margin: 3vh 25vw;
+            width: 50vw;
+            height: 78.65vh;
+            border: 1px solid #C2C2C2;
+            border-radius: 5px;
+        }
+
+        #register-middle-form-title {
+            margin: 1.5vw;
+            font-size: 1.5vw;
+            color: dodgerblue;
+        }
+
+        .register-middle-form-modul {
+            display: flex;
+            height: 6vh;
+        }
+
+        .register-middle-form-font {
+            margin:1vh 2vw;
+        }
+
+        #register-bottom {
+            height: 5vh;
+            background-color: #317ba2;
+        }
+
+        #register-middle-form-btn {
+            display: flex;
+            width: 6vw;
+            height: 5vh;
+            justify-content: center;
+            align-items: center;
+            margin: 3vh 9vw;
+        }
+
+        #verification-code {
+            display: flex;
+        }
+
+        #register-password-affirm,
+        #code-remind {
+            color: red;
+        }
+
+        #code{
+            margin-left: 1vw;
+            height: 4vh;
+            width: 5vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #999999;
+            border-radius: 4px;
+            background-color: #40AFFE;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div id="register-main">
+    <div id="register-top">
+        <div id="register-title">
+            <img src="/compmgr/images/zut_logo.png">&nbsp;
+            <div id="register-top-title">
+                <i>机房管理系统</i>
+            </div>
+        </div>
+    </div>
+
+    <div id="register-middle">
+        <div id="register-middle-form">
+            <div id="register-middle-form-title">
+                快速注册
+            </div>
+            <div class="register-middle-form-modul">
+                <div class="register-middle-form-font">电子邮箱：</div>
+                <div class="register-middle-form-input">
+                    <input type="text" id="register-middle-email">
+                </div>
+            </div>
+            <div class="register-middle-form-modul">
+                <div class="register-middle-form-font">教师姓名：</div>
+                <div class="register-middle-form-input">
+                    <input type="text" id="register-middle-teacher">
+                </div>
+            </div>
+            <div class="register-middle-form-modul">
+                <div class="register-middle-form-font">登录密码：</div>
+                <div class="register-middle-form-input">
+                    <input type="text" id="register-middle-password">
+                </div>
+            </div>
+            <div class="register-middle-form-modul">
+                <div class="register-middle-form-font">确认密码：</div>
+                <div class="register-middle-form-input">
+                    <input type="text" id="register-middle-repassword">
+                </div>
+                <div id="register-password-affirm">*两次密码要保持一致</div>
+            </div>
+            <div class="register-middle-form-modul">
+                <div class="register-middle-form-font">&nbsp;&nbsp;验证码：&nbsp;</div>
+                <div class="register-middle-form-input" id="verification-code">
+                    <input type="text" id="register-middle-code">
+                    <div id="code"></div>
+                </div>
+                <div id="code-remind"></div>
+            </div>
+            <div id="register-middle-form-btn" class="button">确认注册</div>
+        </div>
+
+        <div id="register-bottom">
+
+        </div>
+    </div>
+</div>
+<script>
+    var code; //产生的随机验证码
+
+    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    $(function () {
+        createCode();
+    });
+
+    //产生随机验证码
+    function createCode() {
+        code = ''; //首先默认code为空字符串
+        var codeLength = 4; //设置长度，这里看需求，我这里设置了4
+        //设置随机字符
+        for (var i = 0; i < codeLength; i++) { //循环codeLength 我设置的4就是循环4次
+            var index = Math.floor(Math.random() * 36); //设置随机数范围,这设置为0 ~ 36
+            code += random[index]; //字符串拼接 将每次随机的字符 进行拼接
+        }
+        $("#code").text(code); //将拼接好的字符串赋值给展示的Value
+    };
+
+    //对比两次密码输入的是否相同
+    function passwordCompare() {
+        var password=$("#register-middle-password").val();
+        var repassword=$("#register-middle-repassword").val();
+        if(repassword!=password){
+            $("#register-password-affirm").text("*输入两次密码不同");
+        }else{
+            $("#register-password-affirm").text("*输入两次密码相同");
+        }
+    };
+
+    //这里是验证码输入框失去焦点时的事件
+    function codeCompare(){
+        var remind=$("#register-middle-code").val();
+        if(code==remind){
+            $("#code-remind").text("*验证码正确");
+        }else if(code.toLowerCase()==remind){
+            $("#code-remind").text("*验证码正确");
+        }else{
+            $("#code-remind").text("*验证码错误");
+        }
+    };
+
+    //当所有输入框都有
+    $("#register-middle-form").bind("input",function () {
+        var email=$("#register-middle-email").val();
+        var teacher=$("#register-middle-teacher").val();
+        var password=$("#register-middle-password").val();
+        var repassword=$("#register-middle-repassword").val();
+        var remind=$("#register-middle-code").val();
+        passwordCompare();
+        codeCompare();
+        if(email&&teacher&&password&&repassword&&remind){
+            $("#register-middle-form-btn").css("background-color","blue");
+// 				$.ajax({
+// 					async: false,
+// 					type: "POST",
+// 					url: "/reg/admin/addArea.action",
+// 					data: JSON.stringify({
+// 						"email": email,
+// 						"teacher": teacher,
+// 						"password":password,
+// 						"remind":remind
+// 					}),
+// 					dataType: "json",
+// 					contentType: "application/json;charset=utf-8",
+// 					success: function (data) {
+// 						if(data==1){
+// 							alert("区域添加成功");
+// 						} else if(data==2){
+// 							alert("添加区域名称重复");
+// 						}else{
+// 							alert("添加失败，请重试");
+// 						}
+// 						fillareaQygl();
+// 					},
+// 					error: function (data) {
+// 						ajaxError(data);
+// 					}
+// 				});
+
+        }else{
+            $("#register-middle-form-btn").css("background-color","gray");
+        }
+    });
+    //点击验证码框更换验证码
+    $("#code").click(function () {
+        createCode();
+    });
+</script>
+</body>
+
+</html>

@@ -28,11 +28,11 @@ public class Teacher{
 		this.teacherEmail = teacherEmail;
 	}
 
-	public String getPassWord() {
+	public String getPassword() {
 		return passWord;
 	}
 
-	public void setPassWord(String passWord) {
+	public void setPassword(String passWord) {
 		this.passWord = passWord;
 	}
 

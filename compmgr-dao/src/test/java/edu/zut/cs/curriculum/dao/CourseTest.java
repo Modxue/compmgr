@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @author: ymz
- * @Description:
+ * @Description:course测试类
  * @date: 2018/8/2 17:57
  */
 @Transactional
@@ -28,12 +28,45 @@ public class CourseTest {
     @Autowired
     CourseMapper courseMapper;
 
+   
+   //测试查找所有Course
     @Test
     public void getAllCourseTest(){
         List<Course> resultList = courseMapper.getAllCourse();
         for (Course course : resultList) {
             System.out.println(course);
         }
-//        System.out.println(resultList);
+    }
+  //测试通过id查找课程名称
+    @Test
+    public void getCourseNameByIdTest() {
+    	String result=courseMapper.getCourseNameById(2989);
+    	System.out.println(result);
+    	
+    }
+  //测试通过id查找课程
+    @Test
+    public void getCourseByIdTest() {
+    	Course result=courseMapper.getCourseById(2989);
+    	System.out.println(result);
+    	
+    }
+    //插入一条记录
+    @Test
+    public void insertTest(){
+    	courseMapper.insertCourse();
+    	List<Course> resultList = courseMapper.getAllCourse();
+        for (Course course : resultList) {
+            System.out.println(course);
+        }
+    }
+    //根据id删除一条记录
+    @Test
+    public void deleteCourseByIdTest(){
+    	courseMapper.deleteCourseById(3040);
+    	List<Course> resultList = courseMapper.getAllCourse();
+        for (Course course : resultList) {
+            System.out.println(course);
+        }
     }
 }
