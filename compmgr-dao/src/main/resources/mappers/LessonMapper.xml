@@ -20,5 +20,13 @@
         from t_lesson
         where isDoubleWeek=#{isDoubleWeek}
     </select>
+    <insert id="insertLesson" parameterType="edu.zut.cs.curriculum.model.Lesson">
+    insert into t_lesson (id,arrangeId,week,weekDay,node,isDoubleWeek,roomNum)
+    values   (#{id},#{arrangeId},#{week},#{weekDay},#{node},#{isDoubleWeek},#{roomNum})
+    </insert>
+    <delete id="deleteLessonById">
+    delete from t_lesson
+    where id=#{id}
+    </delete>
 
 </mapper>
