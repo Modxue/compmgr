@@ -28,7 +28,7 @@ public class ArrangeTest {
 
     @Autowired
     ArrangeMapper arrangeMapper;
-
+/*得到所有Arrange*/
     @Test
     public void getAllArrangeTest(){
         List<Arrange> resultList = arrangeMapper.getAllArrange();
