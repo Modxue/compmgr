@@ -3,7 +3,7 @@
 <mapper namespace="edu.zut.cs.user.dao.TeacherMapper">
 	<select id="getAllTeacher" resultType="edu.zut.cs.user.model.Teacher">
 		select
-		id,teacherNum,teacherName,teacherEmail,passWord
+		id,teacherNum,teacherName,teacherEmail,password
 		from t_teacher
 	</select>
 
@@ -11,10 +11,10 @@
 		select teacherName
 		from t_teacher
 		where id = #{0}
-	</select>
+	</select> 
 	
-	<select id="getPasswordById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-	   select passWord
+	<select id="getPasswordById" parameterType="java.lang.Integer" resultType="java.lang.String">
+	   select password
 	   from t_teacher
 	   where id=#{0}
 	 </select>
