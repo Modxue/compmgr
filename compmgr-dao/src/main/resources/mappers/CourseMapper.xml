@@ -10,10 +10,20 @@
         from t_course
         where id=#{id}
     </select>
-    <select id="getPeriodByCourseName" parameterType="java.lang.String"  resultType="Integer">
-        select period
+    <select id="getCourseById" parameterType="Integer"  resultType="edu.zut.cs.curriculum.model.Course">
+        select id,courseNum,courseName,period,credit
         from t_course
-        where courseName=#{CourseName}
+        where id=#{id}
     </select>
+    <insert id="insertCourse" parameterType="edu.zut.cs.curriculum.model.Course">
+    insert into t_course 
+    (id,courseNum,courseName,period,credit)
+    values
+    (#{id},#{courseNum},#{courseName},#{period},#{credit})
+    </insert>
+    <delete id="deleteCourseById">
+    delete from t_course
+    where id=#{id}
+    </delete>
 
 </mapper>

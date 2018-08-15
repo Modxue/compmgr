@@ -13,5 +13,7 @@ public interface CptLabMapper {
      * 根据id获得机房
      * @return
      */
-    public CptLab getComputerLabById();
+//    public CptLab getComputerLabById();
+
+	public CptLab getComputerLabById(Integer i);
 }

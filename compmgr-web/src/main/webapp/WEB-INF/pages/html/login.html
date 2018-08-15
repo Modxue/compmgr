@@ -5,6 +5,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/compmgr/lib/jquery.js"></script>
+	<script src="/compmgr/js/main.js"></script>
 	<script src="/compmgr/lib/layui/layui.js"></script>
 	<link rel="stylesheet" href="/compmgr/lib/layui/css/layui.css">
 	<link rel="stylesheet" type="text/css" href="/compmgr/css/style.css" />
@@ -75,73 +76,126 @@
 
 <body>
 <div id="login-main">
-	<div id="login-enter">
+	<form id="login-enter" method="post" class="layui-form" action="/compmgr/login/authentication.action">
 		<div id="login-title">用户登录</div>
 		<div id="login-form">
 			<div id="login-form-college" class="login-message layui-form">
 				<span>学院：</span>
 				<div id="login-college">
-					<select lay-filter="login-college-select">
+					<select lay-filter="login-college-select" id="login-college-select">
 						<option value="">请选择学院</option>
+						<option value="1">计算机学院</option>
 					</select>
 				</div>
 			</div>
 			<div id="login-form-teacher" class="login-message layui-form">
 				<span>教师：</span>
 				<div id="login-teacher">
-					<select lay-filter="login-teacher-select">
+					<select lay-filter="login-teacher-select" id="login-teacher-select"  name="teacherId">
 						<option value="">请选择教师</option>
 					</select>
 				</div>
 			</div>
 			<div id="login-form-password" class="login-message">
 				<span>密码：</span>
-				<input type="password" id="login-password" />
+				<input type="password" id="login-password" name="pwd"/>
 			</div>
 			<div id="login-button">
-				<div class="button" id="login-enter-btn">登录</div>
+				<button class="button" id="login-enter-btn" type="submit">登录</button>
 				<a class="button" id="login-register-btn" href="/compmgr/html/register.html">注册</a>
 			</div>
 		</div>
-	</div>
+	</form>
 </div>
 </body>
 <script type="text/javascript">
     //变量定义
-    var loginData;
-
-    //获取教师登录信息
-    $.ajax({
-        async: false,
-        type: "GET",
-        url: "/compmgr/json/login.json",
-        dataType: "json",
-        contentType: "application/json;charset=utf-8",
-        success: function (data) {
-            loginData = data;
-        },
-        error: function (data) {
-            alert(data);
-        }
-    });
-
-    //验证账号密码
-    $(document).on("click", "#login-enter-btn", function () {
-        var loginId = $("#login-account").val();
-        var loginPWD = $("#login-password").val();
-        for (var i = 0, j = loginData.length; i < j; i++) {
-            if (loginId == loginData[i].id && loginPWD == loginData[i].password) {
-                alert("成功");
-                return;
-            }
-        }
-        alert("失败");
-    });
+    var loginTeacherData;  //教师的登录信息
+    var departmentId;  //学院的id
 
     layui.use('form', function () {
         var form = layui.form;
         form.render('select');
     });
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(login-college-select)',function (data) {
+            departmentId = data.value;
+            loginAjaxTeacher();
+        });
+    });
+    //获取教师登录信息
+	function loginAjaxTeacher(){
+        if (departmentId=="1"){
+	    	$.ajax({
+            	async: false,
+            	type: "POST",
+            	url: "/compmgr/login/teacherinfo.action",
+            	dataType: "json",
+            	contentType: "application/json;charset=utf-8",
+            	success: function (data) {
+                	loginTeacherData = data;
+
+            	},
+            	error: function (data) {
+                	ajaxError(data);
+            	}
+        	});
+            fillTeacher ();
+        }else{
+            loginTeacherData.length=0;
+            console.log(loginTeacherData);
+            $("#login-teacher-select").html("");
+            $("#login-teacher-select").append("<option value=''>请选择教师</option>");
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render('select');
+            });
+		}
+    }
+    function fillTeacher(){
+        layui.use('form', function () {
+            var form = layui.form;
+			var teachername;
+			var teacherNum;
+			$("#login-teacher-select").html("");
+			$("#login-teacher-select").append("<option value=''>请选择教师</option>");
+			for (var i = 0, j=loginTeacherData.length; i < j; i++) {
+				teacherName = loginTeacherData[i].teacherName;
+				teacherId = loginTeacherData[i].id;
+				$("#login-teacher-select").append("<option value='" + teacherId + "'>" + teacherName + "</option>");
+			}
+
+            form.render('select');
+        });
+	}
+    //验证账号密码
+    // $(document).on("click", "#login-enter-btn", function () {
+    //     var teacherId = $("#login-teacher-select").val();
+    //     var teacherPassword = $("#login-password").val();
+    //     $.ajax({
+    //         async: false,
+    //         type: "POST",
+    //         url: "/compmgr/login/authentication.action",
+    //         data: JSON.stringify({
+    //             "teacherId": teacherId,
+		// 		"teacherPassword":teacherPassword
+    //         }),
+    //         dataType: "json",
+    //         contentType: "application/json;charset=utf-8",
+    //         success: function (data) {
+		// 			alert(data);
+		// 			if(data==2){
+		// 			    window.location.href='/html/register.html';
+		// 			}
+    //         },
+    //         error: function (data) {
+    //             ajaxError(data);
+    //         }
+    //     });
+    // });
+
+
     //点击事件
 </script>
 
