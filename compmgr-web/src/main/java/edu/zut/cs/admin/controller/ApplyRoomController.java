@@ -1,5 +1,6 @@
 package edu.zut.cs.admin.controller;
 
+import com.alibaba.druid.mock.MockArray;
 import edu.zut.cs.admin.service.ApplyRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
