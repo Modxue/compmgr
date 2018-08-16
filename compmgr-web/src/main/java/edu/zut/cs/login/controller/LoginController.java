@@ -30,8 +30,7 @@ public class LoginController {
 
     @PostMapping(value = "/authentication",produces = "application/json;charset=utf-8")
     public String submit(@RequestParam String teacherId, @RequestParam String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
+  	
         if (loginService.isTruePassword(teacherId,pwd)){
             System.out.println("账号密码正确");
             return "redirect:/html/main.html";
