@@ -43,6 +43,7 @@ public class ExampleController {
     String getAllRoomNum(){
         List<String> resultList = exampleService.getAllComputerLabNumber();
         String resultJson = JSON.toJSONString(resultList);
+        System.out.println("controller结果JSON："+resultJson);
         return resultJson;
     }
 }
