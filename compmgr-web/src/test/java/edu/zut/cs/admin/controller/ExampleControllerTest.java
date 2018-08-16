@@ -55,7 +55,7 @@ public class ExampleControllerTest {
     }
 
     @Test
-    public void getAllRoomTest() throws Exception {
+    public void getAllRoomNumTest() throws Exception {
         String responseString = mockMvc.perform(
                 get("/example/getallroomnum")//请求的url
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED) //数据格式
@@ -64,5 +64,6 @@ public class ExampleControllerTest {
                 //        .andDo(print())         打印出请求和相应的内容
                 .andReturn().getResponse().getContentAsString(); //将相应数据转换成字符串
         System.out.println("------返回的JSON = " + responseString);
+
     }
 }
