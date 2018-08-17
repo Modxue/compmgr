@@ -30,15 +30,14 @@ public class LoginController {
 
     @PostMapping(value = "/authentication",produces = "application/json;charset=utf-8")
     public String submit(@RequestParam String teacherId, @RequestParam String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
+  	
         if (loginService.isTruePassword(teacherId,pwd)){
             System.out.println("账号密码正确");
-            return "redirect:/html/register.html";
+            return "redirect:/html/main.html";
         }else{
-//            response.setContentType("text/html;charset=utf-8");
-//            response.getWriter().write("<script>alert('密码错误！！');history.back()</script>");
-            return "2";
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().write("<script>alert('密码错误！！');history.back()</script>");
+            return null;
         }
     }
 

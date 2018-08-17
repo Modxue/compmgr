@@ -12,15 +12,15 @@ import edu.zut.cs.curriculum.model.Course;
 
 
 public interface CourseMapper {
-    void deleteCourseById(Integer id);
+    public void deleteCourseById(Integer id);
     //删除一个Course
-	String getCourseNameById(Integer id);
+    public String getCourseNameById(Integer id);
 	//通过id查找课程名
-	Course getCourseById(Integer id);
+    public Course getCourseById(Integer id);
 	//通过id查找课程
-    List<Course>getAllCourse();
+    public  List<Course>getAllCourse();
     //获得所有Course
-    void insertCourse();
+    public  void insertCourse(Course course);
     //插入一个Course
 
 }

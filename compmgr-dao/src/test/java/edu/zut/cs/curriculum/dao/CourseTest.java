@@ -2,6 +2,8 @@ package edu.zut.cs.curriculum.dao;
 
 
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.druid.support.logging.Resources;
+
 import edu.zut.cs.curriculum.model.Course;
 
+import java.io.InputStream;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 /**
  * @author: ymz
@@ -53,12 +60,15 @@ public class CourseTest {
     }
     //插入一条记录
     @Test
-    public void insertTest(){
-    	courseMapper.insertCourse();
-    	List<Course> resultList = courseMapper.getAllCourse();
-        for (Course course : resultList) {
-            System.out.println(course);
-        }
+    public void insertCourseTest(){
+    	Course course=new Course();
+    	course.setId(9999);
+    	course.setCourseNum("Db9999999");
+    	course.setCourseName("艺术鉴赏");
+    	course.setPeriod(30);
+    	course.setCredit(3);
+    	courseMapper.insertCourse(course);
+
     }
     //根据id删除一条记录
     @Test

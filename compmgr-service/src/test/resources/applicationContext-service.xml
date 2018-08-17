@@ -17,7 +17,7 @@
     <import resource="applicationContext-dao.xml"/>
     <context:component-scan base-package="edu.zut.cs.*.service"/>
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-    <context:component-scan base-package="edu.zut.cs.*.impl"/>
+    <context:component-scan base-package="edu.zut.cs.*.service.impl"/>
 
     <!-- 通过AOP配置提供事务增强，让service包下所有Bean的所有方法拥有事务 -->
     <aop:config proxy-target-class="true">
