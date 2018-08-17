@@ -51,7 +51,7 @@ public class LessonTest {
     @Test
     public void insertLessonTest(){
     	Lesson lesson=new Lesson();
-    	lesson.setId(11);
+    	lesson.setId(8888);
     	lesson.setArrangeId(8);
     	lesson.setWeek("03");
     	lesson.setWeekDay(3);
