@@ -1,7 +1,5 @@
 package edu.zut.cs.teacher.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.zut.cs.teacher.service.TeacherService;
@@ -19,8 +17,8 @@ public class TeacherServiceImpl implements TeacherService {
 	TeacherMapper teacherMapper;
 
 	@Override
-	public List<Teacher> getTeacherById(Integer id) {
+	public Teacher getTeacherById(Integer id) {
 		return teacherMapper.getOneTeacherById(id);
 	}
-	
+
 }

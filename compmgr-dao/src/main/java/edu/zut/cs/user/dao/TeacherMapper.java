@@ -27,5 +27,5 @@ public interface TeacherMapper {
 	// public Integer deleteTeacherById(Integer id);
 	
 	// 通过指定Id获取老师信息
-	public List<Teacher> getOneTeacherById(Integer id);
+	public Teacher getOneTeacherById(Integer id);
 }
