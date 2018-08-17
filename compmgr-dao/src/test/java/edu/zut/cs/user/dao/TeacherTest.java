@@ -81,7 +81,7 @@ public class TeacherTest {
 	 */
 	@Test
 	public void getOneTeacherByIdTest() {
-		List<Teacher> teachers = teacherMapper.getOneTeacherById(8322);
+		Teacher teachers = teacherMapper.getOneTeacherById(8322);
 		System.out.println(teachers);
 	}
 }
