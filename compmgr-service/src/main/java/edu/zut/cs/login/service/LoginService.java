@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface LoginService {
 
-    boolean isTruePassword(String teacherNum,String password);
+    boolean isTruePassword(String teacherId,String password);
 
     List<Teacher> getAllTeacherInfo();
 

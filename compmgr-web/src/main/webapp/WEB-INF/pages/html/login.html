@@ -84,7 +84,7 @@
 				<div id="login-college">
 					<select lay-filter="login-college-select" id="login-college-select">
 						<option value="">请选择学院</option>
-						<option value="1">计算机学院</option>
+						<!--<option value="1">计算机学院</option>-->
 					</select>
 				</div>
 			</div>
@@ -153,6 +153,11 @@
             });
 		}
     }
+    layui.use('form', function () {
+        var form = layui.form;
+        $("#login-college-select").append("<option value='1'>计算机学院</option>");
+        form.render('select');
+    });
     function fillTeacher(){
         layui.use('form', function () {
             var form = layui.form;

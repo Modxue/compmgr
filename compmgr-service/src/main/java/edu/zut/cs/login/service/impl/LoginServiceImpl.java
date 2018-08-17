@@ -28,10 +28,11 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public boolean isTruePassword(String teacherNum,String password) {
-//        if (password.equals())
-//            return true;
-        return true;
+    public boolean isTruePassword(String teacherId,String password) {
+    	Integer tId=Integer.valueOf(teacherId);
+        if (password.equals(teacherMapper.getPasswordById(tId)))
+            return true;
+        return false;
     }
 
     @Override
