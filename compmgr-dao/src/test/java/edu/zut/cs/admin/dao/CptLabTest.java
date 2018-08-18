@@ -37,6 +37,13 @@ public class CptLabTest {
 		CptLab name = cptlabMapper.getComputerLabById(i);
 		System.out.println(name);
 		scanner.close();
+	}
 
+	@Test
+	public void getAllComputerLabTest(){
+		List<CptLab> result = cptlabMapper.getAllComputerLab();
+		for (CptLab lab : result) {
+			System.out.println(lab);
+		}
 	}
 }
