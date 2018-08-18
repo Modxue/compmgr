@@ -28,12 +28,6 @@
     delete from t_lesson
     where id=#{id}
     </delete>
-    
-    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-        <property name="basePackage" value="edu.zut.cs.curriculum.service.LessonService" />  
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
-    </bean>
-    
+        
 
 </mapper>
