@@ -5,17 +5,17 @@
         select id,arrangeId,week,weekDay,node,isDoubleWeek,roomNum
         from t_lesson
     </select>
-    <select id="getArrangeIdById" parameterType="Integer"  resultType="Integer">
+    <select id="getArrangeIdById" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
         select arrangeId
         from t_lesson
         where id=#{id}
     </select>
-    <select id="getNodeByWeekDay" parameterType="Integer"  resultType="Integer">
+    <select id="getNodeByWeekDay" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
         select node
         from t_lesson
         where weekDay=#{weekDay}
     </select>
-    <select id="getRoomNumByIsDoubleWeek" parameterType="Integer"  resultType="java.lang.String">
+    <select id="getRoomNumByIsDoubleWeek" parameterType="java.lang.Integer"  resultType="java.lang.String">
         select roomNum
         from t_lesson
         where isDoubleWeek=#{isDoubleWeek}
