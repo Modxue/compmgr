@@ -1,6 +1,7 @@
 package edu.zut.cs.user.dao;
 
 import edu.zut.cs.user.model.Teacher;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,10 +25,8 @@ public interface TeacherMapper {
 	public Integer insertTeacher(Teacher teacher);
 
 	// 修改指定老师id的密码，返回状态值
-	public Integer UpdateTeacherPasswordById(Integer id,String password);
+	public Integer updateTeacherPasswordById(@Param("id")Integer id, @Param("password") String password);
 	
 	// 通过指定Id获取老师信息
 	public Teacher getOneTeacherById(Integer id);
-	//通过id更改老师信息
-	public Teacher UpdateTeacherInfo(Integer id);
 }

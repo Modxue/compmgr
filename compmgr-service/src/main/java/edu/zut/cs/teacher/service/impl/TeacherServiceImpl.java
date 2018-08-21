@@ -23,19 +23,23 @@ public class TeacherServiceImpl implements TeacherService {
 	public Teacher getTeacherById(Integer id) {
 		return teacherMapper.getOneTeacherById(id);
 	}
+
 	/**
 	 * @author:houjie
-	 * @Description:
-	 * @date: 2018-08-21 21:17
+	 * @param id
+	 * @param oldPassword 旧的密码
+	 * @param newPassword 新的密码
+	 * @return -1表示异常 1表示成功 0表示失败
 	 */
 	@Override
-	public  Integer UpdateTeacherPasswordById(Integer id,String oldPassword,String newPassword) {
+	public  Integer updateTeacherPasswordById(Integer id,String oldPassword,String newPassword) {
 		Integer result = -1;//成功返回1，失败返回0，异常返回-1
 		//通过id得到老师的密码
 		String nowPassword = teacherMapper.getPasswordById(id);
 		String password = new Md5().lock(newPassword);
+
 		if (nowPassword.equalsIgnoreCase(new Md5().lock(oldPassword))) {
-			result = teacherMapper.UpdateTeacherPasswordById(id,password);
+			result = teacherMapper.updateTeacherPasswordById(id,password);
 		} else
 		{
 			result = 0;

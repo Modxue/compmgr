@@ -15,5 +15,5 @@ public interface TeacherService {
 	 * @Description:修改指定id老师的密码
 	 * @date: 2018-08-21 21：14
 	 */
-	Integer UpdateTeacherPasswordById(Integer id,String oldPassword,String newPassword);
+	Integer updateTeacherPasswordById(Integer id,String oldPassword,String newPassword);
 }
