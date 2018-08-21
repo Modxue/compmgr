@@ -1,6 +1,7 @@
 package edu.zut.cs.login.service.impl;
 
 import edu.zut.cs.login.service.LoginService;
+import edu.zut.cs.tools.Md5;
 import edu.zut.cs.user.dao.TeacherMapper;
 import edu.zut.cs.user.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public boolean isTruePassword(Integer teacherId,String password) {
-        if (password.equals(teacherMapper.getPasswordById(teacherId)))
+        String encodeStr = new Md5().lock(password);
+        if (encodeStr.equals(teacherMapper.getPasswordById(teacherId)))
             return true;
         return false;
     }
