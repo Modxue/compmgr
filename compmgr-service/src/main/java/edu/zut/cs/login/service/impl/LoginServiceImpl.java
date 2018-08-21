@@ -24,13 +24,12 @@ public class LoginServiceImpl implements LoginService {
     /**
      *
      * @param password
-     * @param teacherNum
+     * @param teacherId
      * @return
      */
     @Override
-    public boolean isTruePassword(String teacherId,String password) {
-    	Integer tId=Integer.valueOf(teacherId);
-        if (password.equals(teacherMapper.getPasswordById(tId)))
+    public boolean isTruePassword(Integer teacherId,String password) {
+        if (password.equals(teacherMapper.getPasswordById(teacherId)))
             return true;
         return false;
     }
