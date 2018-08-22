@@ -26,8 +26,14 @@
 	</insert>
 
 	<select id="getOneTeacherById" parameterType="java.lang.Integer" resultType="edu.zut.cs.user.model.Teacher">
-		select *
+		select id,teacherNum,teacherName,teacherEmail,password
 		from t_teacher
 		where id=#{0}
 	</select>
+
+	<update id="updateTeacherPasswordById">
+		update t_teacher
+		set password = #{password,jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
 </mapper>

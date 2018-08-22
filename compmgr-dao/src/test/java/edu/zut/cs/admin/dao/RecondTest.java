@@ -2,6 +2,7 @@ package edu.zut.cs.admin.dao;
 
 import edu.zut.cs.admin.dao.RecordMapper;
 import edu.zut.cs.admin.model.Record;
+import edu.zut.cs.tools.SumArray;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,6 +48,17 @@ public class RecondTest {
 		Integer name = recordMapper.getArrangeIdById(i);
 		System.out.println(name);
 		scanner.close();
-
+	}
+	
+	@Test
+	public void toolsTest() {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);
+		Integer result = new SumArray().sumArray(list );
+		System.out.println(result);
 	}
 }
