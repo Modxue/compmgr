@@ -1,8 +1,7 @@
 package edu.zut.cs.user.dao;
 
-import edu.zut.cs.user.dao.TeacherMapper;
+import edu.zut.cs.tools.Md5;
 import edu.zut.cs.user.model.Teacher;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +82,17 @@ public class TeacherTest {
 	public void getOneTeacherByIdTest() {
 		Teacher teachers = teacherMapper.getOneTeacherById(8322);
 		System.out.println(teachers);
+	}
+	@Test
+	public void updateTeacherPasswordByIdTest() {
+		Integer result = -1;
+		String nowPassword = teacherMapper.getPasswordById(8365);
+		String password = new Md5().lock("123456");
+		if (nowPassword.equalsIgnoreCase(new Md5().lock("123"))) {
+			result = teacherMapper.updateTeacherPasswordById(8365, password);
+		} else {
+			result = 0;
+		}
+		System.out.println("状态标志："+result);
 	}
 }
