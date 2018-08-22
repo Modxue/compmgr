@@ -1,9 +1,7 @@
 
 <style type="text/css">
-    #main-show {
-        height: 82vh;
+    #main-jfsq {
         display: flex;
-        background-color: #E6E6FA;
     }
 
     #jfsq-left {
@@ -27,8 +25,15 @@
         height: 4vh;
         position: absolute;
         top: 27vh;
-        left: 10vw;
+        left: 8vw;
         color: #fff;
+    }
+
+    #jfsq-left-btn {
+        position: absolute;
+        background-color: #778899;
+        height: 4vh;
+        left: 41vw;
     }
 
     #jfsq-left-choose-week {
@@ -110,16 +115,59 @@
         padding:1px 4px;
     }
 
-    #jfsq-right-reset {
+    #jfsq-right-reset,
+    #apply-record-cancel{
         margin-left: 8vw;
     }
+
+    #jfsq-apply-record {
+        display: none;
+        position: absolute;
+        width: 40vw;
+        height: 60vh;
+        background-color: #fff;
+        border: 1px solid #9bd9fc;
+        border-radius: 10px;
+        z-index: 2;
+        left: 30vw;
+        top: 20vh;
+    }
+
+    #apply-record-title {
+        text-align: center;
+        margin-top: 2vh;
+        font-size: 2vw;
+    }
+
+    #apply-record-button {
+        position: absolute;
+        left: 11vw;
+        top: 50vh;
+    }
+
+    .apply-record-table {
+        border-collapse: collapse;
+        margin: 5vh 5vw;
+    }
+
+    #apply-record-title1{
+        width: 5vw;
+    }
+
+    .apply-record-table td{
+        border: 1px solid #2D93CA;
+        width: 32vw;
+        height: 3vh;
+        text-align: center;
+    }
 </style>
-<div id="main-show">
+<div id="main-jfsq">
     <div id="jfsq-left">
         <div id="jfsq-left-choose">
             <span id="jfsq-left-choose-last">◁</span>
             <div id="jfsq-left-choose-week">第1周</div>
             <span id="jfsq-left-choose-next">▷</span>
+            <button class="jfsq-button" id="jfsq-left-btn">申请记录</button>
         </div>
         <table id="schedule-table">
             <tr>
@@ -297,9 +345,43 @@
             <button class="jfsq-button" id="jfsq-right-reset">重置</button>
         </div>
     </div>
+    <div id="jfsq-apply-record">
+        <div id="apply-record-title">机房申请记录</div>
+        <table class="apply-record-table">
+            <tr>
+                <td id="apply-record-title1">序号</td>
+                <td>申请信息</td>
+            </tr>
+        </table>
+        <div id="apply-record-button">
+            <button class="jfsq-button" id="apply-record-confirm">确定</button>
+            <button class="jfsq-button" id="apply-record-cancel">取消</button>
+        </div>
+    </div>
 </div>
 
 <script>
+    var nowWeekNum;  //当前周数
+    $(function () {
+        ajaxNowWeek();//获取当前周数
+    });
+
+    function ajaxNowWeek(){
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                nowWeekNum = data;
+                $("#jfsq-left-choose-week").text("第"+nowWeekNum+"周");
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    }
 
     layui.use('form', function () {
         var form = layui.form;
@@ -314,5 +396,15 @@
             var form = layui.form;
             form.render('select');
         });
+    });
+    //点击机房申请显示申请弹出框
+    $("#jfsq-left-btn").click(function () {
+        $("#background").fadeIn(200);
+        $("#jfsq-apply-record").fadeIn(200);
+    });
+    //点击申请记录弹出框内的确定和取消隐去弹出窗口
+    $("#apply-record-confirm,#apply-record-cancel").click(function () {
+        $("#background").fadeOut(200);
+        $("#jfsq-apply-record").fadeOut(200);
     });
 </script>
