@@ -35,13 +35,18 @@ public class LoginController {
 
     @PostMapping(value = "/authentication",produces = "application/json;charset=utf-8")
     public String submit(@RequestParam String teacherId, @RequestParam String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         HttpSession httpSession=request.getSession();
         Integer tId=Integer.valueOf(teacherId);
         if (loginService.isTruePassword(tId,pwd)){
             Teacher teacher=teacherService.getTeacherById(tId);
-            httpSession.setAttribute("teacher",teacher);
+            if(httpSession.isNew())
+            {
+               httpSession.setAttribute("teacher",teacher);
+                System.out.println("新建一个session！！");
+            }
             System.out.println("账号密码正确");
-            return "redirect:/html/main.html";
+            return "redirect:/html/apply.html";
         }else{
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().write("<script>alert('密码错误！！');history.back()</script>");

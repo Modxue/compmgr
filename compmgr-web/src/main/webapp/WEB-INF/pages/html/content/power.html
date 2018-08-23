@@ -72,16 +72,22 @@
 		var name=$("#power-set-name").val();
 		var description=$("#power-set-description").val();
 		$.ajax({
-			async: false,
 			type: "POST",
-			url: "",
+			url: "/compmgr/role/addrole.action",
 			data: JSON.stringify({
 			    "name": name,
 				"description":description
 			}),
+            dataType: "json",
 			contentType: "application/json;charset=utf-8",
 			success: function (data) {
-				
+			    if (data==0){
+				    alert("添加角色的名字重复");
+				} else if (data==1){
+				    alert("添加成功");
+				} else {
+				    alert("添加异常");
+				}
 			},
 			error: function (data) {
 				ajaxError(data);
