@@ -22,4 +22,16 @@ public class RoleAllocationServiceTest {
 		String roleName=roleAllocationService.findRoleName();
 		System.out.println(roleName);
 	}
+
+	@Test
+	public void  selectNameTest(){
+		boolean bool=roleAllocationService.isHaveSameName("普通管理员");
+		System.out.println(bool);
+	}
+
+	@Test
+	public void isAddRoleTest(){
+		boolean b=roleAllocationService.isAddRole("111","2222");
+		System.out.println(b);
+	}
 }

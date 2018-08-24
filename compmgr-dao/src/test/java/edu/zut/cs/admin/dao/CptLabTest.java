@@ -1,6 +1,5 @@
 package edu.zut.cs.admin.dao;
 
-import edu.zut.cs.admin.dao.CptLabMapper;
 import edu.zut.cs.admin.model.CptLab;
 
 import org.junit.Test;
