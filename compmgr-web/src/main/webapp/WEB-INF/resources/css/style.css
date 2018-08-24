@@ -9,18 +9,36 @@
 .button {
 	cursor: pointer;
 	border-radius: 5px;
-	width: 4vw;
+	width: 5vw;
+	height: 3vw;
 	background-color: gray;
 	border: none;
 	color: #FFF;
 	font-size: 14px;
-	padding:1px 4px;
 }
 
-input {
+.input {
 	padding: 6px;
 	height: 2vh;
 	width: 11vw;
 	border-radius: 5px;
 	border: 1px solid #999999;
+}
+
+.manager-title {
+	text-align: center;
+	margin: 4vh 0;
+	font-size: 2.5vw;
+}
+
+.background-cloth {
+	background-color: #000;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	z-index: 1;
+	opacity: 0.8;
+	display: none;
+	top: 0;
+	left: 0;
 }

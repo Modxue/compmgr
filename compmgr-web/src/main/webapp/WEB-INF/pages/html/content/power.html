@@ -1,1 +1,118 @@
-<div>权限分配</div>
+<style type="text/css">
+	#power-menu {
+		display: flex;
+		margin: 3vh 5vw;
+		font-size: 1.7vw;
+	}
+
+	#power-menu div {
+		margin-right: 2vw;
+	}
+
+	.power-set-content {
+		margin-top: 5vh;
+		margin-left: 23vw;
+		font-size: 1.8vw;
+	}
+
+	.power-set-content span {
+		margin-right: 1vw;
+	}
+
+	#power-set-button {
+		margin-left: 22vw;
+		margin-top: 10vh;
+	}
+
+	#power-set-add {
+		margin-right: 10vw;
+	}
+</style>
+
+<div class="manager-title">权限分配</div>
+<div id="power-menu">
+	<input type="radio" checked="checked" value="setrole" name="power" />
+	<div>创建角色</div>
+	<input type="radio" value="allot" name="power" />
+	<div>分配权限</div>
+	<input type="radio" value="add" name="power" />
+	<div>角色添加用户</div>
+</div>
+<div id="power-set">
+	<div class="power-set-content">
+		<span>名称</span>
+		<input type="text" class="input" id="power-set-name">
+	</div>
+	<div class="power-set-content">
+		<span>描述</span>
+		<input type="text" class="input" id="power-set-description">
+	</div>
+	<div id="power-set-button">
+		<button class="button" id="power-set-add">添加</button>
+		<button class="button" id="power-set-reset">重置</button>
+	</div>
+</div>
+<div id="power-allot">
+	分配权限
+</div>
+<div id="power-add">
+	添加
+</div>
+
+<script>
+	//加载页面后将分配权限和角色添加用户的页面隐藏,并清空输入框
+	$(function () {
+		$("#power-allot").css("display", "none");
+		$("#power-add").css("display", "none");
+		$("#power-set-name").val("");
+		$("#power-set-description").val("");
+	})
+	//当点击添加后向后台发送输入框内容
+	$("#power-set-add").click(function () {
+		var name=$("#power-set-name").val();
+		var description=$("#power-set-description").val();
+		$.ajax({
+			type: "POST",
+			url: "/compmgr/role/addrole.action",
+			data: JSON.stringify({
+			    "name": name,
+				"description":description
+			}),
+            dataType: "json",
+			contentType: "application/json;charset=utf-8",
+			success: function (data) {
+			    if (data==0){
+				    alert("添加角色的名字重复");
+				} else if (data==1){
+				    alert("添加成功");
+				} else {
+				    alert("添加异常");
+				}
+			},
+			error: function (data) {
+				ajaxError(data);
+			}
+		});
+	});
+	//当点击创建角色重置按钮清空输入框
+	$("#power-set-reset").click(function () {
+		$("#power-set-name").val("");
+		$("#power-set-description").val("");
+	});
+	//当单选按钮被点击时,显示对应的内容
+	$('input[type=radio][name=power]').change(function () {
+		if (this.value == 'setrole') {
+			$("#power-set").css("display", "block");
+			$("#power-allot").css("display", "none");
+			$("#power-add").css("display", "none");
+		} else if (this.value == 'allot') {
+			$("#power-set").css("display", "none");
+			$("#power-allot").css("display", "block");
+			$("#power-add").css("display", "none");
+		} else {
+			$("#power-set").css("display", "none");
+			$("#power-allot").css("display", "none");
+			$("#power-add").css("display", "block");
+		}
+	});
+</script>

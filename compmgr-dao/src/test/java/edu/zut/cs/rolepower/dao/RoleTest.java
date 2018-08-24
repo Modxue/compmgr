@@ -28,5 +28,11 @@ public class RoleTest {
 		String description = roleMapper.getDescriptionById(2);
 		System.out.println(description);
 	}
+
+	@Test
+	public void selectAllSameNameTest(){
+		Integer test=roleMapper.selectAllSameName("fsf");
+		System.out.println(test);
+	}
 	
 }
