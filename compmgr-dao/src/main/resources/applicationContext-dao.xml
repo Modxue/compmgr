@@ -16,7 +16,7 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-    <context:component-scan base-package="edu.zut.cs.**"/>
+    <context:component-scan base-package="edu.zut.cs.*.dao"/>
     <!-- 配置数据源 -->
     <context:property-placeholder location="classpath:mysql.properties"/>
     <!--从passwprd后一行为2018.07.27新增配置信息，解决页面打开后长时间无操作页面卡死问题-->
