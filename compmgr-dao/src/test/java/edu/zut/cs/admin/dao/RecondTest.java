@@ -49,16 +49,5 @@ public class RecondTest {
 		System.out.println(name);
 		scanner.close();
 	}
-	
-	@Test
-	public void toolsTest() {
-		List<Integer> list = new ArrayList<>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		list.add(4);
-		list.add(5);
-		Integer result = new SumArray().sumArray(list );
-		System.out.println(result);
-	}
+
 }

@@ -11,7 +11,7 @@ public class Teacher {
 	private String teacherNum;
 	private String teacherName;
 	private String teacherEmail;
-	private String passWord;
+	private String password;
 
 	public Integer getId() {
 		return id;
@@ -30,11 +30,11 @@ public class Teacher {
 	}
 
 	public String getPassword() {
-		return passWord;
+		return password;
 	}
 
-	public void setPassword(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getTeacherNum() {
@@ -56,6 +56,6 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher{" + "id=" + id + ", teacherNum='" + teacherNum + '\'' + ", teacherName='" + teacherName + '\''
-				+ ", teacher=" + teacherEmail + ", passWord=" + passWord + '}';
+				+ ", teacher=" + teacherEmail + ", password=" + password + '}';
 	}
 }
