@@ -36,18 +36,7 @@ public class RecondTest {
 		for (Record record : resultList) {
 			System.out.println(record);
 		}
-		// System.out.println(resultList);
 	}
 
-	@Test
-	public void getArrangeIdByIdTest() {
-		Scanner scanner = new Scanner(System.in);
-		Integer i = 0;
-		System.out.println("please input a id(6,12,16,23,50) to reserach:");
-		i = scanner.nextInt();
-		Integer name = recordMapper.getArrangeIdById(i);
-		System.out.println(name);
-		scanner.close();
-	}
 
 }
