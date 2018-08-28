@@ -35,4 +35,7 @@ public class RoleAllocationServiceImpl implements RoleAllocationService {
 			return true;
 		return false;
 	}
+	
+	@Override
+	public boolean isAlterName
 }
