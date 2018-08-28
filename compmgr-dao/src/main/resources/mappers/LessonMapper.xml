@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.zut.cs.curriculum.dao.LessonMapper">
     <select id="getAllLesson"  resultType="edu.zut.cs.curriculum.model.Lesson">
-        select id,arrangeId,week,weekDay,node,isDoubleWeek,roomNum
+        select id,arrange_id,week,week_day,node,is_double_week,room_num
         from t_lesson
     </select>
     <select id="getArrangeIdById" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
-        select arrangeId
+        select arrange_id
         from t_lesson
         where id=#{id}
     </select>
@@ -16,12 +16,12 @@
         where weekDay=#{weekDay}
     </select>
     <select id="getRoomNumByIsDoubleWeek" parameterType="java.lang.Integer"  resultType="java.lang.String">
-        select roomNum
+        select room_num
         from t_lesson
-        where isDoubleWeek=#{isDoubleWeek}
+        where is_double_week=#{isDoubleWeek}
     </select>
     <insert id="insertLesson" parameterType="edu.zut.cs.curriculum.model.Lesson">
-    insert into t_lesson (id,arrangeId,week,weekDay,node,isDoubleWeek,roomNum)
+    insert into t_lesson (id,arrange_id,week,week_day,node,is_double_week,room_num)
     values   (#{id},#{arrangeId},#{week},#{weekDay},#{node},#{isDoubleWeek},#{roomNum})
     </insert>
     <delete id="deleteLessonById">

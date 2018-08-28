@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.zut.cs.curriculum.dao.ArrangeMapper">
     <select id="getAllArrange"  resultType="edu.zut.cs.curriculum.model.Arrange">
-        select id,courseId,teacherId,className
+        select id,course_id,teacher_id,class_name
         from t_arrange
     </select>
     <select id="getCourseIdById" parameterType="Integer"  resultType="Integer">
-        select courseId
+        select course_id
         from t_arrange
         where id=#{id}
     </select>
     <select id="getClassNameByTeacherId" parameterType="Integer"  resultType="java.lang.String">
-        select className
+        select class_name
         from t_arrange
-        where teacherId=#{teacherId}
+        where teacher_id=#{teacher_id}
     </select>
 
 </mapper>

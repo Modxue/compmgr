@@ -46,11 +46,12 @@
 			margin-top: 6vh;
 			display: flex;
 			justify-content: center;
+			align-items: center;
 		}
 
 		#login-register-btn {
 			text-decoration: none;
-			margin-left: 8.5vw;
+			margin-left: 11.5vw;
 		}
 
 		#login-college,
@@ -66,6 +67,21 @@
 
 		#login-password {
 			margin-top: 1vh;
+		}
+
+		#login-register-btn,
+		#login-enter-btn {
+			position: absolute;
+			left: 5vw;
+			top: 40vh;
+			cursor: pointer;
+			border-radius: 5px;
+			width: 4vw;
+			height: 3vw;
+			background-color: gray;
+			border: none;
+			color: #FFF;
+			font-size: 14px;
 		}
 	</style>
 </head>
@@ -97,8 +113,8 @@
 					<input class="input" type="password" id="login-password" name="pwd" />
 				</div>
 				<div id="login-button">
-					<button class="button" id="login-enter-btn" type="submit">登录</button>
-					<a class="button" id="login-register-btn" href="/compmgr/html/register.html">注册</a>
+					<button id="login-enter-btn" type="submit">登录</button>
+					<a id="login-register-btn" href="/compmgr/html/register.html">注册</a>
 				</div>
 			</div>
 		</form>
