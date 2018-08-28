@@ -3,12 +3,12 @@
 <mapper namespace="edu.zut.cs.user.dao.TeacherMapper">
 	<select id="getAllTeacher" resultType="edu.zut.cs.user.model.Teacher">
 		select
-		id,teacherNum,teacherName,teacherEmail,password
+		id,teacher_num,teacher_name,teacher_email,password
 		from t_teacher
 	</select>
 
 	<select id="getNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
-		select teacherName
+		select teacher_name
 		from t_teacher
 		where id = #{0}
 	</select> 
@@ -21,12 +21,12 @@
 
 	<insert id="insertTeacher" parameterType="edu.zut.cs.user.model.Teacher">
 		insert
-		into  t_teacher(teacherNum, teacherName, teacherEmail, password)
+		into  t_teacher(teacher_num, teacher_name, teacher_email, password)
 		values (#{teacherNum,jdbcType=VARCHAR},#{teacherName,jdbcType=VARCHAR},#{teacherEmail,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR})
 	</insert>
 
 	<select id="getOneTeacherById" parameterType="java.lang.Integer" resultType="edu.zut.cs.user.model.Teacher">
-		select id,teacherNum,teacherName,teacherEmail,password
+		select id,teacher_num,teacher_name,teacher_email,password
 		from t_teacher
 		where id=#{0}
 	</select>

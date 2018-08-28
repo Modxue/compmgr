@@ -27,16 +27,6 @@ public class CptLabTest {
 	@Autowired
 	CptLabMapper cptlabMapper;
 
-	@Test
-	public void getComputerLabByIdTest() {
-		Scanner scanner = new Scanner(System.in);
-		Integer i = 0;
-		System.out.println("please input a id to reserach:");
-		i = scanner.nextInt();
-		CptLab name = cptlabMapper.getComputerLabById(i);
-		System.out.println(name);
-		scanner.close();
-	}
 
 	@Test
 	public void getAllComputerLabTest(){

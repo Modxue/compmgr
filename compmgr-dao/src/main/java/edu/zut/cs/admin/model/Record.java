@@ -25,6 +25,8 @@ public class Record {
 //    申请日期
     private Date currentDate;
 
+    private Date classDate;
+
     public Integer getId() {
         return id;
     }
@@ -81,6 +83,14 @@ public class Record {
         this.currentDate = currentDate;
     }
 
+    public Date getClassDate() {
+        return classDate;
+    }
+
+    public void setClassDate(Date classDate) {
+        this.classDate = classDate;
+    }
+
     @Override
     public String toString() {
         return "Record{" +
@@ -91,6 +101,7 @@ public class Record {
                 ", weekDay=" + weekDay +
                 ", node=" + node +
                 ", currentDate=" + currentDate +
+                ", classDate=" + classDate +
                 '}';
     }
 }
