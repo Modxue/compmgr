@@ -41,6 +41,6 @@
         <!-- 指定数据库表 -->
         <!--<table tableName="t_course" domainObjectName="Course"></table>-->
         <!--<table tableName="t_cptLab" domainObjectName="CptLab"></table>-->
-        <table tableName="v_record" domainObjectName="ViewRecord"></table>
+        <table tableName="v_lesson" domainObjectName="ViewLesson"></table>
     </context>
 </generatorConfiguration>

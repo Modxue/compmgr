@@ -356,7 +356,7 @@
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
-                nowWeekNum = data.nowWeek;
+                nowWeekNum = data;
                 $("#jfsq-left-choose-weekStr").text("第" + nowWeekNum + "周");
                 if(nowWeekNum==1){
                     $("#jfsq-left-choose-last").css("display","none");
@@ -376,9 +376,9 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/course/search.action",
+            url: "/compmgr/admin/getcoursebyweek.action",
             data: JSON.stringify({
-                "week":week
+                "week":week+""
             }),
             dataType: "json",
             contentType: "application/json;charset=utf-8",
@@ -403,7 +403,10 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/course/searchall.action",
+            url: "/compmgr/admin/getcoursebyweek.action",
+            data:JSON.stringify ({
+                "week":""
+            }),
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
