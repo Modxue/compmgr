@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import edu.zut.cs.curriculum.dao.ArrangeMapper;
 import edu.zut.cs.curriculum.model.Arrange;
 import edu.zut.cs.curriculum.service.ArrangeService;
+import org.springframework.stereotype.Service;
 
 /** 
 * @author ymz 
 *  创建时间：2018年8月11日 下午9:33:33 
 * 类说明 arrange实现类
 */
+@Service
 public class ArrangeServiceImpl implements ArrangeService {
 
 	@Autowired

@@ -1,7 +1,6 @@
 package edu.zut.cs.admin.controller;
 
 import com.alibaba.fastjson.JSON;
-import edu.zut.cs.curriculum.dao.ViewLessonMapper;
 import edu.zut.cs.curriculum.model.ViewLesson;
 import edu.zut.cs.curriculum.service.ViewLessonService;
 import edu.zut.cs.tools.NowWeek;
@@ -32,7 +31,6 @@ public class adminController {
 
     /**
      * 得到当前周
-     *
      * @return
      */
     @GetMapping(value = "/getnowweek", produces = "application/json;charset=utf-8")
@@ -45,7 +43,7 @@ public class adminController {
 
     /**
      * 根据week得到当前用户当前week的课程信息
-     *
+     * 当week为""时 表示查询当前userNum的所有课程信息
      * @param str
      * @return
      */

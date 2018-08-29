@@ -3,7 +3,9 @@ package edu.zut.cs.curriculum.model;
 
 import edu.zut.cs.tools.NowWeek;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * create_by Intellij IDEA
@@ -147,12 +149,13 @@ public class ViewLesson {
     public void initWeekArr(){
         Integer nowWeek = new NowWeek().getNowWeek();
         String [] strings = this.weekStr.split(",");
-        this.weekArr = new Integer[strings.length];
-        int i = 0;
+        List<Integer> tempList = new ArrayList<>();
         for (String s : strings) {
-            if(Integer.valueOf(s) >= nowWeek)
-            weekArr[i++] = Integer.valueOf(s);
+            if(Integer.valueOf(s) >= nowWeek) {
+                tempList.add(Integer.valueOf(s));
+            }
         }
+        this.weekArr = tempList.toArray(new Integer[0]);
     }
 
 
