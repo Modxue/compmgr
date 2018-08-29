@@ -30,6 +30,7 @@
           class_name,apply_date,class_date,week,week_day,node
     FROM v_record
     WHERE teacher_num=#{userNum} AND week >= #{limit}
+    GROUP BY week,week_day,node
   </select>
 
 </mapper>
