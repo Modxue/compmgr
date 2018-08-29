@@ -114,92 +114,88 @@
 </head>
 
 <body>
-	<div id="background" class="background-cloth"></div>
-	<div id="main-top">
-		<div id="main-title1">
-			中心机房管理系统
+<div id="background" class="background-cloth"></div>
+<div id="main-top">
+	<div id="main-title1">
+		中心机房管理系统
+	</div>
+	<div id="main-top-menu">
+		<div id="main-apply" class="main-title2">
+			<span>机房申请</span>
 		</div>
-		<div id="main-top-menu">
-			<div id="main-apply" class="main-title2">
-				<span>机房申请</span>
+		<div id="main-manager" class="main-title2">
+			<span>系统管理</span>
+		</div>
+		<div id="main-personal" class="main-title2">
+			<span>个人中心</span>
+		</div>
+		<div id="main-exit" class="main-title2">
+			<span>退出系统</span>
+		</div>
+	</div>
+</div>
+<div id="main-show">
+	<div id="admin-manage">
+		<div id="manage-main">
+			<div id="menu">
+				<div id="menu-name">机房管理
+					<div id="name-border"></div>
+				</div>
+				<div id="menu-nav">
+					<div id="update" class="menu-con">
+						机房管理
+						<span class="menu-con-icon">▶</span>
+					</div>
+					<div id="check" class="menu-con">
+						查看记录
+						<span class="menu-con-icon">▶</span>
+					</div>
+					<div id="power" class="menu-con">
+						权限管理
+						<span class="menu-con-icon">▶</span>
+					</div>
+				</div>
 			</div>
-			<div id="main-manager" class="main-title2">
-				<span>系统管理</span>
-			</div>
-			<div id="main-personal" class="main-title2">
-				<span>个人中心</span>
-			</div>
-			<div id="main-exit" class="main-title2">
-				<span>退出系统</span>
+			<div id="menu-show">
+
 			</div>
 		</div>
 	</div>
-	<div id="main-show">
-		<div id="admin-manage">
-			<div id="manage-main">
-				<div id="menu">
-					<div id="menu-name">机房管理
-						<div id="name-border"></div>
-					</div>
-					<div id="menu-nav">
-						<div id="update" class="menu-con">
-							机房管理
-							<span class="menu-con-icon">▶</span>
-						</div>
-						<div id="check" class="menu-con">
-							查看记录
-							<span class="menu-con-icon">▶</span>
-						</div>
-						<div id="adjust" class="menu-con">
-							调整机房
-							<span class="menu-con-icon">▶</span>
-						</div>
-						<div id="power" class="menu-con">
-							权限管理
-							<span class="menu-con-icon">▶</span>
-						</div>
-					</div>
-				</div>
-				<div id="menu-show">
+</div>
 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-        $(function () {
-            $("#menu-show").load("./content/update.html");
-            $("#update").addClass("menu-open");
-            $("#update").find("span").text("▼");
-        });
-		//左侧导航栏选项点击事件
-		$('#menu-nav').children().click(function () {
-			$('#menu-nav').children().removeClass("menu-open");
-			$('#menu-nav div span').text("▶");
-			$(this).addClass("menu-open");
-			$(this).find("span").text("▼");
-			var thisId = $(this).attr("id");
-			$("#menu-show").load("./content/" + thisId + ".html");
-		});
-		//点击事件
-		//点击机房申请出现机房申请页面
-		$("#main-apply").click(function () {
-			window.location.href = "./apply.html";
-		});
-		//点击机房申请出现机房申请页面
-		$("#main-manager").click(function () {
-			window.location.href = "./manager.html";
-		});
-		//点击个人中心出现先相应页面
-		$("#main-personal").click(function () {
-			$("#main-show").load("./content/personal.html");
-		});
-		//点击退出系统退出
-		$("#main-exit").click(function () {
-			window.location.href = "/compmgr/login/logout.action";
-		});
-	</script>
+<script type="text/javascript">
+    $(function () {
+        $("#menu-show").load("./content/update.html");
+        $("#update").addClass("menu-open");
+        $("#update").find("span").text("▼");
+    });
+    //左侧导航栏选项点击事件
+    $('#menu-nav').children().click(function () {
+        $('#menu-nav').children().removeClass("menu-open");
+        $('#menu-nav div span').text("▶");
+        $(this).addClass("menu-open");
+        $(this).find("span").text("▼");
+        var thisId = $(this).attr("id");
+        $("#menu-show").load("./content/" + thisId + ".html");
+    });
+    //点击事件
+    //点击机房申请出现机房申请页面
+    $("#main-apply").click(function () {
+        window.location.href = "./apply.html";
+    });
+    //点击机房申请出现机房申请页面
+    $("#main-manager").click(function () {
+        window.location.href = "./manager.html";
+    });
+    //点击个人中心出现先相应页面
+    $("#main-personal").click(function () {
+        $("#main-show").load("./content/personal.html");
+    });
+    //点击退出系统退出
+    $("#main-exit").click(function () {
+        window.location.href = "/compmgr/login/logout.action";
+    });
+</script>
 </body>
 
 </html>

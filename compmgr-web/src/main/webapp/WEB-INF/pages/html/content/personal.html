@@ -1,13 +1,13 @@
 <style>
     #admin-personal {
-		display: flex;
+        display: flex;
     }
 
-    #menu-main {       
+    #menu-main {
         width: 15vw;
         height: 79vh;
         background-color: #eee;
-        font-size: 1.2vw;      
+        font-size: 1.2vw;
         cursor: pointer;
         margin-left: 10vw;
     }
@@ -35,40 +35,42 @@
 
     #main-right {
         padding-left: 3vh;
-        width: 70vw;		
+        width: 70vw;
         background-color: #fff;
     }
 
-    #admin-PersonData {
+    #admin-person-data {
         display: block;
     }
 
     #login-name {
-        height: 9vh;
+        height: 6vh;
         padding-top: 2vh;
     }
 
     #name1 {
         height: 6vh;
-        padding-top: 0.5vh;
+        /*padding-top: 0.5vh;*/
     }
 
     #problem {
         height: 6vh;
     }
 
-    #answer,#birthday {
+    #answer,
+    #birthday {
         height: 7vh;
     }
 
-    #e-mail-address,#phone {
+    #email-address,
+    #phone {
         height: 10vh;
     }
 
     .bu-confirm {
         margin-left: 14vw;
         margin-top: 8vh;
-        background-color: #1F988E;
+        background-color: grey;
         border: none;
         width: 7vw;
         height: 6vh;
@@ -108,7 +110,7 @@
         border-bottom: 1px solid darkgrey;
     }
 
-    .admin-bottom {
+    #admin-bottom {
         font-size: 16px;
         height: 75vh;
         font-weight: 600;
@@ -124,14 +126,6 @@
         height: 32vh;
     }
 
-    .help-inline {
-        font-size: 14px;
-        font-weight: 100;
-        color: darkgrey;
-        padding-left: 1vw;
-        padding-top: 0.2vh;
-    }
-
     .help-inline1 {
         font-size: 14px;
         font-weight: 100;
@@ -139,30 +133,18 @@
         padding-left: 0.2vw;
     }
 
-    .help-inline2 {
-        font-size: 14px;
-        font-weight: 100;
-        color: darkgrey;
-        padding-bottom: 3vh;
-    }
-
     .input-data {
-        border: 2px solid #c9c9c9;
-        border-radius: 2px;
+        border: 1.5px solid #c9c9c9;
+        border-radius: 5px;
         font-size: 14px;
         padding: 5px 11px;
         margin-left: 1vw;
         width: 23vw;
     }
 
-    .input-data1 {
-        border: 2px solid #c9c9c9;
-        border-radius: 2px;
-        font-size: 14px;
-        padding: 5px 11px;
-        margin-left: 1vw;
-        width: 10vw;
-        height: 5vh;
+    .input {
+        margin: 2vh 0;
+        width: 13vw;
     }
 
     .red-cue {
@@ -196,228 +178,213 @@
         font-weight: 500;
         margin-right: 1vw;
     }
-	
-	.botton-size {
-		width: 5vw;
-	}
+
+    .button {
+        padding: 1vh 0;
+        font-size: 0.9vw;
+    }
+
+    #password-code{
+        margin-left: 1vw;
+        width: 12vw;
+        color: #fff;
+        background-color: #2D93CA;
+    }
 </style>
 
 
 <div id="admin-personal">
-    <!-- 没有main-show id -->
     <div id="menu-main">
         <div id="menu-top">个 人 中 心</div>
         <div id="menu-username">用 户</div>
         <div id="menu-nav">
-            <!--<ul id="nav">-->
-            <div id="PersonData">
+            <div id="person-data">
                 个人资料
                 <span class="menu-con-icon">▶</span>
             </div>
-            <div id="PasswordAlter">
+            <div id="password-alter">
                 密码修改
                 <span class="menu-con-icon">▶</span>
             </div>
-            <div id="DailyRecord">
+            <div id="daily-record">
                 认证日志
                 <span class="menu-con-icon">▶</span>
             </div>
-            <div id="CurrentLogin">
+            <div id="current-login">
                 当前登录
                 <span class="menu-con-icon">▶</span>
             </div>
-            <div id="Settings">
+            <div id="settings">
                 个人设置
                 <span class="menu-con-icon">▶</span>
             </div>
-            <!--</ul>-->
         </div>
     </div>
     <div id="main-right">
-        <div id="admin-PersonData" class="admin-con">
+        <div id="admin-person-data" class="admin-con">
             <div class="admin-top">
                 <div class="top-title1">编辑个人资料</div>
             </div>
             <div class="admin-bottom">
-                <form id="form1">
-                    <div id="login-name">
-                        <table>
-                            <tr>
-                                <th>登录别名:</th>
-                                <td>
-                                    <input id="input-loginname" class="input-data">
-                                    <p class="help-inline">如果您设置了登录别名，您可以使用登录别名登录系统</p>
-                                </td>
-                                <td>
-                                    <p class="help-inline2">注意：登录别名不可修改</p>
-                                </td>
-                            </tr>
-                        </table>
-
-                    </div>
-                    <div id="name1">
-                        <table>
-                            <tr>
-                                <th>昵称:</th>
-                                <td>
-                                    <input id="input-name1" class="input-data">
-                                </td>
-                            </tr>
-                        </table>
-
-                    </div>
-                    <div id="problem">
-                        <table>
-                            <tr>
-                                <th>提示问题:</th>
-                                <td>
-                                    <select id="input-problem" class="input-data">
-                                        <option value="我喜欢那个男明星？" selected="selected">我喜欢那个男明星？</option>
-                                        <option value="我最喜欢那首歌曲？">我最喜欢那首歌曲？</option>
-                                        <option value="我最喜欢的电影名字？">我最喜欢的电影名字？</option>
-                                        <option value="我最喜欢什么运动？">我最喜欢什么运动？</option>
-                                        <option value="我最喜欢什么水果？">我最喜欢什么水果？</option>
-                                        <option value="我最讨厌那个电视剧？">我最讨厌那个电视剧？</option>
-                                        <option value="我的大学名字？">我的大学名字？</option>
-                                        <option value="我最喜欢哪个城市？">我最喜欢哪个城市？</option>
-                                        <option value="我最喜欢哪个季节？">我最喜欢哪个季节？</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="answer">
-                        <table>
-                            <tr>
-                                <th>答案:</th>
-                                <td>
-                                    <input id="input-answer" class="input-data">
-                                </td>
-                                <td class="red-cue">*</td>
-                                <td>
-                                    <p class="help-inline1">长度2-30位，字母区分大小写，用于修复账号密码</p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="birthday">
-                        <table>
-                            <tr>
-                                <th>生日:</th>
-                                <td>
-                                    <input id="input-birthday" class="input-data" type="date">
-                                </td>
-                                <td class="red-cue">*</td>
-                                <td>
-                                    <p class="help-inline1">用于修复帐号密码，请填写您的真实生日，日期输入格式如1997-07-01</p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="e-mail-address">
-                        <table>
-                            <tr>
-                                <th>邮箱:</th>
-                                <td>
-                                    <input id="input-birthday" class="input-data">
-                                    <p class="help-inline">绑定邮箱后，即可使用邮箱作为用户名登录</p>
-                                </td>
-                                <td>
-                                    <button id="bu-mail" class="botton-size">确认绑定</button>
-                                </td>
-                                <td class="red-cue">*</td>
-                                <td>
-                                    <p class="help-inline1">注意：如果您的校内邮箱也使用统一身份认证，则请务必使用校外邮箱 </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="phone">
-                        <table>
-                            <tr>
-                                <th>手机号码:</th>
-                                <td>
-                                    <input id="input-birthday" class="input-data">
-                                    <p class="help-inline">绑手机后，即可使用手机号作为用户名登录</p>
-                                </td>
-                                <td>
-                                    <button id="bu-phone" class="botton-size">确认绑定</button>
-                                </td>
-                                <td class="red-cue">*</td>
-                                <td>
-                                    <p class="help-inline1">手机号码</p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div>
-                        <button id="button1" class="bu-confirm">确定</button>
-                    </div>
-                </form>
+                <div id="login-name">
+                    <table>
+                        <tr>
+                            <th>登录别名:</th>
+                            <td>
+                                <input id="input-loginname" class="input-data">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="name1">
+                    <table>
+                        <tr>
+                            <th>昵称:</th>
+                            <td>
+                                <input id="input-name1" class="input-data">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="problem">
+                    <table>
+                        <tr>
+                            <th>提示问题:</th>
+                            <td>
+                                <select id="input-problem" class="input-data">
+                                    <option value="我喜欢那个男明星？" selected="selected">我喜欢那个男明星？</option>
+                                    <option value="我最喜欢那首歌曲？">我最喜欢那首歌曲？</option>
+                                    <option value="我最喜欢的电影名字？">我最喜欢的电影名字？</option>
+                                    <option value="我最喜欢什么运动？">我最喜欢什么运动？</option>
+                                    <option value="我最喜欢什么水果？">我最喜欢什么水果？</option>
+                                    <option value="我最讨厌那个电视剧？">我最讨厌那个电视剧？</option>
+                                    <option value="我的大学名字？">我的大学名字？</option>
+                                    <option value="我最喜欢哪个城市？">我最喜欢哪个城市？</option>
+                                    <option value="我最喜欢哪个季节？">我最喜欢哪个季节？</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="answer">
+                    <table>
+                        <tr>
+                            <th>答案:</th>
+                            <td>
+                                <input id="input-answer" class="input-data">
+                            </td>
+                            <td class="red-cue">*</td>
+                            <td>
+                                <p class="help-inline1">长度2-30位</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="birthday">
+                    <table>
+                        <tr>
+                            <th>生日:</th>
+                            <td>
+                                <input id="input-birthday" class="input-data" type="date">
+                            </td>
+                            <td class="red-cue">*</td>
+                            <td>
+                                <p class="help-inline1">日期输入格式如1997-07-01</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="email-address">
+                    <table>
+                        <tr>
+                            <th>邮箱:</th>
+                            <td>
+                                <input id="input-email" class="input-data">
+                            </td>
+                            <td>
+                                <button id="bu-email" class="button">确认绑定</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="phone">
+                    <table>
+                        <tr>
+                            <th>手机号码:</th>
+                            <td>
+                                <input id="input-tellphone" class="input-data">
+                            </td>
+                            <td>
+                                <button id="bu-phone" class="button">确认绑定</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <button id="button1" class="bu-confirm">确定</button>
+                </div>
             </div>
         </div>
-        <div id="admin-PasswordAlter" class="admin-con">
+        <div id="admin-password-alter" class="admin-con">
             <div class="admin-top">
                 <div class="top-title1">修改密码</div>
             </div>
-            <div class="admin-bottom">
+            <div id="admin-bottom">
                 <div class="help">
                     <span class="spanstyle">注意啦!</span>
                     修改完密码之后需要重新登录
                 </div>
                 <div>
-                    <form id="form2">
-                        <table>
-                            <tr>
-                                <th>当前密码</th>
-                                <td>
-                                    <input id="input-oddpw" class="input-data">
-                                </td>
-                                <td>
-                                    <p class="help-inline1">当前密码强度符合要求</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>新密码</th>
-                                <td>
-                                    <input id="input-newPw" class="input-data">
-                                </td>
-                                <td>
-                                    <p class="help-inline1">密码长度至少6位；字符种类至少2种（数字，大写字母，小写字母，标点符号）</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>新密码确认</th>
-                                <td>
-                                    <input id="input-newps1" class="input-data">
-                                </td>
-                                <td>
-                                    <p class="help-inline1">确认密码和新密码保持一致</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>验证码</th>
-                                <td>
-                                    <input id="input-identify" class="input-data1">
-                                </td>
-                                <td></td>
-                            </tr>
-
-                        </table>
-                        <div>
-                            <button id="button2" class="bu-confirm">确定</button>
-                        </div>
-                    </form>
+                    <table>
+                        <tr>
+                            <th>当前密码</th>
+                            <td>
+                                <input id="input-oldpwd" class="input">
+                            </td>
+                            <td>
+                                <p class="help-inline1" id="old-password-compare"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码</th>
+                            <td>
+                                <input id="input-newpwd" class="input">
+                            </td>
+                            <td>
+                                <p class="help-inline1"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码确认</th>
+                            <td>
+                                <input id="input-newpwd1" class="input">
+                            </td>
+                            <td>
+                                <p class="help-inline1" id="password-affirm">确认密码和新密码保持一致</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>验证码</th>
+                            <td>
+                                <input id="input-identify" class="input">
+                            </td>
+                            <td><span id="password-code"></span></td>
+                            <td id="code-remind"></td>
+                        </tr>
+                    </table>
+                    <div>
+                        <button id="button2" class="bu-confirm">确定</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="admin-DailyRecord" class="admin-con">
+        <div id="admin-daily-record" class="admin-con">
             <div class="admin-top">
                 <div class="top-title1">我的日志</div>
             </div>
             <div class="admin-bottom">详细内容需要数据数据</div>
         </div>
-        <div id="admin-CurrentLogin" class="admin-con">
+        <div id="admin-current-login" class="admin-con">
             <div class="admin-top">
                 <div class="help">
                     <span class="spanstyle">注意啦!</span>
@@ -426,19 +393,101 @@
             </div>
             <div class="admin-bottom">详细内容需要数据数据</div>
         </div>
-        <div id="admin-Settings" class="admin-con">
+        <div id="admin-settings" class="admin-con">
             <div class="admin-top">
                 <div class="top-title1">其他设置</div>
             </div>
             <div class="admin-bottom">详细内容在考虑</div>
         </div>
     </div>
-
 </div>
 
 <script>
-	//个人中心左侧导航栏选项点击事件
-    $('#menu-nav').children().click(function (){
+    var code; //产生的随机验证码
+
+    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    $(function () {
+        createCode();
+    });
+
+    //产生随机验证码
+    function createCode() {
+        code = ''; //首先默认code为空字符串
+        var codeLength = 4; //设置长度，这里看需求，我这里设置了4
+        //设置随机字符
+        for (var i = 0; i < codeLength; i++) { //循环codeLength 我设置的4就是循环4次
+            var index = Math.floor(Math.random() * 36); //设置随机数范围,这设置为0 ~ 36
+            code += random[index]; //字符串拼接 将每次随机的字符 进行拼接
+        }
+        $("#password-code").text(code); //将拼接好的字符串赋值给展示的Value
+    }
+    //这里是验证码输入框失去焦点时的事件
+    function codeCompare(remind){
+        if(code==remind){
+            $("#code-remind").text("*验证码正确");
+        }else if(code.toLowerCase()==remind){
+            $("#code-remind").text("*验证码正确");
+        }else{
+            $("#code-remind").text("*验证码错误");
+        }
+    }
+    //当所有输入框都有
+    $("#admin-bottom").bind("input",function () {
+        var oldPassword = $("#input-oldpwd").val();
+        var newPassword = $("#input-newpwd").val();
+        var newPassword1=$("#input-newpwd1").val();
+        var remind=$("#input-identify").val();
+        var flag;
+        if(newPassword!=newPassword1){
+            $("#password-affirm").text("*输入两次密码不同");
+            flag=false;
+        }else{
+            $("#password-affirm").text("*输入两次密码相同");
+            flag=true;
+        }
+        codeCompare(remind);
+        if(oldPassword&&newPassword&&newPassword1&&remind&&flag){
+            $("#button2").css("background-color","blue");
+            changePassword(oldPassword,newPassword);
+        }else{
+            $("#button2").css("background-color","gray");
+        }
+    });
+    //点击验证码框更换验证码
+    $("#password-code").click(function () {
+        createCode();
+    });
+    //点击修改密码内的确定后修改密码，向后台发送请求
+    function changePassword(oldPassword,newPassword){
+        $("#button2").unbind();
+        $("#button2").click(function () {
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/compmgr/user/updatepwd.action",
+                data: JSON.stringify({
+                    "oldPassword": oldPassword,
+                    "newPassword": newPassword
+                }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("当前密码错误");
+                    }
+                    $("#admin-bottom input").val("");
+                    $("#code-remind").text("");
+                },
+                error: function (data) {
+                    // ajaxError(data);
+                }
+            });
+        });
+    }
+    //个人中心左侧导航栏选项点击事件
+    $('#menu-nav').children().click(function () {
         $('#menu-nav').children().removeClass("menu-open");
         $('#menu-nav div span').text("▶");
         $(this).addClass("menu-open");
