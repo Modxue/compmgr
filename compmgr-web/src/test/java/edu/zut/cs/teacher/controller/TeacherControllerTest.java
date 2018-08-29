@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)//测试运行在spring环境中
-@ContextConfiguration(locations = {"classpath*:applicationContext-dao.xml", "file:src/main/webapp/WEB-INF/config/spring-mvc.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext-service.xml", "file:src/main/webapp/WEB-INF/config/spring-mvc.xml"})
 public class TeacherControllerTest {
     //    传入SpringMVC的ioc
     @Autowired
