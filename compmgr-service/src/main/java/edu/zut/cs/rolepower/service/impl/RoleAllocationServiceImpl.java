@@ -37,5 +37,7 @@ public class RoleAllocationServiceImpl implements RoleAllocationService {
 	}
 	
 	@Override
-	public boolean isAlterName
+	public boolean isAlterName(Integer id,String roleName,String description) {
+		
+	}
 }
