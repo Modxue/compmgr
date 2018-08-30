@@ -1,12 +1,12 @@
 <style>
     #ckjf-add-button {
-        margin: 3vh 9vw;
+        margin: 0 7vw;
         display: flex;
     }
 
     #ckjf-table-style {
-        margin-left: 9vw;
-        height: 50vh;
+        margin-left: 7vw;
+        height: 60vh;
         overflow: auto;
         margin-top: 1vh
     }
@@ -23,7 +23,7 @@
 
     .ckjf-table tr th,
     .ckjf-table tr td {
-        width: 8vw;
+        width: 8.5vw;
         border: 1px solid #09f;
     }
 
@@ -53,14 +53,6 @@
         left: 42vw;
         background-color: #fff;
         border-radius: 5px;
-    }
-
-    #ckjf-add-cptlab-title,
-    #ckjf-mod-cptlab-title {
-        margin-top: 3vh;
-        margin-bottom: 4vh;
-        font-size: 2vw;
-        text-align: center;
     }
 
     #ckjf-add-cptlab-btn,
@@ -107,7 +99,7 @@
         </table>
     </div>
     <div id="ckjf-add-cptlab">
-        <div id="ckjf-add-cptlab-title">
+        <div id="ckjf-add-cptlab-title" class="manager-popup-title">
             添加机房
         </div>
         <div id="ckjf-add-cptlab-num" class="ckjf-add-cptlab-input">
@@ -138,7 +130,7 @@
     </div>
 
     <div id="ckjf-amend">
-        <div id="ckjf-mod-cptlab-title">机房修改</div>
+        <div id="ckjf-mod-cptlab-title" class="manager-popup-title">机房修改</div>
         <div id="ckjf-mod-cptlab-name" class="ckjf-add-cptlab-input">
             <span>此记录机房号</span>
             <div id="mod-cptlab-num"></div>
@@ -158,11 +150,11 @@
         </div>
         <div id="ckjf-mod-cptlab-seat" class="ckjf-add-cptlab-input">
             <span>请输入座位数</span>
-            <input class="input-style" id="mod-cptlab-input-seat" type="text"/>
+            <input class="input" id="mod-cptlab-input-seat" type="text"/>
         </div>
         <div id="ckjf-amend-close">
-            <button class="button-style" id="ckjf-amend-close-confirm">确认</button>
-            <button class="button-style" id="ckjf-amend-close-cancel">取消</button>
+            <button class="button" id="ckjf-amend-close-confirm">确认</button>
+            <button class="button" id="ckjf-amend-close-cancel">取消</button>
         </div>
     </div>
 </div>
@@ -184,7 +176,7 @@
     function ajaxcptlabRoomckjf() {
         $.ajax({
             type: "POST",
-            url: "",
+            url: "/compmgr/room/search.action",
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
@@ -193,7 +185,7 @@
                 //将获得的数据填入表格显示
             },
             error: function (data) {
-                // ajaxError(data);
+                ajaxError(data);
             }
         });
     };
@@ -204,7 +196,7 @@
         $("#ckjf-table1").append("<tr><th>序号</th><th>机房号</th><th>优先级</th><th>座位数</th><th>修改</th><th>删除</th></tr>");
         for (var i = 0, j = cptlabRoomArrCKJF.length; i < j; i++) {
             $("#ckjf-table1").append("<tr><td>" + (i + 1) + "</td><td roomId='" + cptlabRoomArrCKJF[i].id + "'>" +
-                cptlabRoomArrCKJF[i].room_num + "</td><td>" +
+                cptlabRoomArrCKJF[i].roomNum + "</td><td>" +
                 cptlabRoomArrCKJF[i].priority + "</td><td>" + cptlabRoomArrCKJF[i].amount +
                 "</td><td><span class='ckjf-modification'>修改</span></td><td><span class='ckjf-delete'>删除</span></td></tr>"
             );
@@ -213,70 +205,70 @@
 
 
     //在新增机房的输入框输入后点击确定,向后台发送所添加的信息
-    $("#add-cptlab-confirm").click(function () {
-        sendcptlabRoomckjf();
-        $("#ckjf-add-cptlab").fadeOut(200);
-        $("#background").fadeOut(200);
-        $("#ckjf-add-cptlab input").val("");
-        $("#ckjf-add-cptlab select").val("");
-        ajaxcptlabRoomckjf();
-    });
-
     //向后台发送新添加的机房信息
-    function sendcptlabRoomckjf() {
-        var cptLabNum = $("#add-cptlab-input-id").val();
+    $("#add-cptlab-confirm").click(function () {
+        var roomNum = $("#add-cptlab-input-id").val();
         var priority = $("#ckjf-add-cptlab-priority select").val();
-        var seatNumber = $("#add-cptlab-input-seat").val();
-        if (cptLabNum.length == 0 || priority.length == 0 || seatNumber.length == 0) {
+        var amount = $("#add-cptlab-input-seat").val();
+        if (roomNum.length == 0 || priority.length == 0 || amount.length == 0) {
             alert("机房号/座位号/座位数不能为空");
         } else {
             $.ajax({
                 type: "POST",
-                url: "",
+                url: "/compmgr/room/insert.action",
                 data: JSON.stringify({
-                    "cptLabNum": cptLabNum,
+                    "roomNum": roomNum,
                     "priority": priority,
-                    "seatNumber": seatNumber
+                    "amount": amount
                 }),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
                     if (data == 1) {
                         alert("机房添加成功");
-                    } else if (data == 2) {
-                        alert("添加机房重复");
                     } else {
                         alert("添加失败，请重试");
                     }
+                    ajaxcptlabRoomckjf();
                 },
                 error: function (data) {
-                    // ajaxError(data);
+                    ajaxError(data);
                 }
             });
         }
-    };
+        $("#ckjf-add-cptlab").fadeOut(200);
+        $("#background").fadeOut(200);
+        $("#ckjf-add-cptlab input").val("");
+        $("#ckjf-add-cptlab select").val("");
+    });
 
     //点击修改先获取机房的信息，当修改时向后台发送修改后的机房数据
     $(document).on("click", ".ckjf-modification", function () {
         $("#background").fadeIn(100);
         $("#ckjf-amend").fadeIn(100);
-        var roomNumber = $(this).parents("tr").find("td").eq(1).text();
+        var roomNum = $(this).parents("tr").find("td").eq(1).text();
         var priority1 = $(this).parents("tr").find("td").eq(2).text();
         var seatNumber1 = $(this).parents("tr").find("td").eq(3).text();
-        $("#mod-cptlab-num").text(roomNumber);
+        $("#mod-cptlab-num").text(roomNum);
         $("#ckjf-mod-cptlab-priority select").val(priority1);
         $("#mod-cptlab-input-seat").val(seatNumber1);
-        var roomId = $(this).parents("tr").find("td").eq(1).attr("roomId");
+        layui.use('form', function () {
+            var form = layui.form;
+            form.render('select');
+        });
+        var id = $(this).parents("tr").find("td").eq(1).attr("roomId");
+        $('#ckjf-amend-close-confirm').unbind();
         $("#ckjf-amend-close-confirm").click(function () {
             var priority = $("#ckjf-mod-cptlab-priority select").val();
-            var seatNumber = $("#mod-cptlab-input-seat").val();
+            var amount = $("#mod-cptlab-input-seat").val();
             $.ajax({
                 type: "POST",
-                url: "",
+                url: "/compmgr/room/update.action",
                 data: JSON.stringify({
-                    "roomId": roomId,
+                    "id": id,
+                    "roomNum":roomNum,
                     "priority": priority,
-                    "seatNumber": seatNumber
+                    "amount": amount
                 }),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
@@ -288,7 +280,7 @@
                     }
                 },
                 error: function (data) {
-                    // ajaxError(data);
+                    ajaxError(data);
                 }
             });
             $("#ckjf-amend").fadeOut(200);
@@ -299,32 +291,31 @@
 
     //点击删除
     $(document).on("click", ".ckjf-delete", function () {
-        var roomId = $(this).parents("tr").find("td").eq(1).attr("roomId");
+        var id = $(this).parents("tr").find("td").eq(1).attr("roomId");
         var roomNum = $(this).parents("tr").find("td").eq(1).text();
+        $(".ckjf-delete").unbind();
         if (confirm("确认删除【" + roomNum + "】吗？")) {
             $.ajax({
                 type: "POST",
-                url: "",
+                url: "/compmgr/room/delete.action",
                 data: JSON.stringify({
-                    "roomId": roomId
+                    "id": id
                 }),
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
                     if (data == 1) {
                         alert("机房删除成功");
-                    } else if (data == 2) {
-                        alert("删除机房名称重复");
-                    } else {
+                    }else {
                         alert("删除失败，请重试");
                     }
                     ajaxcptlabRoomckjf();
                 },
                 error: function (data) {
-                    // ajaxError(data);
+                    ajaxError(data);
                 }
             });
-        } else {}
+        }
     });
 
     //点击新增机房

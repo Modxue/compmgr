@@ -23,7 +23,7 @@ public class Record {
 //    节次
     private Integer node;
 //    申请日期
-    private Date currentDate;
+    private Date applyDate;
 
     private Date classDate;
 
@@ -75,12 +75,12 @@ public class Record {
         this.node = node;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public Date getApplyDate() {
+        return applyDate;
     }
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    public void setApplyDate(Date applyDate) {
+        this.applyDate = applyDate;
     }
 
     public Date getClassDate() {
@@ -100,7 +100,7 @@ public class Record {
                 ", week=" + week +
                 ", weekDay=" + weekDay +
                 ", node=" + node +
-                ", currentDate=" + currentDate +
+                ", applyDate=" + applyDate +
                 ", classDate=" + classDate +
                 '}';
     }
