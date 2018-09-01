@@ -17,4 +17,8 @@ public interface RecordMapper {
 	List<Record> getAllRecord();
 	
 	Integer insertRecord(@Param("recordList") List<Record> record);
+	
+	Integer deleteRecord(Integer id);
+	
+	Integer changeRoom(@Param("id")Integer id,@Param("labId")Integer labId);
 }

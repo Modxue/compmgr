@@ -4,6 +4,7 @@ import edu.zut.cs.admin.model.Record;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -48,6 +49,17 @@ public class RecondTest {
 		List<Record> recordList = new ArrayList<>();
 		recordList.add(record);
 		recordMapper.insertRecord(recordList);
+	}
+	@Test
+	public void deleteRecordTest() {
+		int a=recordMapper.deleteRecord(2);
+		System.out.println(a);
+	}
+	
+	@Test
+	public void changeRoomTest() {
+		int a=recordMapper.changeRoom(56, 5);
+		System.out.println(a);
 	}
 
 
