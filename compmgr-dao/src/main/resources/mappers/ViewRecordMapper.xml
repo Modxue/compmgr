@@ -45,6 +45,7 @@
     WHERE id NOT IN (
         select lab_id from v_record
         where v_record.week=#{week} AND v_record.week_day=#{weekDay} AND v_record.node=#{node}
+        GROUP BY lab_id
     )
     ORDER BY t_cptLab.priority
   </select>

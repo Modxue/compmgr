@@ -71,4 +71,9 @@ public class SearchServiceImpl implements SearchService {
         map.put("roomList",roomList);
         return map;
     }
+
+    @Override
+    public List<CptLab> getFreeRoomByTime(Integer week, Integer weekDay, Integer node) {
+        return cptLabMapper.selectFreeCptLabByTime(week,weekDay,node);
+    }
 }

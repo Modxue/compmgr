@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/admin")
-public class adminController {
+public class AdminController {
 
     @Autowired
     ViewLessonService viewLessonService;

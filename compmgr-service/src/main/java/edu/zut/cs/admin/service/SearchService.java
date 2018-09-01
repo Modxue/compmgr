@@ -24,4 +24,6 @@ public interface SearchService {
 
     Map<String,Object> getApplyRecordByTime(Integer week, Integer weekDay);
 
+    List<CptLab> getFreeRoomByTime(Integer week,Integer weekDay,Integer node);
+
 }
