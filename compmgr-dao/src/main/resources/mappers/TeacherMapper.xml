@@ -36,4 +36,24 @@
 		set password = #{password,jdbcType=VARCHAR}
 		where id = #{id}
 	</update>
+
+	<update id="updateTeacherInfoById" parameterType="edu.zut.cs.user.model.Teacher">
+		update t_teacher
+		<set >
+			<if test="teacher.teacherNum != null" >
+				teacher_num = #{teacher.teacherNum,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher.teacherName != null" >
+				teacher_name = #{teacher.teacherName,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher.teacherEmail != null" >
+				teacher_email = #{teacher.teacherEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher.password != null" >
+				password = #{teacher.password,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
 </mapper>

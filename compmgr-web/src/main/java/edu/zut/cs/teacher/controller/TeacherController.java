@@ -2,6 +2,7 @@ package edu.zut.cs.teacher.controller;
 
 import com.alibaba.fastjson.JSON;
 import edu.zut.cs.teacher.service.TeacherService;
+import edu.zut.cs.user.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,4 +36,17 @@ public class TeacherController {
       return resultJson;
 }
 
+@PostMapping(value="/updateinfo")
+    public @ResponseBody
+    String  updateTeacherInfoById(
+        @RequestParam("id")Integer id,
+        @RequestParam("teacher")Teacher teacher)
+{
+    System.out.print("前台发送过来数据-----");
+    System.out.print("id--"+id);
+    Integer result=teacherService.updateTeacherInfoById(id,teacher);
+    String resultJson=JSON.toJSONString(result);
+    System.out.println("返回给前台的JSON---"+resultJson);
+    return resultJson;
+}
 }
