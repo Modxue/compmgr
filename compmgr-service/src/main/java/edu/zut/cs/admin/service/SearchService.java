@@ -1,5 +1,6 @@
 package edu.zut.cs.admin.service;
 
+import edu.zut.cs.admin.model.CptLab;
 import edu.zut.cs.admin.model.ViewRecord;
 
 import java.util.List;
@@ -17,5 +18,7 @@ public interface SearchService {
     List<ViewRecord> getApplyRecordByUserNum(String userNum);
 
     List<ViewRecord> getHistoryRecordByUserNum(String userNum);
+
+    List<CptLab> getAllComputerRoom();
 
 }

@@ -41,4 +41,11 @@ public class SearchController {
         return result;
     }
 
+    @PostMapping(value = "/allroom",produces = "application/json;charset=utf-8")
+    public @ResponseBody
+    String getAllRoom(){
+        String result = JSON.toJSONString(searchService.getAllComputerRoom());
+        return result;
+    }
+
 }
