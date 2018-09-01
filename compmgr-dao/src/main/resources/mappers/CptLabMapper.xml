@@ -23,4 +23,19 @@
     ORDER BY t_cptLab.priority
   </select>
 
+   <delete id="daleteComputerLabById" parameterType="java.lang.Integer">
+   		delete from t_cptLab where id =#{id}
+   </delete>
+
+	<insert id="insertComputerLab">
+	 	insert into t_cptLab(room_num,priority,amount)
+	 	 values(#{0,jdbcType=VARCHAR},#{1,jdbcType=INTEGER},#{2,jdbcType=INTEGER})
+	</insert>
+	
+	<update id="updateComputerLabInfo">
+		update t_cptLab set priority=#{1},amount=#{2}
+		where id=#{0}
+	</update>
+	
+	
 </mapper>

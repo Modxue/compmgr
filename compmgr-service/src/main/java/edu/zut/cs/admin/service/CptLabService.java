@@ -13,12 +13,11 @@ public interface CptLabService {
     /**
      * 修改指定id的机房信息
      * @param id
-     * @param roomNum
      * @param priority
      * @param amount
      * @return
      */
-    Integer updateCptLabInfo(Integer id,String roomNum,Integer priority,Integer amount);
+    Integer updateCptLabInfo(Integer id,Integer priority,Integer amount);
 
     /**
      * 增加一个新机房

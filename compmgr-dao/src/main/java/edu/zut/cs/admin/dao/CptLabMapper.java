@@ -22,5 +22,10 @@ public interface CptLabMapper {
 
 	List<CptLab> selectFreeCptLabByTime(@Param("week")Integer week, @Param("weekDay")Integer weekDay, @Param("node")Integer node);
 
+	Integer daleteComputerLabById(@Param("id") Integer id);
+	
+	Integer insertComputerLab(String roomNum,Integer priority,Integer amount);
+	
+	Integer updateComputerLabInfo(Integer id, Integer priority, Integer amount);
 
 }

@@ -76,15 +76,13 @@ public class AdminController {
         System.out.println("接受前台参数："+map);
         /**
          *  "id": id,
-         *  "roomNum": roomNum,
          *  "priority": priority,
          *  "amount": amount
          */
         Integer id = Integer.valueOf((String) map.get("id"));
-        String roomNum = (String) map.get("roomNum");
         Integer priority = Integer.valueOf((String) map.get("priority"));
         Integer amount = Integer.valueOf((String) map.get("amount"));
-        Integer flag = cptLabService.updateCptLabInfo(id,roomNum,priority,amount);
+        Integer flag = cptLabService.updateCptLabInfo(id,priority,amount);
         String resultJson = JSON.toJSONString(flag);
         return resultJson;
     }
