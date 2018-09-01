@@ -215,7 +215,7 @@
         } else {
             $.ajax({
                 type: "POST",
-                url: "/compmgr/room/insert.action",
+                url: "/compmgr/admin/createcptlab.action",
                 data: JSON.stringify({
                     "roomNum": roomNum,
                     "priority": priority,
@@ -263,7 +263,7 @@
             var amount = $("#mod-cptlab-input-seat").val();
             $.ajax({
                 type: "POST",
-                url: "/compmgr/room/update.action",
+                url: "/compmgr/admin/updatecptlab.action",
                 data: JSON.stringify({
                     "id": id,
                     "roomNum":roomNum,

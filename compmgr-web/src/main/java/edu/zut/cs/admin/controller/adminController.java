@@ -1,6 +1,8 @@
 package edu.zut.cs.admin.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.bcel.internal.generic.POP;
+import edu.zut.cs.admin.service.CptLabService;
 import edu.zut.cs.curriculum.model.ViewLesson;
 import edu.zut.cs.curriculum.service.ViewLessonService;
 import edu.zut.cs.tools.NowWeek;
@@ -29,6 +31,9 @@ public class adminController {
     @Autowired
     ViewLessonService viewLessonService;
 
+    @Autowired
+    CptLabService cptLabService;
+
     /**
      * 得到当前周
      * @return
@@ -47,7 +52,7 @@ public class adminController {
      * @param str
      * @return
      */
-    @PostMapping(value = "getcoursebyweek", produces = "application/json;charset=utf-8")
+    @PostMapping(value = "/getcoursebyweek", produces = "application/json;charset=utf-8")
     public @ResponseBody
     String getCourseForUser(@RequestBody String str, HttpSession session) {
         Map map = JSON.parseObject(str);
@@ -63,5 +68,58 @@ public class adminController {
         String result = JSON.toJSONString(lessonList);
         return result;
     }
+
+    @PostMapping(value = "/updatecptlab",produces = "application/json;charset=utf-8")
+    public @ResponseBody
+    String updateCptLab(@RequestBody String str){
+        Map map = JSON.parseObject(str);
+        System.out.println("接受前台参数："+map);
+        /**
+         *  "id": id,
+         *  "roomNum": roomNum,
+         *  "priority": priority,
+         *  "amount": amount
+         */
+        Integer id = Integer.valueOf((String) map.get("id"));
+        String roomNum = (String) map.get("roomNum");
+        Integer priority = Integer.valueOf((String) map.get("priority"));
+        Integer amount = Integer.valueOf((String) map.get("amount"));
+        Integer flag = cptLabService.updateCptLabInfo(id,roomNum,priority,amount);
+        String resultJson = JSON.toJSONString(flag);
+        return resultJson;
+    }
+
+    @PostMapping(value = "/createcptlab",produces = "application/json;charset=utf-8")
+    public @ResponseBody
+    String createCptLab(@RequestBody String str){
+        Map map = JSON.parseObject(str);
+        System.out.println("接受前台参数："+map);
+        /**
+         *  "roomNum": roomNum,
+         *  "priority": priority,
+         *  "amount": amount
+         */
+        String roomNum = (String) map.get("roomNum");
+        Integer priority = Integer.valueOf((String) map.get("priority"));
+        Integer amount = Integer.valueOf((String) map.get("amount"));
+        Integer flag = cptLabService.createCptLab(roomNum,priority,amount);
+        String resultJson = JSON.toJSONString(flag);
+        return resultJson;
+    }
+
+    @PostMapping(value = "/deletecptlab",produces = "application/json;charset=utf-8")
+    public @ResponseBody
+    String deletecptlab(@RequestBody String str){
+        Map map = JSON.parseObject(str);
+        System.out.println("接受前台参数："+map);
+        /**
+         *   "id": id
+         */
+        Integer id = Integer.valueOf((String) map.get("id"));
+        Integer flag = cptLabService.deleteCptLab(id);
+        String resultJson = JSON.toJSONString(flag);
+        return resultJson;
+    }
+
 
 }
