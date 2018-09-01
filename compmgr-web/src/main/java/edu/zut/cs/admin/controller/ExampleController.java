@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zouguo0212@
@@ -23,12 +24,16 @@ public class ExampleController {
     /**
      * 根据前台发送过来的一个id 来返回指定id的roomNum
      * Post请求
-     * @param id
+     * @param
      * @return
      */
     @PostMapping(value = "/getroomnumbyid",produces = "application/json;charset=utf-8")
     public @ResponseBody
-    String getRoomNumById(@RequestParam(value = "id",defaultValue = "1")Integer id){
+//    String getRoomNumById(@RequestParam(value = "id",defaultValue = "1")Integer id){
+    String getRoomNumById(@RequestBody String str){
+        Map map = JSON.parseObject(str);
+        System.out.println("前台数据："+map);
+        Integer id = Integer.parseInt((String) map.get("id"));
         String resultNum = exampleService.getOneComputerLabNumberById(id);
         String resultJson = JSON.toJSONString(resultNum);
         return resultJson;

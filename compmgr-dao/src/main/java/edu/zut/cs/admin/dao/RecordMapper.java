@@ -3,6 +3,7 @@ package edu.zut.cs.admin.dao;
 import java.util.List;
 
 import edu.zut.cs.admin.model.Record;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @PackageName: edu.zut.cs.admin.dao
@@ -12,7 +13,7 @@ import edu.zut.cs.admin.model.Record;
  */
 public interface RecordMapper {
 	
-	public List<Record> getAllRecord();
+	List<Record> getAllRecord();
 	
-	public Integer getArrangeIdById(Integer id);
+	Integer insertRecord(@Param("recordList") List<Record> record);
 }

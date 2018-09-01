@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)//测试运行在spring环境中
-@ContextConfiguration(locations = {"classpath*:applicationContext-dao.xml", "file:src/main/webapp/WEB-INF/config/spring-mvc.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext-service.xml", "file:src/main/webapp/WEB-INF/config/spring-mvc.xml"})
 public class ExampleControllerTest {
 
     //    传入SpringMVC的ioc
@@ -43,10 +44,14 @@ public class ExampleControllerTest {
 
     @Test
     public void getRoomNumByIdTest() throws Exception {
+        Map<String,String> map = new HashMap<>();
+        map.put("id","5");
+        String requestJson = JSON.toJSONString(map);
+        System.out.println("requestJson--------:"+requestJson);
         String responseString = mockMvc.perform(
                 post("/example/getroomnumbyid")//请求的url
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED) //数据格式
-                        .param("id", "5")  //参数
+                        .contentType(MediaType.APPLICATION_JSON) //数据格式
+                        .content(requestJson)  //参数
         )
                 .andExpect(status().isOk()) //返回状态
                 //        .andDo(print())         打印出请求和相应的内容

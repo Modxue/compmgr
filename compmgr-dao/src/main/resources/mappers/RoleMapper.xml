@@ -8,18 +8,18 @@
     </select>
 
     <select id="getRoleNameById"  parameterType="java.lang.Integer" resultType="java.lang.String">
-        select roleName
+        select role_name
         from t_role
         where id=#{0}
     </select>
     <select id="selectAllSameName"  parameterType="java.lang.String" resultType="java.lang.Integer">
         select count(*)
         from t_role
-        where roleName=#{0}
+        where role_name=#{0}
     </select>
     <insert id="insertRole" parameterType="edu.zut.cs.rolepower.model.Role">
         insert
-        into t_role(roleName,description)
+        into t_role(role_name,description)
         values (#{roleName,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR})
     </insert>
 </mapper>

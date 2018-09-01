@@ -11,15 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Rollback
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext-dao.xml")
-public class ApplyServiceTest {
-	
-	@Autowired
-	ApplyCourseService applyCourseService;
-	
-	@Test
-	public void findAllTest() {
-	
-		applyCourseService.findAll();
-	}
+@ContextConfiguration(locations = "classpath:applicationContext-dao.xml")
+public class ApplyRoomServiceTest {
+
 }
