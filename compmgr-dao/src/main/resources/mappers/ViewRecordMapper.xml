@@ -32,5 +32,21 @@
     WHERE teacher_num=#{userNum} AND week >= #{limit}
     GROUP BY week,week_day,node
   </select>
+  
+  <select id="selectRecordCountByTime" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM v_record
+    WHERE arrange_id=#{arrangeId} AND week=#{week} AND week_day=#{weekDay} AND node=#{node}
+  </select>
+
+  <select id="selectFreeCptIdByTime" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT id
+    FROM t_cptLab
+    WHERE id NOT IN (
+        select lab_id from v_record
+        where v_record.week=#{week} AND v_record.week_day=#{weekDay} AND v_record.node=#{node}
+    )
+    ORDER BY t_cptLab.priority
+  </select>
 
 </mapper>

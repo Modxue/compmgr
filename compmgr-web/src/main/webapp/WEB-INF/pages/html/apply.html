@@ -457,7 +457,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/record/apply.action",
+            url: "/compmgr/apply/room.action",
             data:JSON.stringify({
                 "id":id,
                 "week":week
@@ -469,9 +469,11 @@
                     alert("申请成功");
                 } else if(data==2){
                     alert("无可用机房");
-                }else{
-                    alert("申请异常");
-                }
+                }else if(data==3){
+                    alert("重复申请");
+                }else {
+                    alert("系统出错")
+				}
             },
             error: function (data) {
                 // ajaxError(data);

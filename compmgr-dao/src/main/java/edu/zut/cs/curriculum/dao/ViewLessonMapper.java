@@ -23,4 +23,6 @@ public interface ViewLessonMapper {
      */
     List<ViewLesson> selectByUserNumAndWeek(@Param("userNum")String userNum,@Param("week")String week);
 
+    ViewLesson selectByLessonId(@Param("lessonId")Integer lessonId);
+
 }

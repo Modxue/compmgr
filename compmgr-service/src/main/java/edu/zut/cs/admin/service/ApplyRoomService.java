@@ -11,6 +11,10 @@ import java.util.Map;
  * @date: 2018/8/15 10:46
  */
 public interface ApplyRoomService {
+
+
+    Integer ApplyRoom(Integer lessonId,Integer week);
+
     /**
      * 功能：找寻机房，返回一个状态标志
      * @param noRoomWeek 没有机房的周次
