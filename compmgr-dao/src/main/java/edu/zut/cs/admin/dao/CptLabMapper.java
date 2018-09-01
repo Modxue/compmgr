@@ -1,6 +1,9 @@
 package edu.zut.cs.admin.dao;
 
 import edu.zut.cs.admin.model.CptLab;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @PackageName: edu.zut.cs.admin.dao
@@ -13,7 +16,11 @@ public interface CptLabMapper {
      * 根据id获得机房
      * @return
      */
-//    public CptLab getComputerLabById();
+	CptLab getComputerLabById(Integer i);
 
-	public CptLab getComputerLabById(Integer i);
+	List<CptLab> getAllComputerLab();
+
+	List<CptLab> selectFreeCptLabByTime(@Param("week")Integer week, @Param("weekDay")Integer weekDay, @Param("node")Integer node);
+
+
 }

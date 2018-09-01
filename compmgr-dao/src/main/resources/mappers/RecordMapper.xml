@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.zut.cs.admin.dao.RecordMapper">
-<select id="getAllRecord" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.Record">
-    SELECT id,arrangeId,LabId,week,weekDay,node,currentDate
+    <select id="getAllRecord" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.Record">
+    SELECT id,arrange_id,lab_id,week,week_day,node,apply_date,class_date
     FROM t_record
-</select>
+    </select>
 
-<select id="getArrangeIdById" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.Record">
-    SELECT ArrangeId
-    FROM t_record
-    WHERE id=#{0}
-</select>
+    <insert id="insertRecord" parameterType="java.util.List">
+        INSERT INTO t_record(arrange_id,lab_id,week,week_day,node,apply_date,class_date)
+        VALUES
+        <foreach collection="recordList" item="item" index="index" separator=",">
+            (#{item.arrangeId,jdbcType=INTEGER},#{item.labId,jdbcType=INTEGER},#{item.week,jdbcType=INTEGER}
+            ,#{item.weekDay,jdbcType=INTEGER},#{item.node,jdbcType=INTEGER},#{item.applyDate,jdbcType=TIMESTAMP}
+            ,#{item.classDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
 
 </mapper>

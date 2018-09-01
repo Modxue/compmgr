@@ -1,0 +1,60 @@
+package edu.zut.cs.admin.service.impl;
+
+import edu.zut.cs.admin.dao.CptLabMapper;
+import edu.zut.cs.admin.service.CptLabService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * create_by Intellij IDEA
+ *
+ * @author zouguo0212@
+ * @package_name edu.zut.cs.admin.service.impl
+ * @description
+ * @date 2018/9/1 16:26
+ */
+@Service
+public class CptLabServiceImpl implements CptLabService {
+
+    @Autowired
+    CptLabMapper cptLabMapper;
+
+
+    /**
+     * 修改指定id的机房信息
+     * @param id
+     * @param roomNum
+     * @param priority
+     * @param amount
+     * @return 成功返回1 否则返回0
+     */
+    @Override
+    public Integer updateCptLabInfo(Integer id,String roomNum, Integer priority, Integer amount) {
+
+        return 0;
+    }
+
+    /**
+     * 增加一个新机房
+     * @param roomNum
+     * @param priority
+     * @param amount
+     * @return 成功返回1 否则返回0
+     */
+    @Override
+    public Integer createCptLab(String roomNum, Integer priority, Integer amount) {
+
+        return 0;
+    }
+
+    /**
+     * 删除指定id的机房记录
+     * @param id
+     * @return 成功返回1 否则返回0
+     */
+    @Override
+    public Integer deleteCptLab(Integer id) {
+
+        return 0;
+    }
+}

@@ -9,6 +9,7 @@
         <module>compmgr-dao</module>
         <module>compmgr-service</module>
         <module>compmgr-web</module>
+        <module>compmgr-tools</module>
     </modules>
 
     <properties>

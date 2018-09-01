@@ -2,22 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.zut.cs.curriculum.dao.CourseMapper">
     <select id="getAllCourse"  resultType="edu.zut.cs.curriculum.model.Course">
-        select id,courseNum,courseName,period,credit
+        select id,course_num,course_name,period,credit
         from t_course
     </select>
     <select id="getCourseNameById" parameterType="Integer"  resultType="java.lang.String">
-        select courseNum
+        select course_num
         from t_course
         where id=#{id}
     </select>
     <select id="getCourseById" parameterType="Integer"  resultType="edu.zut.cs.curriculum.model.Course">
-        select id,courseNum,courseName,period,credit
+        select id,course_num,course_name,period,credit
         from t_course
         where id=#{id}
     </select>
     <insert id="insertCourse" parameterType="edu.zut.cs.curriculum.model.Course">
     insert into t_course 
-    (id,courseNum,courseName,period,credit)
+    (id,course_num,course_name,period,credit)
     values
     (#{id},#{courseNum},#{courseName},#{period},#{credit})
     </insert>

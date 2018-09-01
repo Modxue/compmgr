@@ -8,30 +8,30 @@ public class RoleFunction {
 	//角色权限的id
 	private int id;
 	//角色的id
-	private int roleid;
+	private int roleId;
 	//权限方法id
-	private int functionid;
+	private int functionId;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getRoleid() {
-		return roleid;
+	public int getRoleId() {
+		return roleId;
 	}
-	public void setRoleid(int roleid) {
-		this.roleid = roleid;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
-	public int getFunctionid() {
-		return functionid;
+	public int getFunctionId() {
+		return functionId;
 	}
-	public void setFunctionid(int functionid) {
-		this.functionid = functionid;
+	public void setFunctionId(int functionId) {
+		this.functionId = functionId;
 	}
 	@Override
 	public String toString() {
-		return "RoleFunction [id=" + id + ", roleid=" + roleid + ", functionid=" + functionid + "]";
+		return "RoleFunction [id=" + id + ", roleid=" + roleId + ", functionid=" + functionId + "]";
 	}
 	
 }

@@ -11,17 +11,23 @@ import edu.zut.cs.curriculum.model.Lesson;
 
 public interface  LessonMapper {
 	
-	    Integer getArrangeIdById(Integer id);
+	    public Lesson getArrangeIdById(Integer id);
 		//通过id查找课程安排id
 	    
-	    Integer getNodeByWeekDay(Integer weekDay);
+	    public Integer getNodeByWeekDay(Integer weekDay);
 		//通过授课周几查找授课节数
 	    
-	    List<String> getRoomNumByIsDoubleWeek(Integer isDoubleWeek);
+	    public List<String> getRoomNumByIsDoubleWeek(Integer isDoubleWeek);
 	    //通过授课周是否是双周查找授课教室
 	    
-	    List<Lesson>getAllLesson();
+	    public List<Lesson>getAllLesson();
 	    //获得所有Lesson
 	
+	    public void insertLesson(Lesson lesson);
+	    //插入一个Lesson
 
+	    public void deleteLessonById(Integer id);
+	    //删除一个Lesson
+	    
+	    
 }

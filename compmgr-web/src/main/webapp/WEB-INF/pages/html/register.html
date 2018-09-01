@@ -76,6 +76,10 @@
             margin: 3vh 9vw;
         }
 
+        #register-hint {
+            margin: 0 9vw;
+            color: red;
+        }
         #verification-code {
             display: flex;
         }
@@ -120,37 +124,38 @@
             <div class="register-middle-form-modul">
                 <div class="register-middle-form-font">电子邮箱：</div>
                 <div class="register-middle-form-input">
-                    <input type="text" id="register-middle-email">
+                    <input type="text" id="register-middle-email" class="input">
                 </div>
             </div>
             <div class="register-middle-form-modul">
                 <div class="register-middle-form-font">教师姓名：</div>
                 <div class="register-middle-form-input">
-                    <input type="text" id="register-middle-teacher">
+                    <input type="text" id="register-middle-teacher" class="input">
                 </div>
             </div>
             <div class="register-middle-form-modul">
                 <div class="register-middle-form-font">登录密码：</div>
-                <div class="register-middle-form-input">
+                <div class="register-middle-form-input" class="input">
                     <input type="text" id="register-middle-password">
                 </div>
             </div>
             <div class="register-middle-form-modul">
                 <div class="register-middle-form-font">确认密码：</div>
                 <div class="register-middle-form-input">
-                    <input type="text" id="register-middle-repassword">
+                    <input type="text" id="register-middle-repassword" class="input">
                 </div>
                 <div id="register-password-affirm">*两次密码要保持一致</div>
             </div>
             <div class="register-middle-form-modul">
                 <div class="register-middle-form-font">&nbsp;&nbsp;验证码：&nbsp;</div>
                 <div class="register-middle-form-input" id="verification-code">
-                    <input type="text" id="register-middle-code">
+                    <input type="text" id="register-middle-code" class="input">
                     <div id="code"></div>
                 </div>
                 <div id="code-remind"></div>
             </div>
             <div id="register-middle-form-btn" class="button">确认注册</div>
+            <div id="register-hint"></div>
         </div>
 
         <div id="register-bottom">
@@ -212,10 +217,11 @@
         codeCompare();
         if(email&&teacher&&password&&repassword&&remind){
             $("#register-middle-form-btn").css("background-color","blue");
+            $("#register-hint").text("");
 // 				$.ajax({
 // 					async: false,
 // 					type: "POST",
-// 					url: "/reg/admin/addArea.action",
+// 					url: "",
 // 					data: JSON.stringify({
 // 						"email": email,
 // 						"teacher": teacher,
@@ -225,14 +231,7 @@
 // 					dataType: "json",
 // 					contentType: "application/json;charset=utf-8",
 // 					success: function (data) {
-// 						if(data==1){
-// 							alert("区域添加成功");
-// 						} else if(data==2){
-// 							alert("添加区域名称重复");
-// 						}else{
-// 							alert("添加失败，请重试");
-// 						}
-// 						fillareaQygl();
+//
 // 					},
 // 					error: function (data) {
 // 						ajaxError(data);
@@ -241,6 +240,7 @@
 
         }else{
             $("#register-middle-form-btn").css("background-color","gray");
+            $("#register-hint").text("*请将信息填写完整");
         }
     });
     //点击验证码框更换验证码

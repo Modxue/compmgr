@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="/compmgr/js/main.js"></script>
+	<script src="/compmgr/lib/jquery.js"></script>
+	<script src="/compmgr/lib/layui/layui.js"></script>
+	<link rel="stylesheet" href="/compmgr/lib/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="/compmgr/css/style.css" />
+	<title>机房申请</title>
+	<style type="text/css">
+		#main-top {
+			height: 18vh;
+			background: -webkit-linear-gradient(left, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			background: -o-linear-gradient(right, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			background: -moz-linear-gradient(right, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			background: linear-gradient(to right, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			align-items: flex-end;
+		}
+
+		#main-title1 {
+			font-size: 4vw;
+			position: relative;
+			right: 34vw;
+			top: 1vh;
+		}
+
+		#main-top-menu {
+			display: flex;
+			margin-top: .4vh;
+		}
+
+		.main-title2 {
+			font-size: 1.3vw;
+			margin-right: 2vw;
+			cursor: pointer;
+			position: relative;
+		}
+
+		.main-title2:hover {
+			background-color: #808080;
+			color: #fff;
+		}
+
+		#main-show {
+			height: 82vh;
+			background-color: #E6E6FA;
+		}
+
+		#main-jfsq {
+			display: flex;
+		}
+
+		#jfsq-left {
+			width: 65vw;
+			height: 100%;
+		}
+
+		#jfsq-right {
+			width: 35vw;
+			height: 100%;
+		}
+
+		#jfsq-left-choose {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #778899;
+			border: 1px solid #696969;
+			border-radius: 5px;
+			width: 40vw;
+			height: 4vh;
+			position: absolute;
+			top: 27vh;
+			left: 7.5vw;
+			color: #fff;
+		}
+
+		#jfsq-left-btn {
+			position: absolute;
+			background-color: #778899;
+			width: 6vw;
+			height: 4vh;
+			left: 40.5vw;
+		}
+
+		#jfsq-left-choose-weekStr {
+			margin: 0 3vw;
+		}
+
+		#jfsq-left-choose-last,
+		#jfsq-left-choose-next {
+			cursor: pointer;
+		}
+
+		#schedule-table {
+			border-collapse: collapse;
+			width: 50vw;
+			position: absolute;
+			top: 34vh;
+			left: 5vw;
+			background-color: #fff;
+			box-shadow: 5px 5px 10px #aaa;
+			font-size: 1.2vw;
+		}
+
+		.schedule-titletb {
+			width: 7vw;
+		}
+
+		.schedule-contb {
+			height: 8vh;
+		}
+
+		#schedule-table td {
+			border: 1px solid #778899;
+			text-align: center;
+		}
+
+		#jfsq-right-title {
+			font-size: 2vw;
+			position: absolute;
+			top: 27vh;
+			right: 17vw;
+		}
+
+		.jfsq-right-title2 {
+			margin-right: 1vw;
+		}
+
+		.jfsq-right-choose {
+			display: flex;
+			position: absolute;
+			font-size: 1.5vw;
+			right: 12vw;
+		}
+
+		#jfsq-right-course {
+			top: 37vh;
+		}
+
+		#jfsq-right-weekStr {
+			top: 48vh;
+		}
+
+		#jfsq-right-button {
+			top: 65vh
+		}
+
+		.jfsq-select {
+			width: 15vw;
+		}
+
+		.jfsq-button {
+			cursor: pointer;
+			border-radius: 5px;
+			width: 5vw;
+			height: 5vh;
+			background-color: gray;
+			border: none;
+			color: #FFF;
+			font-size: 1vw;
+			padding: 1px 4px;
+		}
+
+		#jfsq-right-reset {
+			margin-left: 8vw;
+		}
+
+		#apply-record-cancel {
+			margin-left: 17vw;
+		}
+
+		#jfsq-apply-record {
+			display: none;
+			position: absolute;
+			width: 50vw;
+			height: 70vh;
+			background-color: #fff;
+			border: 1px solid #9bd9fc;
+			border-radius: 10px;
+			z-index: 2;
+			left: 25vw;
+			top: 15vh;
+		}
+
+		#apply-record-title {
+			text-align: center;
+			margin-top: 2vh;
+			font-size: 2vw;
+		}
+
+		#apply-record-button {
+			position: absolute;
+			left: 11vw;
+			top: 62vh;
+		}
+
+		#apply-record-table {
+			border-collapse: collapse;
+			margin: 5vh 2.5vw;
+			height: 45vh;
+			overflow: auto;
+		}
+
+		#apply-record-table tr td:nth-child(1),
+		#apply-record-table tr td:nth-child(4){
+			width: 5vw;
+		}
+
+		#apply-record-table td {
+			border: 1px solid #2D93CA;
+			width: 11vw;
+			/*height: 5vh;*/
+			text-align: center;
+			padding: 0.5vw 0;
+		}
+	</style>
+</head>
+
+<body>
+<div id="background" class="background-cloth"></div>
+<div id="main-top">
+	<div id="main-title1">
+		中心机房管理系统
+	</div>
+	<div id="main-top-menu">
+		<div id="main-apply" class="main-title2">
+			<span>机房申请</span>
+		</div>
+		<div id="main-manager" class="main-title2">
+			<span>系统管理</span>
+		</div>
+		<div id="main-personal" class="main-title2">
+			<span>个人中心</span>
+		</div>
+		<div id="main-exit" class="main-title2">
+			<span>退出系统</span>
+		</div>
+	</div>
+</div>
+<div id="main-show">
+	<div id="main-jfsq">
+		<div id="jfsq-left">
+			<div id="jfsq-left-choose">
+				<span id="jfsq-left-choose-last">◁</span>
+				<div id="jfsq-left-choose-weekStr"></div>
+				<span id="jfsq-left-choose-next">▷</span>
+				<button class="jfsq-button" id="jfsq-left-btn">申请记录</button>
+			</div>
+			<table id="schedule-table">
+				<tr>
+					<td class="schedule-titletb"></td>
+					<td class="schedule-titletb">星期一</td>
+					<td class="schedule-titletb">星期二</td>
+					<td class="schedule-titletb">星期三</td>
+					<td class="schedule-titletb">星期四</td>
+					<td class="schedule-titletb">星期五</td>
+				</tr>
+				<tr>
+					<td class="schedule-timetb">第一节</td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+				</tr>
+				<tr>
+					<td class="schedule-timetb">第二节</td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+				</tr>
+				<tr>
+					<td class="schedule-timetb">第三节</td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+				</tr>
+				<tr>
+					<td class="schedule-timetb">第四节</td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+				</tr>
+				<tr>
+					<td class="schedule-timetb">第五节</td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+					<td class="schedule-contb"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="jfsq-right">
+			<div id="jfsq-right-title">申请机房</div>
+			<div id="jfsq-right-course" class="jfsq-right-choose layui-form">
+				<div class="jfsq-right-title2">课程</div>
+				<div id="jfsq-right-course-choose" class="jfsq-select">
+					<select lay-filter="jfsq-right-course-select" id="jfsq-right-course-select">
+						<option value="">请选择课程</option>
+					</select>
+				</div>
+			</div>
+			<div id="jfsq-right-weekStr" class="jfsq-right-choose layui-form">
+				<div class="jfsq-right-title2">周次</div>
+				<div id="jfsq-right-weekStr-choose" class="jfsq-select">
+					<select lay-filter="jfsq-right-weekStr-select" id="jfsq-right-weekStr-select">
+						<option value="">请选择周次</option>
+					</select>
+				</div>
+			</div>
+			<div id="jfsq-right-button" class="jfsq-right-choose">
+				<button class="jfsq-button" id="jfsq-right-apply">申请</button>
+				<button class="jfsq-button" id="jfsq-right-reset">重置</button>
+			</div>
+		</div>
+		<div id="jfsq-apply-record">
+			<div id="apply-record-title">机房申请记录</div>
+			<div id="apply-record-table">
+				<table>
+				</table>
+			</div>
+			<div id="apply-record-button">
+				<button class="jfsq-button" id="apply-record-confirm">确定</button>
+				<button class="jfsq-button" id="apply-record-cancel">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    var nowWeekNum;  //当前周数
+    var courseArray;  //获取的课程信息
+	var courseArrayByWeek;  //通过周次查询的课程信息
+    var applicationRecord;  //申请记录信息
+    $(function () {
+        ajaxNowWeek(); //获取当前周数
+        getTeacherCourse();  //获取当前教师所有教的课程
+    });
+
+    function ajaxNowWeek() {
+        $.ajax({
+            type: "GET",
+            url: "/compmgr/admin/getnowweek.action",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                nowWeekNum = data;
+                $("#jfsq-left-choose-weekStr").text("第" + nowWeekNum + "周");
+                if(nowWeekNum==1){
+                    $("#jfsq-left-choose-last").css("display","none");
+                }else if(nowWeekNum==20){
+                    $("#jfsq-left-choose-next").css("display","none");
+                }
+                ajaxGetCourse();
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    }
+    //显示课程表时获取选择周的课程信息
+    function ajaxGetCourse() {
+        var week=nowWeekNum;
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/admin/getcoursebyweek.action",
+            data: JSON.stringify({
+                "week":week+""
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                courseArrayByWeek = data;
+                fillSchedule();
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    }
+    //填充课程表
+    function fillSchedule() {
+        $(".schedule-contb").text("");
+        for (var i = 0,j=courseArrayByWeek.length; i < j; i++) {
+            $("#schedule-table tr:eq(" + courseArrayByWeek[i].node + ") td:eq(" + courseArrayByWeek[i].weekDay + ")").text(courseArrayByWeek[i].courseName);
+        }
+    }
+    //申请机房时选择课程时显示当前老师的课程
+    function getTeacherCourse() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/admin/getcoursebyweek.action",
+            data:JSON.stringify ({
+                "week":""
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                courseArray = data;
+                fillCourseSelect();
+            },
+            error: function (data) {
+                // ajaxError(data);
+            }
+        });
+    }
+    //填充课程下拉框
+    function fillCourseSelect() {
+        layui.use('form', function () {
+            var form = layui.form;
+            $("#jfsq-right-course-select").html("");
+            $("#jfsq-right-course-select").append("<option value=''>请选择课程</option>");
+            for (var i = 0, j = courseArray.length; i < j; i++) {
+                $("#jfsq-right-course-select").append("<option value='" + courseArray[i].lessonId + "'>周"+courseArray[i].weekDay + courseArray[i].courseName + "</option>");
+            }
+            form.render('select');
+        });
+    }
+    //点击周数获取选取的课程
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(jfsq-right-course-select)', function (data) {
+            var id = data.value;
+            for (var i = 0, j = courseArray.length; i < j; i++) {
+                if (courseArray[i].lessonId==id){
+                    $("#jfsq-right-weekStr-select").html("");
+                    $("#jfsq-right-weekStr-select").append("<option value=''>请选择周次</option>");
+                    for (var k = 0, l = courseArray[i].weekArr.length; k < l; k++){
+                        $("#jfsq-right-weekStr-select").append("<option value='"+courseArray[i].weekArr[k]+"'>第"+courseArray[i].weekArr[k]+"周</option>");
+                    }
+                }
+            }
+            form.render('select');
+        });
+
+    });
+    //点击申请申请机房
+    $("#jfsq-right-apply").click(function () {
+        var id=$("#jfsq-right-course-select").val();
+        var week=$("#jfsq-right-weekStr-select").val();
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/apply/room.action",
+            data:JSON.stringify({
+                "id":id,
+                "week":week
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data==1){
+                    alert("申请成功");
+                } else if(data==2){
+                    alert("无可用机房");
+                }else if(data==3){
+                    alert("重复申请");
+                }else {
+                    alert("系统出错")
+				}
+            },
+            error: function (data) {
+                // ajaxError(data);
+            }
+        });
+    });
+    //点击申请记录显示记录
+    $("#jfsq-left-btn").click(function () {
+        $("#background").fadeIn(200);
+        $("#jfsq-apply-record").fadeIn(200);
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/search/recordbyusernum.action",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                applicationRecord = data;
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+        $("#apply-record-table").html("");
+        $("#apply-record-table").append("<tr><td>序号</td><td>时间</td><td>课程名</td><td>机房号</td><td>上班班级</td></tr>");
+        for (var i = 0, j = applicationRecord.length; i < j; i++) {
+            $("#apply-record-table").append("<tr><td>"+(i+1)+"</td><td>第"+applicationRecord[i].week+"周星期"+applicationRecord[i].weekDay+"第"+applicationRecord[i].node+"节</td><td>"+applicationRecord[i].courseName+"</td><td>"+applicationRecord[i].roomNum+"</td><td>"+applicationRecord[i].className+"</td></tr>");
+        }
+    });
+    //点击左箭头周数减一
+    $("#jfsq-left-choose-last").click(function () {
+        nowWeekNum--;
+        $("#jfsq-left-choose-next").css("display","block");
+        if(nowWeekNum==1){
+            $("#jfsq-left-choose-last").css("display","none");
+        }
+        $("#jfsq-left-choose-weekStr").text("第" + nowWeekNum + "周");
+        ajaxGetCourse();
+    });
+    //点击右箭头周数加一
+    $("#jfsq-left-choose-next").click(function () {
+        nowWeekNum++;
+        $("#jfsq-left-choose-last").css("display","block");
+        if(nowWeekNum==20){
+            $("#jfsq-left-choose-next").css("display","none");
+        }
+        $("#jfsq-left-choose-weekStr").text("第" + nowWeekNum + "周");
+        ajaxGetCourse();
+    });
+
+    layui.use('form', function () {
+        var form = layui.form;
+        form.render('select');
+    });
+
+    //点击重置按钮将输入框内容初始化
+    $("#jfsq-right-reset").click(function () {
+        $("#jfsq-right-weekStr-select").val("");
+        $("#jfsq-right-course-select").val("");
+        layui.use('form', function () {
+            var form = layui.form;
+            form.render('select');
+        });
+    });
+    //点击机房申请显示申请弹出框
+    $("#jfsq-left-btn").click(function () {
+        $("#background").fadeIn(200);
+        $("#jfsq-apply-record").fadeIn(200);
+    });
+    //点击申请记录弹出框内的确定和取消隐去弹出窗口
+    $("#apply-record-confirm,#apply-record-cancel").click(function () {
+        $("#background").fadeOut(200);
+        $("#jfsq-apply-record").fadeOut(200);
+    });
+    //点击事件
+    //点击机房申请出现机房申请页面
+    $("#main-apply").click(function () {
+        window.location.href = "./apply.html";
+    });
+    //点击机房申请出现机房申请页面
+    $("#main-manager").click(function () {
+
+        window.location.href = "./manager.html";
+    });
+    //点击个人中心出现先相应页面
+    $("#main-personal").click(function () {
+        $("#main-show").load("./content/personal.html");
+    });
+    //点击退出系统退出
+    $("#main-exit").click(function () {
+        window.location.href = "/compmgr/login/logout.action";
+    });
+</script>
+</body>
+
+</html>
