@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * @author:fy0202
@@ -37,9 +36,9 @@ public class CptLabTest {
 	}
 	
 	@Test
-	public void daleteComputerLabByIdTest() {
+	public void deleteComputerLabByIdTest() {
 		Integer id=2;
-		Integer result = cptlabMapper.daleteComputerLabById(id);
+		Integer result = cptlabMapper.deleteComputerLabById(id);
 		System.out.println(result);
 	}
 	

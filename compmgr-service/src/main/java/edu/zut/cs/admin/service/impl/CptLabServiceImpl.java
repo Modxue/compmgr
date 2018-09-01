@@ -58,7 +58,7 @@ public class CptLabServiceImpl implements CptLabService {
      */
     @Override
     public Integer deleteCptLab(Integer id) {
-    	Integer result=cptLabMapper.daleteComputerLabById(id);
+    	Integer result=cptLabMapper.deleteComputerLabById(id);
     	if(result==1)
     		return 1;
     	else

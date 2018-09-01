@@ -23,7 +23,7 @@
     ORDER BY t_cptLab.priority
   </select>
 
-   <delete id="daleteComputerLabById" parameterType="java.lang.Integer">
+   <delete id="deleteComputerLabById" parameterType="java.lang.Integer">
    		delete from t_cptLab where id =#{id}
    </delete>
 
