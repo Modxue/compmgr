@@ -7,11 +7,26 @@ package edu.zut.cs.rolepower.model;
  */
 public class Role {
 	private Integer id;
-	//
+	//权限id
 	private String roleName;
 	//权限名称
 	private String description;
 	//权限描述
+
+	public Role(){
+
+	}
+
+    public Role(Integer id, String roleName, String description) {
+    	this.id=id;
+    	this.roleName=roleName;
+    	this.description=description;
+    }
+
+	public Role(String roleName, String description) {
+		this.roleName=roleName;
+		this.description=description;
+	}
 	
 	public Integer getId() {
 		return id;

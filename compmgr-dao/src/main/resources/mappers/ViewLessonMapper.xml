@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.zut.cs.curriculum.dao.ViewLessonMapper" >
+  <resultMap id="BaseResultMap" type="edu.zut.cs.curriculum.model.ViewLesson" >
+    <result column="lesson_id" property="lessonId" jdbcType="INTEGER" />
+    <result column="arrange_id" property="arrangeId" jdbcType="INTEGER" />
+    <result column="week_str" property="weekStr" jdbcType="VARCHAR" />
+    <result column="week_day" property="weekDay" jdbcType="INTEGER" />
+    <result column="node" property="node" jdbcType="INTEGER" />
+    <result column="is_double_week" property="isDoubleWeek" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+    <result column="teacher_num" property="teacherNum" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectByUserNumAndWeek" resultType="edu.zut.cs.curriculum.model.ViewLesson" resultMap="BaseResultMap">
+    SELECT lesson_id,arrange_id,week_str,week_day,node,is_double_week,course_id,course_name,class_name,teacher_num,teacher_id,teacher_name
+    FROM v_lesson
+    WHERE teacher_num = #{userNum}
+    <if test="#{week}!=null">
+      AND week_str like CONCAT('%',#{week},'%')
+    </if>
+    ORDER BY week_day
+  </select>
+
+  <select id="selectByLessonId" parameterType="java.lang.Integer" resultType="edu.zut.cs.curriculum.model.ViewLesson">
+    SELECT lesson_id,arrange_id,week_str,week_day,node,is_double_week,course_id,course_name,class_name,teacher_num,teacher_id,teacher_name
+    FROM v_lesson
+    WHERE lesson_id=#{lessonId}
+  </select>
+
+</mapper>

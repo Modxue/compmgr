@@ -3,14 +3,57 @@
 <mapper namespace="edu.zut.cs.user.dao.TeacherMapper">
 	<select id="getAllTeacher" resultType="edu.zut.cs.user.model.Teacher">
 		select
-		id,teacherNum,teacherName,teacherEmail,passWord
+		id,teacher_num,teacher_name,teacher_email,password
 		from t_teacher
 	</select>
 
-	<select id="getNameById" parameterType="Integer" resultType="java.lang.String">
-		select teacherName
+	<select id="getNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select teacher_name
 		from t_teacher
 		where id = #{0}
+	</select> 
+	
+	<select id="getPasswordById" parameterType="java.lang.Integer" resultType="java.lang.String">
+	   select password
+	   from t_teacher
+	   where id=#{0}
+	 </select>
+
+	<insert id="insertTeacher" parameterType="edu.zut.cs.user.model.Teacher">
+		insert
+		into  t_teacher(teacher_num, teacher_name, teacher_email, password)
+		values (#{teacherNum,jdbcType=VARCHAR},#{teacherName,jdbcType=VARCHAR},#{teacherEmail,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="getOneTeacherById" parameterType="java.lang.Integer" resultType="edu.zut.cs.user.model.Teacher">
+		select id,teacher_num,teacher_name,teacher_email,password
+		from t_teacher
+		where id=#{0}
 	</select>
+
+	<update id="updateTeacherPasswordById">
+		update t_teacher
+		set password = #{password,jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
+
+	<update id="updateTeacherInfoById" parameterType="edu.zut.cs.user.model.Teacher">
+		update t_teacher
+		<set >
+			<if test="teacher.teacherNum != null" >
+				teacher_num = #{teacher.teacherNum,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher.teacherName != null" >
+				teacher_name = #{teacher.teacherName,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher.teacherEmail != null" >
+				teacher_email = #{teacher.teacherEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher.password != null" >
+				password = #{teacher.password,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
 
 </mapper>
