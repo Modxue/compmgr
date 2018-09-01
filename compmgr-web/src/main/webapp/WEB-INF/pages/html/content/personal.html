@@ -409,7 +409,39 @@
     $(function () {
         createCode();
     });
-
+    
+  //点击个人资料的确定修改信息
+    $("#button1").click(function(){
+		var name=$("#input-loginname").val();
+		var email=$("#input-email").val();
+		alert(name);
+		alert(email);
+		if (name&&email){
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/compmgr/user/updateinfo.action",
+                data: JSON.stringify({
+                    "name": name,
+                    "email": email
+                }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("系统出错");
+                    }
+                    $("#admin-bottom input").val("");
+                },
+                error: function (data) {
+                    ajaxError(data);
+                }
+            });
+		}
+	});
+  
     //产生随机验证码
     function createCode() {
         code = ''; //首先默认code为空字符串
