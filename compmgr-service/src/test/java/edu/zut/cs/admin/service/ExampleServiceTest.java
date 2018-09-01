@@ -2,6 +2,8 @@ package edu.zut.cs.admin.service;
 
 import edu.zut.cs.admin.dao.CptLabMapper;
 import edu.zut.cs.admin.model.CptLab;
+import edu.zut.cs.tools.SumArray;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +42,17 @@ public class ExampleServiceTest {
         }
         System.out.println("所有roomNum："+result);
     }
+    
+    @Test
+	public void toolsTest() {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);
+		Integer result = new SumArray().sumArray(list );
+		System.out.println(result);
+	}
+    
 }

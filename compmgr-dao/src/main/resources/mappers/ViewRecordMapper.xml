@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.zut.cs.admin.dao.ViewRecordMapper" >
+  <resultMap id="BaseResultMap" type="edu.zut.cs.admin.model.ViewRecord" >
+    <result column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="lab_id" property="labId" jdbcType="INTEGER" />
+    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+    <result column="teacher_num" property="teacherNum" jdbcType="VARCHAR" />
+    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+    <result column="arrange_id" property="arrangeId" jdbcType="INTEGER" />
+    <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="DATE" />
+    <result column="class_date" property="classDate" jdbcType="DATE" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="week_day" property="weekDay" jdbcType="INTEGER" />
+    <result column="node" property="node" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectViewRecordByRecordId" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.ViewRecord">
+    SELECT record_id,lab_id,room_num,teacher_num,teacher_name,arrange_id,teacher_id,course_name,
+          class_name,apply_date,class_date,week,week_day,node
+    FROM v_record
+    WHERE record_id = #{recordId}
+  </select>
+
+  <select id="selectViewRecordByUserNumAndTimeLimit" resultMap="BaseResultMap" resultType="edu.zut.cs.admin.model.ViewRecord">
+    SELECT record_id,lab_id,room_num,teacher_num,teacher_name,arrange_id,teacher_id,course_name,
+          class_name,apply_date,class_date,week,week_day,node
+    FROM v_record
+    WHERE teacher_num=#{userNum} AND week >= #{limit}
+    GROUP BY week,week_day,node
+  </select>
+  
+  <select id="selectRecordCountByTime" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM v_record
+    WHERE arrange_id=#{arrangeId} AND week=#{week} AND week_day=#{weekDay} AND node=#{node}
+  </select>
+
+  <select id="selectFreeCptIdByTime" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT id
+    FROM t_cptLab
+    WHERE id NOT IN (
+        select lab_id from v_record
+        where v_record.week=#{week} AND v_record.week_day=#{weekDay} AND v_record.node=#{node}
+        GROUP BY lab_id
+    )
+    ORDER BY t_cptLab.priority
+  </select>
+
+  <select id="selectViewRecordByWeekAndWeekDay" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.ViewRecord">
+     SELECT record_id,lab_id,room_num,teacher_num,teacher_name,arrange_id,teacher_id,course_name,
+          class_name,apply_date,class_date,week,week_day,node
+    FROM v_record
+    WHERE week = #{week} AND week_day = #{weekDay}
+  </select>
+
+
+
+</mapper>

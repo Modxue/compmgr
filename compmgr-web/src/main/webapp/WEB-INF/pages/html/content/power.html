@@ -1,1 +1,443 @@
-<div>权限分配</div>
+<style type="text/css">
+	#power-menu {
+		display: flex;
+		margin: 3vh 5vw;
+		font-size: 1.7vw;
+	}
+
+	#power-menu div {
+		margin-right: 2vw;
+	}
+
+	.power-set-content {
+		margin-top: 5vh;
+		margin-left: 4vw;
+		font-size: 1.6vw;
+		display: flex;
+	}
+
+	.power-set-content span {
+		margin-right: 1vw;
+	}
+
+	.power-button{
+		position: absolute;
+		left: 3.5vw;
+		bottom: 3vh;
+	}
+
+	#power-set-add,
+	#power-set-examine-confirm,
+	#power-set-teacher-confirm,
+	#power-set-mod-confirm{
+		margin-right: 8vw;
+	}
+
+	#power-set-add-btn {
+		margin-left: 6vw;
+		background-color: #2D93CA;
+	}
+
+	#power-table-style {
+		margin-left: 6vw;
+		height: 50vh;
+		overflow: auto;
+		margin-top: 1vh
+	}
+
+	.power-table {
+		margin-top: 2vh;
+		text-align: center;
+		border-collapse: collapse;
+	}
+
+	.power-table tr {
+		height: 4vh;
+	}
+
+	.power-table tr th,
+	.power-table tr td {
+		width: 8.5vw;
+		border: 1px solid #09f;
+	}
+
+	.power-table tr:nth-child(odd) {
+		background-color: #ddd;
+	}
+	.power-table td:nth-child(3),
+	.power-table td:nth-child(4),
+	.power-table td:nth-child(5),
+	.power-table td:nth-child(6){
+		color: #09f;
+	}
+
+	.power-table td:nth-child(3) span,
+	.power-table td:nth-child(4) span,
+	.power-table td:nth-child(5) span,
+	.power-table td:nth-child(6) span:hover {
+		cursor: pointer;
+	}
+
+	.power-popup{
+		position: absolute;
+		display: none;
+		border: 1px solid #778899;
+		z-index: 2;
+		background-color: #fff;
+		border-radius: 5px;
+		height: 45vh;
+		width: 25vw;
+		top: 30vh;
+		left: 45vw;
+	}
+
+	#power-form-teacher{
+		display: flex;
+		margin-left: 4vw;
+		margin-top: 4vh;
+	}
+	#power-form-teacher span{
+		font-size: 1.5vw;
+		margin-right: 1vw;
+		margin-top: 1vh;
+	}
+	#power-teacher{
+		width: 10vw;
+	}
+</style>
+
+<div class="manager-title">权限分配</div>
+<div id="power-menu">
+	<input type="radio" checked="checked" value="setrole" name="power" />
+	<div>创建角色</div>
+	<input type="radio" value="allot" name="power" />
+	<div>分配权限</div>
+</div>
+<div id="power-set">
+	<div><button class="button" id="power-set-add-btn">新增角色</button></div>
+	<div id="power-table-style">
+		<table class="power-table" id="power-table1">
+		</table>
+	</div>
+
+	<div id="power-set-new" class="power-popup">
+		<div class="manager-popup-title">新增角色</div>
+		<div class="power-set-content">
+			<span>名称</span>
+			<input type="text" class="input" id="power-set-name">
+		</div>
+		<div class="power-set-content">
+			<span>描述</span>
+			<input type="text" class="input" id="power-set-description">
+		</div>
+		<div class="power-button">
+			<button class="button" id="power-set-add">添加</button>
+			<button class="button" id="power-set-cancel">取消</button>
+		</div>
+	</div>
+
+	<div id="power-set-examine" class="power-popup">
+		<div class="manager-popup-title" id="power-set-examine-title"></div>
+		<div id="power-set-examine-description" class="power-set-content"></div>
+		<div id="power-set-examine-teacher" class="power-set-content"></div>
+		<div class="power-button">
+			<button class="button" id="power-set-examine-confirm">确定</button>
+			<button class="button" id="power-set-examine-cancel">取消</button>
+		</div>
+	</div>
+
+	<div id="power-set-teacher" class="power-popup">
+		<div class="manager-popup-title">添加教师</div>
+		<div id="power-form-teacher" class="layui-form">
+			<span>教师：</span>
+			<div id="power-teacher">
+				<select lay-filter="power-teacher-select" id="power-teacher-select">
+					<option value="">请选择教师</option>
+				</select>
+			</div>
+		</div>
+		<div class="power-button">
+			<button class="button" id="power-set-teacher-confirm">确定</button>
+			<button class="button" id="power-set-teacher-cancel">取消</button>
+		</div>
+	</div>
+
+	<div id="power-set-mod" class="power-popup">
+		<div class="manager-popup-title">修改信息</div>
+		<div id="power-set-mod-name" class="power-set-content">名称：
+			<input type="text" class="input" id="mod-name">
+		</div>
+		<div id="power-set-mod-description" class="power-set-content">描述：
+			<input type="text" class="input" id="mod-description">
+		</div>
+		<div class="power-button">
+			<button class="button" id="power-set-mod-confirm">确定</button>
+			<button class="button" id="power-set-mod-cancel">取消</button>
+		</div>
+	</div>
+</div>
+<div id="power-allot">
+	分配权限
+</div>
+
+<script>
+    var nowId;  //添加教师时获取当前角色的id
+    //加载页面后将分配权限和角色添加用户的页面隐藏,并清空输入框
+    $(function () {
+        $("#power-allot").css("display", "none");
+        ajaxGetAllRole();  //获取所有角色信息
+    });
+    //获取所有角色信息
+    function ajaxGetAllRole(){
+        $.ajax({
+            type: "POST",
+            url: "/compmgr/role/search.action",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                fillRoleTable(data);
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    }
+    //填充角色信息表格
+    function fillRoleTable(allRoleInfo){
+        $("#power-table1").text("");
+        $("#power-table1").append("<tr><th>序号</th><th>名称</th><th>查看</th><th>添加教师</th><th>修改</th><th>删除</th></tr>");
+        for (var i = 0, j = allRoleInfo.length; i < j; i++) {
+            $("#power-table1").append("<tr><td roleId='" + allRoleInfo[i].id + "' description='"+allRoleInfo[i].description+"'>" +(i+1)+ "</td><td>" +
+                allRoleInfo[i].roleName + "</td><td><span class='power-examine'>查看</span></td><td><span class='power-add-teacher'>添加教师</span></td><td><span class='power-modification'>修改</span></td><td><span class='power-delete'>删除</span></td></tr>"
+            );
+        }
+    }
+
+    //点击表格中的查看显示角色信息
+    $(document).on("click", ".power-examine", function (){
+        $("#power-set-examine").fadeIn(200);
+        $("#background").fadeIn(200);
+        var id = $(this).parents("tr").find("td").eq(0).attr("roleId");
+        var roleName = $(this).parents("tr").find("td").eq(1).text();
+        var description = $(this).parents("tr").find("td").eq(0).attr("description");
+        $("#power-set-examine-title").text(roleName);
+        $("#power-set-examine-description").text("描述："+description);
+        $.ajax({
+            type: "POST",
+            url: "/compmgr/role/searchteacher.action",
+            data: JSON.stringify({
+                "id": id
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                $("#power-set-examine-teacher").text("教师：");
+                for (var i = 0,j=data.length; i < j; i++) {
+                    $("#power-set-examine-teacher").append(data[i].teacherName);
+                }
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    });
+
+    //点击表格中添加教师
+    $(document).on("click", ".power-add-teacher", function (){
+        nowId = $(this).parents("tr").find("td").eq(0).attr("roleId");
+        $("#power-set-teacher").fadeIn(200);
+        $("#background").fadeIn(200);
+        powerAjaxTeacher();  //将教师姓名填入下拉框
+    });
+
+    //获取教师登录信息
+    function powerAjaxTeacher() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/login/teacherinfo.action",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                layui.use('form', function () {
+                    var form = layui.form;
+                    $("#power-teacher-select").html("");
+                    $("#power-teacher-select").append("<option value=''>请选择教师</option>");
+                    for (var i = 0, j = data.length; i < j; i++) {
+                        $("#power-teacher-select").append("<option value='" + data[i].id + "'>" + data[i].teacherName + "</option>");
+                    }
+                    form.render('select');
+                });
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    }
+
+    //点击添加教师中的确定
+    $("#power-set-teacher-confirm").click(function (){
+        var teacherId = $("#power-teacher-select").val();
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/role/insertTeacher.action",
+            data:JSON.stringify({
+                "roleId": nowId+"",
+                "teacherId": teacherId+""
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == 1) {
+                    alert("添加成功");
+                }else {
+                    alert("添加失败，请重试");
+                }
+                $("#power-set-teacher").fadeOut(200);
+                $("#background").fadeOut(200);
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    });
+
+    //点击表格中的修改
+    $(document).on("click", ".power-modification", function (){
+        $("#power-set-mod").fadeIn(200);
+        $("#background").fadeIn(200);
+        var id = $(this).parents("tr").find("td").eq(0).attr("roleId");
+        var roleName = $(this).parents("tr").find("td").eq(1).text();
+        var description = $(this).parents("tr").find("td").eq(0).attr("description");
+        $("#mod-name").val(roleName);
+        $("#mod-description").val(description);
+        $("#power-set-mod-confirm").unbind();
+        $("#power-set-mod-confirm").click(function (){
+            var name=$("#mod-name").val();
+            var description1=$("#mod-description").val();
+            $.ajax({
+                type: "POST",
+                url: "/compmgr/role/update.action",
+                data: JSON.stringify({
+                    "id": id,
+                    "roleName": name,
+                    "description": description1
+                }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data == 1) {
+                        alert("修改成功");
+                    }else {
+                        alert("系统异常");
+                    }
+                    ajaxGetAllRole();
+                    $("#power-set-mod").fadeOut(200);
+                    $("#background").fadeOut(200);
+                },
+                error: function (data) {
+                    ajaxError(data);
+                }
+            });
+        });
+    });
+    //点击删除删除角色信息
+    $(document).on("click", ".power-delete", function () {
+        var id = $(this).parents("tr").find("td").eq(0).attr("roleId");
+        var roleName = $(this).parents("tr").find("td").eq(1).text();
+        $(".power-delete").unbind();
+        if (confirm("确认删除【" + roleName + "】吗？")) {
+            $.ajax({
+                type: "POST",
+                url: "/compmgr/role/delete.action",
+                data: JSON.stringify({
+                    "id": id
+                }),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data == 1) {
+                        alert("删除成功");
+                    }else if(data==2){
+                        alert("角色下存在教师，不可删除");
+                    }else {
+                        alert("系统异常");
+                    }
+                    ajaxGetAllRole();
+                },
+                error: function (data) {
+                    ajaxError(data);
+                }
+            });
+        }
+    });
+
+    //当点击添加后向后台发送输入框内容
+    $("#power-set-add").click(function () {
+        var name=$("#power-set-name").val();
+        var description=$("#power-set-description").val();
+        $.ajax({
+            type: "POST",
+            url: "/compmgr/role/add.action",
+            data: JSON.stringify({
+                "roleName": name,
+                "description":description
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data==2){
+                    alert("添加角色的名字重复");
+                } else if (data==1){
+                    alert("添加成功");
+                } else {
+                    alert("添加异常");
+                }
+                $("#power-set-new").fadeOut(200);
+                $("#background").fadeOut(200);
+                ajaxGetAllRole();
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    });
+    //当点击创建角色重置按钮清空输入框
+    $("#power-set-cancel").click(function () {
+        $("#power-set-name").val("");
+        $("#power-set-description").val("");
+        $("#power-set-new").fadeOut(200);
+        $("#background").fadeOut(200);
+    });
+    //当单选按钮被点击时,显示对应的内容
+    $('input[type=radio][name=power]').change(function () {
+        if (this.value == 'setrole') {
+            $("#power-set").css("display", "block");
+            $("#power-allot").css("display", "none");
+        } else if (this.value == 'allot') {
+            $("#power-set").css("display", "none");
+            $("#power-allot").css("display", "block");
+        }
+    });
+    //点击新增角色弹出窗口
+    $("#power-set-add-btn").click(function () {
+        $("#power-set-new").fadeIn(200);
+        $("#background").fadeIn(200);
+    });
+    //点击查看里的确定取消
+    $("#power-set-examine-confirm,#power-set-examine-cancel").click(function () {
+        $("#power-set-examine").fadeOut(200);
+        $("#background").fadeOut(200);
+    });
+    //点击添加教师的取消
+    $("#power-set-teacher-cancel").click(function () {
+        $("#power-set-teacher").fadeOut(200);
+        $("#background").fadeOut(200);
+    });
+    //点击修改的取消
+    $("#power-set-mod-cancel").click(function (){
+        $("#power-set-mod").fadeOut(200);
+        $("#background").fadeOut(200);
+    });
+</script>

@@ -1,6 +1,5 @@
 package edu.zut.cs.curriculum.service;
 
-import org.springframework.stereotype.Service;
 
 /**
 * @author hyx
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 * 类说明
 */
 
-@Service
 public interface LessonService {
 	
 	public void findAll();

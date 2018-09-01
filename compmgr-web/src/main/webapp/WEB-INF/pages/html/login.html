@@ -11,11 +11,6 @@
 	<link rel="stylesheet" type="text/css" href="/compmgr/css/style.css" />
 	<title></title>
 	<style type="text/css">
-		* {
-			margin: 0;
-			padding: 0;
-		}
-
 		#login-main {
 			height: 70vh;
 			margin-top: 15vh;
@@ -51,11 +46,12 @@
 			margin-top: 6vh;
 			display: flex;
 			justify-content: center;
+			align-items: center;
 		}
 
 		#login-register-btn {
 			text-decoration: none;
-			margin-left: 8.5vw;
+			margin-left: 11.5vw;
 		}
 
 		#login-college,
@@ -68,140 +64,157 @@
 			margin-left: 5vw;
 			margin-bottom: 1vh;
 		}
+
 		#login-password {
 			margin-top: 1vh;
+		}
+
+		#login-register-btn,
+		#login-enter-btn {
+			position: absolute;
+			left: 5vw;
+			top: 40vh;
+			cursor: pointer;
+			border-radius: 5px;
+			width: 4vw;
+			height: 3vw;
+			background-color: gray;
+			border: none;
+			color: #FFF;
+			font-size: 14px;
 		}
 	</style>
 </head>
 
 <body>
-<div id="login-main">
-	<form id="login-enter" method="post" class="layui-form" action="/compmgr/login/authentication.action">
-		<div id="login-title">用户登录</div>
-		<div id="login-form">
-			<div id="login-form-college" class="login-message layui-form">
-				<span>学院：</span>
-				<div id="login-college">
-					<select lay-filter="login-college-select" id="login-college-select">
-						<option value="">请选择学院</option>
-						<!--<option value="1">计算机学院</option>-->
-					</select>
+	<div id="login-main">
+		<form id="login-enter" method="post" class="layui-form" action="/compmgr/login/authentication.action">
+			<div id="login-title">用户登录</div>
+			<div id="login-form">
+				<div id="login-form-college" class="login-message layui-form">
+					<span>学院：</span>
+					<div id="login-college">
+						<select lay-filter="login-college-select" id="login-college-select">
+							<option value="">请选择学院</option>
+							<!--<option value="1">计算机学院</option>-->
+						</select>
+					</div>
+				</div>
+				<div id="login-form-teacher" class="login-message layui-form">
+					<span>教师：</span>
+					<div id="login-teacher">
+						<select lay-filter="login-teacher-select" id="login-teacher-select" name="teacherId">
+							<option value="">请选择教师</option>
+						</select>
+					</div>
+				</div>
+				<div id="login-form-password" class="login-message">
+					<span>密码：</span>
+					<input class="input" type="password" id="login-password" name="pwd" />
+				</div>
+				<div id="login-button">
+					<button id="login-enter-btn" type="submit">登录</button>
+					<a id="login-register-btn" href="/compmgr/html/register.html">注册</a>
 				</div>
 			</div>
-			<div id="login-form-teacher" class="login-message layui-form">
-				<span>教师：</span>
-				<div id="login-teacher">
-					<select lay-filter="login-teacher-select" id="login-teacher-select"  name="teacherId">
-						<option value="">请选择教师</option>
-					</select>
-				</div>
-			</div>
-			<div id="login-form-password" class="login-message">
-				<span>密码：</span>
-				<input type="password" id="login-password" name="pwd"/>
-			</div>
-			<div id="login-button">
-				<button class="button" id="login-enter-btn" type="submit">登录</button>
-				<a class="button" id="login-register-btn" href="/compmgr/html/register.html">注册</a>
-			</div>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
 </body>
 <script type="text/javascript">
-    //变量定义
-    var loginTeacherData;  //教师的登录信息
-    var departmentId;  //学院的id
+	//变量定义
+	var loginTeacherData; //教师的登录信息
+	var departmentId; //学院的id
 
-    layui.use('form', function () {
-        var form = layui.form;
-        form.render('select');
-    });
-    layui.use('form', function () {
-        var form = layui.form;
-        form.on('select(login-college-select)',function (data) {
-            departmentId = data.value;
-            loginAjaxTeacher();
-        });
-    });
-    //获取教师登录信息
-	function loginAjaxTeacher(){
-        if (departmentId=="1"){
-	    	$.ajax({
-            	async: false,
-            	type: "POST",
-            	url: "/compmgr/login/teacherinfo.action",
-            	dataType: "json",
-            	contentType: "application/json;charset=utf-8",
-            	success: function (data) {
-                	loginTeacherData = data;
+	layui.use('form', function () {
+		var form = layui.form;
+		form.render('select');
+	});
+	layui.use('form', function () {
+		var form = layui.form;
+		form.on('select(login-college-select)', function (data) {
+			departmentId = data.value;
+			loginAjaxTeacher();
+		});
+	});
+	//获取教师登录信息
+	function loginAjaxTeacher() {
+		if (departmentId == "1") {
+			$.ajax({
+				async: false,
+				type: "POST",
+				url: "/compmgr/login/teacherinfo.action",
+				dataType: "json",
+				contentType: "application/json;charset=utf-8",
+				success: function (data) {
+					loginTeacherData = data;
 
-            	},
-            	error: function (data) {
-                	ajaxError(data);
-            	}
-        	});
-            fillTeacher ();
-        }else{
-            loginTeacherData.length=0;
-            console.log(loginTeacherData);
-            $("#login-teacher-select").html("");
-            $("#login-teacher-select").append("<option value=''>请选择教师</option>");
-            layui.use('form', function () {
-                var form = layui.form;
-                form.render('select');
-            });
+				},
+				error: function (data) {
+					ajaxError(data);
+				}
+			});
+			fillTeacher();
+		} else {
+			loginTeacherData.length = 0;
+			console.log(loginTeacherData);
+			$("#login-teacher-select").html("");
+			$("#login-teacher-select").append("<option value=''>请选择教师</option>");
+			layui.use('form', function () {
+				var form = layui.form;
+				form.render('select');
+			});
 		}
-    }
-    layui.use('form', function () {
-        var form = layui.form;
-        $("#login-college-select").append("<option value='1'>计算机学院</option>");
-        form.render('select');
-    });
-    function fillTeacher(){
-        layui.use('form', function () {
-            var form = layui.form;
+	}
+	layui.use('form', function () {
+		var form = layui.form;
+		$("#login-college-select").append("<option value='1'>计算机学院</option>");
+		form.render('select');
+	});
+
+	function fillTeacher() {
+		layui.use('form', function () {
+			var form = layui.form;
 			var teachername;
 			var teacherNum;
 			$("#login-teacher-select").html("");
 			$("#login-teacher-select").append("<option value=''>请选择教师</option>");
-			for (var i = 0, j=loginTeacherData.length; i < j; i++) {
+			for (var i = 0, j = loginTeacherData.length; i < j; i++) {
 				teacherName = loginTeacherData[i].teacherName;
 				teacherId = loginTeacherData[i].id;
 				$("#login-teacher-select").append("<option value='" + teacherId + "'>" + teacherName + "</option>");
 			}
 
-            form.render('select');
-        });
+			form.render('select');
+		});
 	}
-    //验证账号密码
-    // $(document).on("click", "#login-enter-btn", function () {
-    //     var teacherId = $("#login-teacher-select").val();
-    //     var teacherPassword = $("#login-password").val();
-    //     $.ajax({
-    //         async: false,
-    //         type: "POST",
-    //         url: "/compmgr/login/authentication.action",
-    //         data: JSON.stringify({
-    //             "teacherId": teacherId,
-		// 		"teacherPassword":teacherPassword
-    //         }),
-    //         dataType: "json",
-    //         contentType: "application/json;charset=utf-8",
-    //         success: function (data) {
-		// 			alert(data);
-		// 			if(data==2){
-		// 			    window.location.href='/html/register.html';
-		// 			}
-    //         },
-    //         error: function (data) {
-    //             ajaxError(data);
-    //         }
-    //     });
-    // });
+	//验证账号密码
+	// $(document).on("click", "#login-enter-btn", function () {
+	//     var teacherId = $("#login-teacher-select").val();
+	//     var teacherPassword = $("#login-password").val();
+	//     $.ajax({
+	//         async: false,
+	//         type: "POST",
+	//         url: "/compmgr/login/authentication.action",
+	//         data: JSON.stringify({
+	//             "teacherId": teacherId,
+	// 		"teacherPassword":teacherPassword
+	//         }),
+	//         dataType: "json",
+	//         contentType: "application/json;charset=utf-8",
+	//         success: function (data) {
+	// 			alert(data);
+	// 			if(data==2){
+	// 			    window.location.href='/html/register.html';
+	// 			}
+	//         },
+	//         error: function (data) {
+	//             ajaxError(data);
+	//         }
+	//     });
+	// });
 
 
-    //点击事件
+	//点击事件
 </script>
 
 </html>

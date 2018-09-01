@@ -1,1 +1,574 @@
-<div>查看记录</div>
+
+<style>
+    #Record{
+        margin-left: 5vw;
+        overflow: auto;
+        text-align: center;
+        font-size: 15px;
+        height: 68vh;
+    }
+
+    #Record-table {
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    #Record-table tr td,
+    th {
+        border: 1px solid #777;
+        width: 9vw;
+        height: 8vh;
+        /*padding: 5px;*/
+    }
+
+    #Record-table tr td:first-child,
+    #Record-table tr th:first-child{
+        width: 5vw;
+        font-weight: bolder;
+    }
+
+    .record-course {
+        cursor: pointer;
+        color: #108BCE;
+    }
+
+    #Record-table tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    #ajcck-week-div,
+    #ajcck-weekday-div {
+        width: 7vw;
+    }
+
+    #ajcck-select {
+        margin: 3vh 5vw;
+    }
+
+    /* 主表格弹框 */
+
+    /* 主表格弹框 */
+
+    /* 主表格弹框 */
+
+    /* 主表格弹框 */
+
+    /* 主表格弹框 */
+
+    /* 主表格弹框 */
+
+    #Record-pop-div {
+        background-color: #fff;
+        width: 25vw;
+        margin-left: 11vw;
+        /* height: 65vh; */
+        /* padding-right: 3vw; */
+        /* padding-bottom: 5vh; */
+        padding: 5vh 3vw;
+        border-radius: 5px;
+        z-index: 2;
+        position: fixed;
+        display: none;
+    }
+
+    #Record-pop-div-btn1,
+    #Record-pop-div-btn2 {
+        display: flex;
+        justify-content: center;
+    }
+
+    #Record-pop-div-btn2 {
+        margin-top: 3vh;
+    }
+
+    #Record-pop-div-title {
+        font-size: 2vw;
+        text-align: center;
+        /* padding-top: 3vh; */
+        margin-bottom: 5vh;
+    }
+
+    #Record-pop-div-con {
+        margin-left: 2vw;
+        font-size: 1.3vw;
+        margin-bottom: 4vh;
+    }
+
+    #Record-pop-div-con div {
+        margin-top: 1.5vh;
+    }
+
+    #Record-pop-btn-cancel,
+    #Record-pop-div-btn-retreat{
+        margin-left: 4vw;
+    }
+
+    #Record-pop-div-change {
+        background-color: #fff;
+        margin-left: 4vw;
+        border-radius: 5px;
+        width: 35vw;
+        height: 47vh;
+        position: fixed;
+        z-index: 4;
+        display: none;
+    }
+
+    /* 此处需要修改 */
+    #Record-pop-div-change-title {
+        font-size: 2vw;
+        text-align: center;
+        padding-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    #Record-pop-div-change-btn {
+        margin-top: 6vh;
+        display: flex;
+        justify-content: center;
+    }
+
+    #Record-pop-div-change-btn-cancel {
+        margin-left: 5vw;
+    }
+
+    #Record-pop-div-change-con {
+        font-size: 1.3vw;
+        margin-left: 5vw;
+    }
+
+    #Record-pop-div-change-con1{
+        display: none;
+        font-size: 1.5vw;
+        color: #58AFEF;
+        margin-left: 8vw;
+        margin-top: 3vh;
+    }
+
+    #Record-pop-div-change-select-div {
+        margin-left: 8vw;
+        margin-top: 2vh;
+    }
+
+    #ajcck-fade1 {
+        z-index: 3;
+    }
+</style>
+
+
+<div id="ajcck-fade" class="background-cloth"></div>
+<div id="ajcck-fade1" class="background-cloth"></div>
+<div id="Record-pop-div">
+    <div id="Record-pop-div-title">课程信息</div>
+    <div id="Record-pop-div-con">
+        <div>课程名称：
+            <span id="Record-pop-div-course"></span>
+        </div>
+        <div>任课教师：
+            <span id="Record-pop-div-teacher"></span>
+        </div>
+        <div>上课班级：
+            <span id="Record-pop-div-class"></span>
+        </div>
+        <div>上课时间：
+            <span id="Record-pop-div-node"></span>
+        </div>
+        <div>上机周数：
+            <span id="Record-pop-div-week"></span>
+        </div>
+        <div>本周上课机房：
+            <span id="Record-pop-div-room"></span>
+        </div>
+    </div>
+    <div id="Record-pop-div-btn1">
+        <div id="Record-pop-div-btn-change" class="button Record-pop-btn1">调换机房</div>
+        <div id="Record-pop-div-btn-retreat" class="button Record-pop-btn1">退选机房</div>
+    </div>
+    <div id="Record-pop-div-btn2">
+        <div id="Record-pop-btn-confirm" class="button Record-pop-btn2">确定</div>
+        <div id="Record-pop-btn-cancel" class="button Record-pop-btn2">取消</div>
+    </div>
+</div>
+
+<div id="Record-pop-div-change">
+    <div id="Record-pop-div-change-title">调换机房</div>
+    <div id="Record-pop-div-change-con">请选择机房(可用机房)：</div>
+    <div id="Record-pop-div-change-con1">当前时间无可用机房</div>
+    <div id="Record-pop-div-change-select-div" class="layui-form">
+        <div class="layui-input-inline">
+            <select id="Record-pop-div-change-select" lay-filter="Record-pop-div-change-select">
+            </select>
+        </div>
+    </div>
+    <div id="Record-pop-div-change-btn">
+        <div id="Record-pop-div-change-btn-confirm" class="button">确定</div>
+        <div id="Record-pop-div-change-btn-cancel" class="button">取消</div>
+    </div>
+</div>
+
+<div id="ajcck-select" class="layui-form">
+    <div id="ajcck-week-div" class="layui-input-inline">
+        <select id="ajcck-week-select" lay-filter="ajcck-week-select">
+            <option value="1">第1周</option>
+            <option value="2">第2周</option>
+            <option value="3">第3周</option>
+            <option value="4">第4周</option>
+            <option value="5">第5周</option>
+            <option value="6">第6周</option>
+            <option value="7">第7周</option>
+            <option value="8">第8周</option>
+            <option value="9">第9周</option>
+            <option value="10">第10周</option>
+            <option value="11">第11周</option>
+            <option value="12">第12周</option>
+            <option value="13">第13周</option>
+            <option value="14">第14周</option>
+            <option value="15">第15周</option>
+            <option value="16">第16周</option>
+            <option value="17">第17周</option>
+            <option value="18">第18周</option>
+            <option value="19">第19周</option>
+            <option value="20">第20周</option>
+        </select>
+    </div>
+    <div id="ajcck-weekday-div" class="layui-input-inline">
+        <select id="ajcck-weekday-select" lay-filter="ajcck-weekday-select" lay-search>
+            <option value="1">周一</option>
+            <option value="2">周二</option>
+            <option value="3">周三</option>
+            <option value="4">周四</option>
+            <option value="5">周五</option>
+            <option value="6">周六</option>
+            <option value="7">周日</option>
+        </select>
+    </div>
+</div>
+
+<div id="Record">
+    <table id="Record-table"></table>
+</div>
+
+
+<script>
+    var selectWeekAjcck = "1"; //当前选择的周次
+    var selectWeekdayAjcck = "1"; //当前选择的周几
+    var lessonAjcckArr; //保存从后台获取的主表格机房记录数据
+    var freeRoomArrAjcck; //向后台请求的当前节空闲机房数据
+    var selectFreeRoom; //调换机房时,保存管理员选择的机房Id
+    var FreeRoomForChangeTimeAjcck;  //调换机房弹出框，选中时间后，向后台请求的当前选择时间空闲机房数据
+    var selectFreeRoomForChangeTimeAjcck = "0";  //调换机房弹出框，选中空闲机房后，保存选中的机房Id
+
+
+
+    $(function () {
+        ajaxSelectWeekdayLessonAjcck();
+    });
+
+
+    //单击页面主表格课程执行函数
+    $("#Record-table").on("click", ".record-course", function () {
+        var weekDayTmp = $(this).parent().attr("weekDay");
+        switch (weekDayTmp) {
+            case "1":
+                weekDayTmp = "一";
+                break;
+            case "2":
+                weekDayTmp = "二";
+                break;
+            case "3":
+                weekDayTmp = "三";
+                break;
+            case "4":
+                weekDayTmp = "四";
+                break;
+            case "5":
+                weekDayTmp = "五";
+                break;
+            case "6":
+                weekDayTmp = "六";
+                break;
+            case "7":
+                weekDayTmp = "日";
+                break;
+            default:
+                break;
+
+        }
+        $("#Record-pop-div").fadeIn(400);
+        $("#ajcck-fade").fadeIn(400);
+        $("body").css("overflow", "hidden");
+        $("#Record-pop-div-course").text($(this).parent().attr("courseName"));
+        $("#Record-pop-div-teacher").text($(this).parent().attr("teacherName"));
+        $("#Record-pop-div-class").text($(this).parent().attr("className"));
+        $("#Record-pop-div-week").text($(this).parent().attr("weekString"));
+        $("#Record-pop-div-node").text("周" + weekDayTmp + "第" + $(this).parent().attr("node") + "节");
+        $("#Record-pop-div-room").text($(this).parent().attr("roomNumber"));
+        $("#Record-pop-div-room").attr("recordId", $(this).parent().attr("recordId"));
+    });
+
+    //单击弹出课程页面的确定或取消执行函数
+    $("#Record-pop-div").on("click", "#Record-pop-btn-cancel,#Record-pop-btn-confirm", function () {
+        $("#Record-pop-div").fadeOut(400);
+        $("#ajcck-fade").fadeOut(400);
+    });
+
+    //向后台获取当前下拉框选择时间的记录数据
+    function ajaxSelectWeekdayLessonAjcck() {
+        $.ajax({
+            // async: false,
+            type: "POST",
+            url: "/compmgr/search/recordformgr.action",
+            data: JSON.stringify({
+                "week": selectWeekAjcck,
+                "weekDay": selectWeekdayAjcck
+            }),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                lessonAjcckArr = data;
+                fullRecordAjcck();
+            },
+            error: function (data) {
+                // ajaxError(data);
+            }
+        });
+    }
+
+    //填充主页面表格
+    function fullRecordAjcck() {
+        $("#Record-table").text("");
+        $("#Record-table").append("<tr><th class='Record-title'>" +
+            "</th><th class='Record-title'>第一节</th><th class='Record-title'>第二节" +
+            "</th><th class='Record-title'>第三节</th><th class='Record-title'>第四节" +
+            "</th><th class='Record-title'>第五节</th></tr>");
+        for (var i = 0, j = lessonAjcckArr.roomList.length; i < j; i++) {
+            $("#Record-table").append("<tr roomId='" + lessonAjcckArr.roomList[i].id + "'><td class='Record-room'>" +
+                lessonAjcckArr.roomList[i].roomNum + "</td>" +
+                "<td class='record-con' node='1'><span class='record-course'></span><br><span class='Record-tch'></span></td>" +
+                "<td class='record-con' node='2'><span class='record-course'></span><br><span class='Record-tch'></span></td>" +
+                "<td class='record-con' node='3'><span class='record-course'></span><br><span class='Record-tch'></span></td>" +
+                "<td class='record-con' node='4'><span class='record-course'></span><br><span class='Record-tch'></span></td>" +
+                "<td class='record-con' node='5'><span class='record-course'></span><br><span class='Record-tch'></span></td></tr>"
+            );
+        }
+
+        for (var i = 0, j = lessonAjcckArr.recordList.length; i < j; i++) {
+            var roomId = lessonAjcckArr.recordList[i].labId;
+            var node = lessonAjcckArr.recordList[i].node;
+            var courseName = lessonAjcckArr.recordList[i].courseName;
+            var teacherName = lessonAjcckArr.recordList[i].teacherName;
+            var recordId = lessonAjcckArr.recordList[i].recordId;
+            var className = lessonAjcckArr.recordList[i].className;
+            var roomNumber = lessonAjcckArr.recordList[i].roomNum;
+            var weekString = lessonAjcckArr.recordList[i].weekString;
+            var weekDay = lessonAjcckArr.recordList[i].weekDay;
+            var fullThisLession = $("#Record-table tr[roomId='" + roomId + "'] td[node='" + node + "']");
+            $("#Record-table tr[roomId='" + roomId + "'] td[node='" + node + "'] .record-course").text(courseName);
+            $("#Record-table tr[roomId='" + roomId + "'] td[node='" + node + "'] .Record-tch").text(teacherName);
+            fullThisLession.attr("recordId", recordId);
+            fullThisLession.attr("teacherName", teacherName);
+            fullThisLession.attr("className", className);
+            fullThisLession.attr("roomNumber", roomNumber);
+            fullThisLession.attr("courseName", courseName);
+            fullThisLession.attr("weekString", weekString);
+            fullThisLession.attr("weekDay", weekDay);
+            fullThisLession.attr("node", node);
+        }
+    }
+
+    //管理员点击课程弹出课程页面,点击确定时向后台请求当前节次的空闲机房
+    function ajaxFreeRoomAjcck() {
+        var week=$("#ajcck-week-select").val();
+        var weekDay=$("#ajcck-weekday-select").val();
+        var text=$("#Record-pop-div-node").text();
+        var node=text[3];
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/search/freeroom.action",
+            dataType: "json",
+            data: JSON.stringify({
+                "week": week,
+                "weekDay":weekDay,
+                "node":node
+            }),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                freeRoomArrAjcck = data;
+                fillFreeRoomAjcck();
+            },
+            error: function (data) {
+                // ajaxError(data);
+            }
+        });
+    }
+
+    //填充空闲机房下拉框
+    function fillFreeRoomAjcck() {
+        layui.use('form', function () {
+            var form = layui.form;
+            if (freeRoomArrAjcck.length == 0) {
+                $("#Record-pop-div-change-select-div").css("display", "none");
+                $("#Record-pop-div-change-con1").css("display", "block");
+            } else {
+                $("#Record-pop-div-change-select-div").css("display", "block");
+                $("#Record-pop-div-change-con1").css("display", "none");
+                $("#Record-pop-div-change-select").html("");
+                $("#Record-pop-div-change-select").append("<option value=''>请选择机房</option>");
+                for (var i = 0, j = freeRoomArrAjcck.length; i < j; i++) {
+                    var roomId = freeRoomArrAjcck[i].id;
+                    var roomNumber = freeRoomArrAjcck[i].roomNum;
+                    $("#Record-pop-div-change-select").append("<option value='" + roomId + "'>" + roomNumber + "</option>");
+                }
+                form.render('select');
+            }
+        });
+    }
+
+    //调换机房，管理员选中空闲机房时,保存机房Id
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(Record-pop-div-change-select)', function (data) {
+            selectFreeRoom = data.value;
+        });
+    });
+
+
+    //管理员点击退选机房按钮执行函数
+    $("#Record-pop-div-btn1").on("click", "#Record-pop-div-btn-retreat", function () {
+        var teacherName = $("#Record-pop-div-teacher").text();
+        if (confirm("确定退选【" + teacherName + "】的课程吗？")) {
+            ajaxRetreatAjcck();
+        }
+    });
+    //向后台发送退选的课程id进行退选
+    function ajaxRetreatAjcck() {
+        var recordId = $("#Record-pop-div-room").attr("recordId");
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/adjust/retreat.action",
+            dataType: "json",
+            data: JSON.stringify({
+                "id": recordId
+            }),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == "1") {
+                    alert("退选成功");
+                    ajaxSelectWeekdayLessonAjcck();
+                } else {
+                    alert("系统出错，退选失败");
+                }
+            },
+            error: function (data) {
+                // ajaxError(data);
+            }
+        });
+        $("#Record-pop-div").fadeOut(400);
+        $("#ajcck-fade").fadeOut(400);
+        $("body").css("overflow", "auto");
+    }
+
+
+    //管理员点击调换机房弹出页面的确定按钮触发函数
+    $("#Record-pop-div-change").on("click", "#Record-pop-div-change-btn-confirm", function () {
+        ajaxAdjustRoomAjcck();
+        $("#Record-pop-div-change").fadeOut(400);
+        $("#Record-pop-div").fadeOut(400);
+        $("#ajcck-fade").fadeOut(400);
+        $("#ajcck-fade1").fadeOut(400);
+        $("body").css("overflow", "auto");
+        ajaxSelectWeekdayLessonAjcck();
+    });
+
+    //管理员点击调换机房弹出页面的确定按钮时,向后台发送调换机房数据
+    function ajaxAdjustRoomAjcck() {
+        var recordId = $("#Record-pop-div-room").attr("recordId");
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/compmgr/adjust/change.action",
+            dataType: "json",
+            data: JSON.stringify({
+                "id": recordId,
+                "roomId": selectFreeRoom
+            }),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == "1") {
+                    alert("调换机房成功");
+                } else {
+                    alert("系统出错,调换机房失败");
+                }
+            },
+            error: function (data) {
+                // ajaxError(data);
+            }
+        });
+    }
+
+    //单击周次下拉框时，获取所选择的周次
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(ajcck-week-select)', function (data) {
+            selectWeekAjcck = data.value;
+            ajaxSelectWeekdayLessonAjcck();
+        });
+    });
+
+    //单击周几下拉框时，获取所选择的周几
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(ajcck-weekday-select)', function (data) {
+            selectWeekdayAjcck = data.value;
+            ajaxSelectWeekdayLessonAjcck();
+        });
+    });
+    layui.use('form', function () {
+        var form = layui.form;
+        form.render('select');
+    });
+
+    //单击课程弹出框的调换课程按钮执行函数
+    $("#Record-pop-div").on("click", "#Record-pop-div-btn-change", function () {
+        $("#Record-pop-div-change").fadeIn(400);
+        $("#ajcck-fade1").fadeIn(200);
+        $("#ajcck-fade").fadeOut(200);
+        ajaxFreeRoomAjcck(); //向后台请求当前点击节次的空闲机房
+    });
+
+    //调换机房弹出页面，向空闲机房下拉框填充向后台请求的空闲机房数据
+    function fillFreeRoomForChangeTimeAjcck() {
+        layui.use('form', function () {
+            var form = layui.form;
+            if (FreeRoomForChangeTimeAjcck.length == 0) {
+                $("#Record-pop-div-time-con3").css("display", "block");
+                $("#Record-pop-div-time-con2").css("display", "none");
+                selectFreeRoomForChangeTimeAjcck = "0";  //当管理员更改日期时，清除所选中的空闲机房
+            } else {
+                selectFreeRoomForChangeTimeAjcck = "0";
+                $("#Record-pop-div-time-con3").css("display", "none");
+                $("#Record-pop-div-time-con2").css("display", "block");
+                $("#Record-pop-div-time-select-room").html("");
+                $("#Record-pop-div-time-select-room").append("<option value=''>请选择机房</option>");
+                for (var i = 0, j = FreeRoomForChangeTimeAjcck.length; i < j; i++) {
+                    var roomId = FreeRoomForChangeTimeAjcck[i].roomId;
+                    var roomNumber = FreeRoomForChangeTimeAjcck[i].roomNumber;
+                    $("#Record-pop-div-time-select-room").append("<option value='" + roomId + "'>" + roomNumber + "</option>");
+                }
+                form.render('select');
+            }
+        });
+    }
+
+
+    //单击调换机房弹出框的取消按钮
+    $("#Record-pop-div-change").on("click", "#Record-pop-div-change-btn-cancel", function () {
+        $("#Record-pop-div-change").fadeOut(400);
+        $("#ajcck-fade").fadeIn(100);
+        $("#ajcck-fade1").fadeOut(100);
+    });
+</script>
+
+

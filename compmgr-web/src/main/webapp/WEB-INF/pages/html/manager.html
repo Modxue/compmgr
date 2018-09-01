@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="/compmgr/js/main.js"></script>
+	<script src="/compmgr/lib/jquery.js"></script>
+	<script src="/compmgr/lib/layui/layui.js"></script>
+	<link rel="stylesheet" href="/compmgr/lib/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="/compmgr/css/style.css" />
+	<title>系统管理</title>
+	<style type="text/css">
+		#main-top {
+			height: 18vh;
+			background: -webkit-linear-gradient(left, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			background: -o-linear-gradient(right, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			background: -moz-linear-gradient(right, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			background: linear-gradient(to right, #ADD8E6, lavender, white, lavender, #ADD8E6);
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			align-items: flex-end;
+		}
+
+		#main-title1 {
+			font-size: 4vw;
+			position: relative;
+			right: 34vw;
+			top: 1vh;
+		}
+
+		#main-top-menu {
+			display: flex;
+			margin-top: .4vh;
+		}
+
+		.main-title2 {
+			font-size: 1.3vw;
+			margin-right: 2vw;
+			cursor: pointer;
+			position: relative;
+		}
+
+		.main-title2:hover {
+			background-color: #808080;
+			color: #fff;
+		}
+
+		#main-show {
+			height: 82vh;
+			background-color: #E6E6FA;
+		}
+
+		#manage-main {
+			display: flex;
+			width: 80vw;
+			margin-left: 10vw;
+			background-color: #eee;
+		}
+
+		#menu {
+			display: flex;
+			flex-direction: column;
+			width: 15vw;
+			height: 82vh;
+		}
+
+		#menu-show {
+			width: 65vw;
+			background-color: #fff;
+		}
+
+		#menu-name {
+			height: 10vh;
+			font-size: 1.7vw;
+			text-align: center;
+			padding-top: 5vh;
+			border-bottom: 1px dashed #D3D3D3;
+		}
+
+		#name-border {
+			height: 2px;
+			margin-top: 4.9vh;
+			border-top: 1px dashed #D3D3D3;
+			border-bottom: 1px dashed #D3D3D3;
+		}
+
+		.menu-con {
+			height: 6vh;
+			border-bottom: 1.5px solid #d6c6eA;
+			font-size: 1.2vw;
+			text-align: center;
+			padding-top: 2vh;
+			cursor: pointer;
+		}
+
+		.menu-con:hover {
+			background-color: #c8e1fb;
+		}
+
+		.menu-con-icon {
+			color: #6dd2fd;
+			margin-left: 2vw;
+		}
+
+		.menu-open {
+			background-color: #c8e1fb;
+			border-left-style: solid;
+			border-left-width: 5px;
+			border-left-color: #9bd9fc;
+		}
+	</style>
+</head>
+
+<body>
+<div id="background" class="background-cloth"></div>
+<div id="main-top">
+	<div id="main-title1">
+		中心机房管理系统
+	</div>
+	<div id="main-top-menu">
+		<div id="main-apply" class="main-title2">
+			<span>机房申请</span>
+		</div>
+		<div id="main-manager" class="main-title2">
+			<span>系统管理</span>
+		</div>
+		<div id="main-personal" class="main-title2">
+			<span>个人中心</span>
+		</div>
+		<div id="main-exit" class="main-title2">
+			<span>退出系统</span>
+		</div>
+	</div>
+</div>
+<div id="main-show">
+	<div id="admin-manage">
+		<div id="manage-main">
+			<div id="menu">
+				<div id="menu-name">机房管理
+					<div id="name-border"></div>
+				</div>
+				<div id="menu-nav">
+					<div id="update" class="menu-con">
+						机房管理
+						<span class="menu-con-icon">▶</span>
+					</div>
+					<div id="check" class="menu-con">
+						查看记录
+						<span class="menu-con-icon">▶</span>
+					</div>
+					<div id="power" class="menu-con">
+						权限管理
+						<span class="menu-con-icon">▶</span>
+					</div>
+				</div>
+			</div>
+			<div id="menu-show">
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#menu-show").load("./content/update.html");
+        $("#update").addClass("menu-open");
+        $("#update").find("span").text("▼");
+    });
+    //左侧导航栏选项点击事件
+    $('#menu-nav').children().click(function () {
+        $('#menu-nav').children().removeClass("menu-open");
+        $('#menu-nav div span').text("▶");
+        $(this).addClass("menu-open");
+        $(this).find("span").text("▼");
+        var thisId = $(this).attr("id");
+        $("#menu-show").load("./content/" + thisId + ".html");
+    });
+    //点击事件
+    //点击机房申请出现机房申请页面
+    $("#main-apply").click(function () {
+        window.location.href = "./apply.html";
+    });
+    //点击机房申请出现机房申请页面
+    $("#main-manager").click(function () {
+        window.location.href = "./manager.html";
+    });
+    //点击个人中心出现先相应页面
+    $("#main-personal").click(function () {
+        $("#main-show").load("./content/personal.html");
+    });
+    //点击退出系统退出
+    $("#main-exit").click(function () {
+        window.location.href = "/compmgr/login/logout.action";
+    });
+</script>
+</body>
+
+</html>
