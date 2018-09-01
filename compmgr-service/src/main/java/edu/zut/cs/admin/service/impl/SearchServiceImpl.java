@@ -9,7 +9,9 @@ import edu.zut.cs.tools.NowWeek;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * create_by Intellij IDEA
@@ -58,5 +60,15 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<CptLab> getAllComputerRoom() {
         return cptLabMapper.getAllComputerLab();
+    }
+
+    @Override
+    public Map<String,Object> getApplyRecordByTime(Integer week, Integer weekDay) {
+        List<ViewRecord> recordList = viewRecordMapper.selectViewRecordByWeekAndWeekDay(week,weekDay);
+        List<CptLab> roomList = cptLabMapper.getAllComputerLab();
+        Map<String,Object> map = new HashMap<>();
+        map.put("recordList",recordList);
+        map.put("roomList",roomList);
+        return map;
     }
 }

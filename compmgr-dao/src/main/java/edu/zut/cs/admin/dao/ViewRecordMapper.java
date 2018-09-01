@@ -28,4 +28,6 @@ public interface ViewRecordMapper {
     List<Integer> selectFreeCptIdByTime(@Param("week")Integer week,
                                         @Param("weekDay")Integer weekDay,
                                         @Param("node")Integer node);
+
+    List<ViewRecord> selectViewRecordByWeekAndWeekDay(@Param("week")Integer week,@Param("weekDay")Integer weekDay);
 }

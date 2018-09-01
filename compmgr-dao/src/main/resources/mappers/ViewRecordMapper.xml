@@ -49,4 +49,13 @@
     ORDER BY t_cptLab.priority
   </select>
 
+  <select id="selectViewRecordByWeekAndWeekDay" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.ViewRecord">
+     SELECT record_id,lab_id,room_num,teacher_num,teacher_name,arrange_id,teacher_id,course_name,
+          class_name,apply_date,class_date,week,week_day,node
+    FROM v_record
+    WHERE week = #{week} AND week_day = #{weekDay}
+  </select>
+
+
+
 </mapper>

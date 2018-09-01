@@ -48,4 +48,15 @@ public class SearchController {
         return result;
     }
 
+    @PostMapping(value = "/recordformgr",produces = "application/json;charset=utf-8")
+    public @ResponseBody
+    String searchRecByWeekAndDay(@RequestBody String str){
+        Map map = JSON.parseObject(str);
+        System.out.println("接受前台参数："+map);
+        Integer week = Integer.valueOf((String) map.get("week"));
+        Integer weekDay = Integer.valueOf((String) map.get("weekDay"));
+        String resultJson = JSON.toJSONString(searchService.getApplyRecordByTime(week,weekDay));
+        return resultJson;
+    }
+
 }

@@ -4,6 +4,7 @@ import edu.zut.cs.admin.model.CptLab;
 import edu.zut.cs.admin.model.ViewRecord;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * create_by Intellij IDEA
@@ -20,5 +21,7 @@ public interface SearchService {
     List<ViewRecord> getHistoryRecordByUserNum(String userNum);
 
     List<CptLab> getAllComputerRoom();
+
+    Map<String,Object> getApplyRecordByTime(Integer week, Integer weekDay);
 
 }
