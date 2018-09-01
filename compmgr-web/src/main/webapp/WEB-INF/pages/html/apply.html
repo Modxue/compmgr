@@ -344,6 +344,7 @@
 <script type="text/javascript">
     var nowWeekNum;  //当前周数
     var courseArray;  //获取的课程信息
+	var courseArrayByWeek;  //通过周次查询的课程信息
     var applicationRecord;  //申请记录信息
     $(function () {
         ajaxNowWeek(); //获取当前周数
@@ -384,7 +385,7 @@
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
-                applicationRecord = data;
+                courseArrayByWeek = data;
                 fillSchedule();
             },
             error: function (data) {
@@ -395,8 +396,8 @@
     //填充课程表
     function fillSchedule() {
         $(".schedule-contb").text("");
-        for (var i = 0,j=applicationRecord.length; i < j; i++) {
-            $("#schedule-table tr:eq(" + applicationRecord[i].node + ") td:eq(" + applicationRecord[i].weekDay + ")").text(applicationRecord[i].courseName);
+        for (var i = 0,j=courseArrayByWeek.length; i < j; i++) {
+            $("#schedule-table tr:eq(" + courseArrayByWeek[i].node + ") td:eq(" + courseArrayByWeek[i].weekDay + ")").text(courseArrayByWeek[i].courseName);
         }
     }
     //申请机房时选择课程时显示当前老师的课程
@@ -484,7 +485,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/record/search.action",
+            url: "/compmgr/search/recordbyusernum.action",
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {

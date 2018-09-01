@@ -1,8 +1,6 @@
 package edu.zut.cs.admin.dao;
 
-import edu.zut.cs.admin.dao.RecordMapper;
 import edu.zut.cs.admin.model.Record;
-import edu.zut.cs.tools.SumArray;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * @author:fy0202
@@ -24,7 +22,7 @@ import java.util.Scanner;
 @Transactional
 @Rollback
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext-dao.xml")
+@ContextConfiguration(locations = "classpath:applicationContext-dao.xml")
 public class RecondTest {
 
 	@Autowired
@@ -36,6 +34,20 @@ public class RecondTest {
 		for (Record record : resultList) {
 			System.out.println(record);
 		}
+	}
+
+	@Test
+	public void insertRecordTest(){
+		Record record = new Record();
+		record.setArrangeId(3);
+		record.setLabId(10);
+		record.setWeek(4);
+		record.setWeekDay(5);
+		record.setNode(2);
+		record.setApplyDate(new Date());
+		List<Record> recordList = new ArrayList<>();
+		recordList.add(record);
+		recordMapper.insertRecord(recordList);
 	}
 
 

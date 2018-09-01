@@ -1,5 +1,6 @@
-package edu.zut.cs.admin.dao;
+package edu.zut.cs.admin.service;
 
+import edu.zut.cs.admin.dao.ViewRecordMapper;
 import edu.zut.cs.admin.model.ViewRecord;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,30 +16,30 @@ import java.util.List;
  * create_by Intellij IDEA
  *
  * @author zouguo0212@
- * @package_name edu.zut.cs.admin.dao
+ * @package_name edu.zut.cs.admin.service
  * @description
- * @date 2018/8/29 11:15
+ * @date 2018/8/29 18:34
  */
-@Rollback
 @Transactional
+@Rollback
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext-dao.xml")
-public class ViewRecordTest {
+public class SearchServiceTest {
 
     @Autowired
     ViewRecordMapper viewRecordMapper;
 
     @Test
-    public void selectViewRecordByRecordIdTest(){
-
-        ViewRecord viewRecord = viewRecordMapper.selectViewRecordByRecordId(25);
-        System.out.println("结果："+viewRecord);
-
+    public void getApplyRecordByUserNumTest(){
+        List<ViewRecord> viewRecordList = viewRecordMapper.selectViewRecordByUserNumAndTimeLimit("3857",2);
+        for (ViewRecord record : viewRecordList) {
+            System.out.println(record);
+        }
     }
 
     @Test
-    public void selectViewRecordByUserNumAndTimeLimitTest(){
-        List<ViewRecord> viewRecordList = viewRecordMapper.selectViewRecordByUserNumAndTimeLimit("3857",1);
+    public void getHistoryRecordByUserNumTest(){
+        List<ViewRecord> viewRecordList = viewRecordMapper.selectViewRecordByUserNumAndTimeLimit("3857",0);
         for (ViewRecord record : viewRecordList) {
             System.out.println(record);
         }

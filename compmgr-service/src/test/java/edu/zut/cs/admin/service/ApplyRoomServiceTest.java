@@ -1,6 +1,5 @@
 package edu.zut.cs.admin.service;
 
-import edu.zut.cs.curriculum.dao.CourseMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Rollback
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext-dao.xml")
-public class ApplyServiceTest {
-	
-	@Autowired
-	CourseMapper courseMapper;
-	
-	@Test
-	public void findAllTest() {
+public class ApplyRoomServiceTest {
 
-		System.out.println(courseMapper.getAllCourse());
-	}
 }

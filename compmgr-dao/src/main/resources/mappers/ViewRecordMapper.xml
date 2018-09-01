@@ -25,5 +25,12 @@
     WHERE record_id = #{recordId}
   </select>
 
+  <select id="selectViewRecordByUserNumAndTimeLimit" resultMap="BaseResultMap" resultType="edu.zut.cs.admin.model.ViewRecord">
+    SELECT record_id,lab_id,room_num,teacher_num,teacher_name,arrange_id,teacher_id,course_name,
+          class_name,apply_date,class_date,week,week_day,node
+    FROM v_record
+    WHERE teacher_num=#{userNum} AND week >= #{limit}
+    GROUP BY week,week_day,node
+  </select>
 
 </mapper>

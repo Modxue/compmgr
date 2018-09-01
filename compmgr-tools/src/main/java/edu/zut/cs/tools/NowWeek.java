@@ -31,9 +31,9 @@ public class NowWeek {
             long endTime = endDate.getTime();
             //一天等于多少毫秒：24*3600*1000
             Integer days =(int) ((endTime-startTime)/(24*3600*1000));
-            System.out.println(days);
+//            System.out.println(days);
             week =( days / 7) + 1;
-            System.out.println(week);
+//            System.out.println(week);
         } catch (ParseException e) {
             e.printStackTrace();
         }
