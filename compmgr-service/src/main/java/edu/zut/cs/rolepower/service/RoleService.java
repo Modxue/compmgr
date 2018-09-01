@@ -1,16 +1,16 @@
 package edu.zut.cs.rolepower.service;
 
-import java.util.List;
-
 import edu.zut.cs.rolepower.model.Role;
 import edu.zut.cs.user.model.Teacher;
+
+import java.util.List;
 
 /**
  * @author GZL
  * 2018年8月7日下午3:20:18
  */
 
-public interface RoleAllocationService {
+public interface RoleService {
 
 	// 查询所有角色
 	List<Role> selectAll();

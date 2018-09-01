@@ -2,10 +2,9 @@ package edu.zut.cs.rolepower.controller;
 
 import com.alibaba.fastjson.JSON;
 import edu.zut.cs.rolepower.model.Role;
-import edu.zut.cs.rolepower.service.RoleAllocationService;
+import edu.zut.cs.rolepower.service.RoleService;
 import edu.zut.cs.user.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.Map;
 public class RoleController {
 
     @Autowired
-    RoleAllocationService roleAllocationService;
+    RoleService roleAllocationService;
 
     // 查询所有角色
     @RequestMapping("/search")

@@ -2,20 +2,19 @@ package edu.zut.cs.rolepower.service.impl;
 
 import edu.zut.cs.rolepower.dao.RoleMapper;
 import edu.zut.cs.rolepower.model.Role;
-import edu.zut.cs.rolepower.service.RoleAllocationService;
+import edu.zut.cs.rolepower.service.RoleService;
 import edu.zut.cs.user.model.Teacher;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author GZL
  * 2018年8月7日下午3:25:25
  */
 @Service
-public class RoleAllocationServiceImpl implements RoleAllocationService {
+public class RoleServiceImpl implements RoleService {
 
 	@Autowired
 	RoleMapper roleMapper;

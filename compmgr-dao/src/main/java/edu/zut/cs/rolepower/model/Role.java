@@ -13,6 +13,10 @@ public class Role {
 	private String description;
 	//权限描述
 
+	public Role(){
+
+	}
+
     public Role(Integer id, String roleName, String description) {
     	this.id=id;
     	this.roleName=roleName;
