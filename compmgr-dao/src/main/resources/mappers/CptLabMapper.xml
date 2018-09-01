@@ -10,4 +10,17 @@
         SELECT id,room_num,amount,priority
         FROM t_cptLab
     </select>
+
+
+    <select id="selectFreeCptLabByTime" parameterType="java.lang.Integer" resultType="edu.zut.cs.admin.model.CptLab">
+    SELECT id,room_num,amount,priority
+    FROM t_cptLab
+    WHERE id NOT IN (
+        select lab_id from t_record
+        where t_record.week=#{week} AND t_record.week_day=#{weekDay} AND t_record.node=#{node}
+        GROUP BY lab_id
+    )
+    ORDER BY t_cptLab.priority
+  </select>
+
 </mapper>

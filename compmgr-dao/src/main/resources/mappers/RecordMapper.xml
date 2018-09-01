@@ -15,4 +15,5 @@
             ,#{item.classDate,jdbcType=TIMESTAMP})
         </foreach>
     </insert>
+
 </mapper>

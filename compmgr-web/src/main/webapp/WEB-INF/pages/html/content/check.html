@@ -385,7 +385,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/room/free.action",
+            url: "/compmgr/search/freeroom.action",
             dataType: "json",
             data: JSON.stringify({
                 "week": week,
@@ -447,7 +447,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/record/retreat.action",
+            url: "/compmgr/adjust/retreat.action",
             dataType: "json",
             data: JSON.stringify({
                 "id": recordId
@@ -488,7 +488,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/compmgr/record/adjust.action",
+            url: "/compmgr/adjust/change.action",
             dataType: "json",
             data: JSON.stringify({
                 "id": recordId,

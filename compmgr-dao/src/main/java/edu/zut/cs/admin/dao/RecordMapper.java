@@ -2,6 +2,7 @@ package edu.zut.cs.admin.dao;
 
 import java.util.List;
 
+import edu.zut.cs.admin.model.CptLab;
 import edu.zut.cs.admin.model.Record;
 import org.apache.ibatis.annotations.Param;
 
