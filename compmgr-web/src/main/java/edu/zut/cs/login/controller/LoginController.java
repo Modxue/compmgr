@@ -48,11 +48,8 @@ public class LoginController {
         Integer tId=Integer.valueOf(teacherId);
         if (loginService.isTruePassword(tId,pwd)){
             Teacher teacher=teacherService.getTeacherById(tId);
-            if(httpSession.isNew())
-            {
-               httpSession.setAttribute("teacher",teacher);
-                System.out.println("新建一个session！！");
-            }
+            httpSession.setAttribute("teacher",teacher);
+            System.out.println("新建一个session！！");
             System.out.println("账号密码正确");
             return "redirect:/html/apply.html";
         }else{
