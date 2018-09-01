@@ -1,6 +1,8 @@
 package edu.zut.cs.admin.service.impl;
 
+import edu.zut.cs.admin.dao.CptLabMapper;
 import edu.zut.cs.admin.dao.ViewRecordMapper;
+import edu.zut.cs.admin.model.CptLab;
 import edu.zut.cs.admin.model.ViewRecord;
 import edu.zut.cs.admin.service.SearchService;
 import edu.zut.cs.tools.NowWeek;
@@ -23,6 +25,9 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     ViewRecordMapper viewRecordMapper;
 
+    @Autowired
+    CptLabMapper cptLabMapper;
+
 
     /**
      * 查询到从当前周开始之后的申请记录(包括当前周)
@@ -44,5 +49,14 @@ public class SearchServiceImpl implements SearchService {
     public List<ViewRecord> getHistoryRecordByUserNum(String userNum) {
         List<ViewRecord> viewRecordList = viewRecordMapper.selectViewRecordByUserNumAndTimeLimit(userNum,1);
         return viewRecordList;
+    }
+
+    /**
+     * 得到所有机房
+     * @return
+     */
+    @Override
+    public List<CptLab> getAllComputerRoom() {
+        return cptLabMapper.getAllComputerLab();
     }
 }
