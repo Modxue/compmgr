@@ -15,5 +15,15 @@
             ,#{item.classDate,jdbcType=TIMESTAMP})
         </foreach>
     </insert>
+    <delete id="deleteRecord"  parameterType="java.lang.Integer">
+  		DELETE 
+  		FROM t_record 
+  		where id=#{id}
+    </delete>
+    <update id="changeRoom" parameterType="java.lang.Integer">
+    	UPDATE 
+    	t_record set lab_id=#{labId} 
+    	where id=#{id}
+    </update>
 
 </mapper>

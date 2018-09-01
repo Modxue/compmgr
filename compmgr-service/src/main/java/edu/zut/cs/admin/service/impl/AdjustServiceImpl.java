@@ -1,6 +1,9 @@
 package edu.zut.cs.admin.service.impl;
 
+import edu.zut.cs.admin.dao.RecordMapper;
 import edu.zut.cs.admin.service.AdjustService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,14 +17,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdjustServiceImpl implements AdjustService {
 
-
+	@Autowired
+	RecordMapper recordMapper;
+	
     @Override
     public Integer retreatRoom(Integer id) {
+    	if(recordMapper.deleteRecord(id)==1)
+    		return 1;
         return 0;
     }
 
     @Override
     public Integer changeRoom(Integer id, Integer roomId) {
+    	if(recordMapper.changeRoom(id, roomId)==1)
+    		return 1;
         return 0;
     }
 }
