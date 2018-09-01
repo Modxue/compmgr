@@ -34,9 +34,9 @@ public class SearchController {
     public @ResponseBody
     String searchApplyRecordByUserNum(HttpSession session){
         Teacher teacher = (Teacher) session.getAttribute("teacher");
-//        List<ViewRecord> viewRecordList = searchService.getApplyRecordByUserNum(teacher.getTeacherNum());
+        List<ViewRecord> viewRecordList = searchService.getApplyRecordByUserNum(teacher.getTeacherNum());
 //        测试用
-        List<ViewRecord> viewRecordList = searchService.getApplyRecordByUserNum("3857");
+//        List<ViewRecord> viewRecordList = searchService.getApplyRecordByUserNum("3857");
         String result = JSON.toJSONString(viewRecordList);
         return result;
     }

@@ -26,4 +26,10 @@
     ORDER BY week_day
   </select>
 
+  <select id="selectByLessonId" parameterType="java.lang.Integer" resultType="edu.zut.cs.curriculum.model.ViewLesson">
+    SELECT lesson_id,arrange_id,week_str,week_day,node,is_double_week,course_id,course_name,class_name,teacher_num,teacher_id,teacher_name
+    FROM v_lesson
+    WHERE lesson_id=#{lessonId}
+  </select>
+
 </mapper>
