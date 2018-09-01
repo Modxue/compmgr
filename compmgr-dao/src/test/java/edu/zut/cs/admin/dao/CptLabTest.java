@@ -35,4 +35,12 @@ public class CptLabTest {
 			System.out.println(lab);
 		}
 	}
+	
+	@Test
+	public void daleteComputerLabByIdTest() {
+		Integer id=2;
+		Integer result = cptlabMapper.daleteComputerLabById(id);
+		System.out.println(result);
+	}
+	
 }

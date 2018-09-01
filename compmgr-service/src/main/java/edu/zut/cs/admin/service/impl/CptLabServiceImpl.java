@@ -23,14 +23,15 @@ public class CptLabServiceImpl implements CptLabService {
     /**
      * 修改指定id的机房信息
      * @param id
-     * @param roomNum
      * @param priority
      * @param amount
      * @return 成功返回1 否则返回0
      */
     @Override
-    public Integer updateCptLabInfo(Integer id,String roomNum, Integer priority, Integer amount) {
-
+    public Integer updateCptLabInfo(Integer id, Integer priority, Integer amount) {
+    	Integer result=cptLabMapper.updateComputerLabInfo(id, priority, amount);
+    	if(result==1)
+    		return 1;
         return 0;
     }
 
@@ -44,6 +45,9 @@ public class CptLabServiceImpl implements CptLabService {
     @Override
     public Integer createCptLab(String roomNum, Integer priority, Integer amount) {
 
+    	Integer result =cptLabMapper.insertComputerLab(roomNum, priority, amount);
+    	if(result==1)
+    		return 1;
         return 0;
     }
 
@@ -54,7 +58,10 @@ public class CptLabServiceImpl implements CptLabService {
      */
     @Override
     public Integer deleteCptLab(Integer id) {
-
-        return 0;
+    	Integer result=cptLabMapper.daleteComputerLabById(id);
+    	if(result==1)
+    		return 1;
+    	else
+    		return 0;
     }
 }
