@@ -22,12 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class FunctionServiceTest {
 
     @Autowired
-    FunctionService functionService;
+    //FunctionService functionService;
 
     @Test
     public void updateByRole(){
         Integer[] tmp = {1,2,3};
-        functionService.updateByRole(3,tmp);
+       // functionService.updateByRole(3,tmp);
         System.out.println("s");
     }
 

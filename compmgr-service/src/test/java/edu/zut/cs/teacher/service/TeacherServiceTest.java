@@ -2,6 +2,7 @@ package edu.zut.cs.teacher.service;
 
 import edu.zut.cs.tools.Md5;
 import edu.zut.cs.user.dao.TeacherMapper;
+import edu.zut.cs.user.model.Teacher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,31 @@ public class TeacherServiceTest {
         }
         System.out.print("状态值："+result);
     }
+    @Test
+    public void updateTeacherInfoByIdTest(){
+        Integer result=-1;
+        Integer id=8533;
+        Teacher teacher1 = new Teacher();
+        teacher1.setTeacherNum("001");
+        teacher1.setTeacherName("wangyang");
+        if(id!=null)
+            result=teacherMapper.updateTeacherInfoById(8553,teacher1);
+        else
+            result=0;
+    }
+     @Test
+    public  void insertTeacherTest(){
+         Integer result=-1;
+         Teacher teacher1=new Teacher();
+         String teacherNum;
+         String teacherName;
+         String teacherEmail;
+         String password;
+         teacher1.setTeacherName("8755");
+         teacher1.setTeacherName("杨先生");
+         teacher1.setTeacherEmail("146843");
+         teacher1.setPassword("53589");
+         teacherMapper.insertTeacher(teacher1);
+         result=0;
+     }
 }

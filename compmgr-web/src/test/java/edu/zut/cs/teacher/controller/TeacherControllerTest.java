@@ -1,5 +1,7 @@
 package edu.zut.cs.teacher.controller;
 
+import com.alibaba.fastjson.JSON;
+import edu.zut.cs.user.model.Teacher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,5 +57,18 @@ public class TeacherControllerTest {
                 .andReturn().getResponse().getContentAsString(); //将相应数据转换成字符串
         System.out.println("------返回的JSON = " + responseString);
     }
-
+    @Test
+    public void  updateTeacherInfoByIdTest() throws Exception{
+        String responseString = mockMvc.perform(
+                post("/teacher/updateinfo")//请求的url
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED) //数据格式
+                        .param("id", "8533")  //参数
+                        //.param("teacher","teacher1")
+                        //.param("teacher.teacherName","崔岩")
+        )
+                .andExpect(status().isOk()) //返回状态
+                //        .andDo(print())         打印出请求和相应的内容
+                .andReturn().getResponse().getContentAsString(); //将相应数据转换成字符串
+        System.out.println("------返回的JSON = " + responseString);
+    }
 }

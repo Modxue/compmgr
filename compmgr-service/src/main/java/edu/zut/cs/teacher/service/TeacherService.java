@@ -16,4 +16,8 @@ public interface TeacherService {
 	 * @date: 2018-08-21 21：14
 	 */
 	Integer updateTeacherPasswordById(Integer id,String oldPassword,String newPassword);
+
+	Integer updateTeacherInfoById(Integer id,Teacher teacher);
+
+	//Integer insertTeacher(Teacher teacher);
 }

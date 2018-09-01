@@ -29,4 +29,6 @@ public interface TeacherMapper {
 	
 	// 通过指定Id获取老师信息
 	public Teacher getOneTeacherById(Integer id);
+	//通过ID，修改老师的信息
+     public Integer updateTeacherInfoById(@Param("id")Integer id,@Param("teacher")Teacher teacher);
 }

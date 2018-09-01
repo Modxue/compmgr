@@ -46,4 +46,15 @@ public class TeacherServiceImpl implements TeacherService {
 		}
 		return result;
 	}
+	@Override
+	public Integer updateTeacherInfoById(Integer id,Teacher teacher)
+	{
+		Integer result=-1;
+		Teacher teacher1 = new Teacher();
+		if(id!=null)
+			result=teacherMapper.updateTeacherInfoById(id,teacher);
+		else
+			result=0;
+		return  result;
+	}
 }
