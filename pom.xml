@@ -97,6 +97,7 @@
         <!-- ============== test end ============== -->
     </dependencies>
     <build>
+        <finalName>compmgr</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -123,5 +124,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
