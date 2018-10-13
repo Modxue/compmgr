@@ -23,11 +23,7 @@
     <aop:config proxy-target-class="true">
         <aop:pointcut id="serviceMethod"
                       expression="(execution(* edu.zut.cs.*.service..*(..))) and (@annotation(org.springframework.transaction.annotation.Transactional))" />
-        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+        <!--<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />-->
     </aop:config>
-    <!-- <aop:config>
-         <aop:advisor advice-ref="txAdvice" pointcut="execution(* cn.edu.zut.service.impl.*.*(..))"/>
-     </aop:config>-->
 
-    <tx:advice id="txAdvice"/>
 </beans>
