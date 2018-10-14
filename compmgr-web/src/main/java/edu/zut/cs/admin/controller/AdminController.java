@@ -1,7 +1,6 @@
 package edu.zut.cs.admin.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.org.apache.bcel.internal.generic.POP;
 import edu.zut.cs.admin.service.CptLabService;
 import edu.zut.cs.curriculum.model.ViewLesson;
 import edu.zut.cs.curriculum.service.ViewLessonService;
