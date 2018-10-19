@@ -53,7 +53,7 @@ public class myFilter implements Filter {
         //2.检测1中获取的servletPath是否为不需要检测的URl中的一个.若是,放行
         List<String> urls = Arrays.asList(uncheckedUrls.split(","));
         if (urls.contains(servletPath)
-                ||servletPath.contains(".js")
+                ||servletPath.endsWith(".js")
                 ||servletPath.endsWith(".css")
                 ||servletPath.endsWith(".jpg")
                 ||servletPath.endsWith(".png")) {
@@ -65,7 +65,7 @@ public class myFilter implements Filter {
             Object user = request.getSession().getAttribute("teacher");
 
             if (user != null) {
-                Teacher teacher = (Teacher) user;
+//                Teacher teacher = (Teacher) user;
 //                System.out.println("UserNot Null的teacher信息："+teacher);
                 filterChain.doFilter(servletRequest,servletResponse);
             }else{
