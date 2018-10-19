@@ -79,8 +79,8 @@ public class LoginController {
      */
     @RequestMapping("/logout")
     public void loginout(HttpSession httpSession,HttpServletResponse response)throws Exception{
-        Teacher teacher=(Teacher) httpSession.getAttribute("teacher");
-        response.sendRedirect("/compmgr/html/login.html");
+//        Teacher teacher=(Teacher) httpSession.getAttribute("teacher");
         httpSession.invalidate();
+        response.sendRedirect("/compmgr/html/login.html");
     }
 }
