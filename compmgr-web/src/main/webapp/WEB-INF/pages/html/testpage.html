@@ -1,15 +1,163 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>我的课表-选择机房</title>
-    <script src="/compmgr/lib/jquery.js"></script>
-    <link rel="stylesheet" href="/compmgr/lib/weui/src/lib/weui.min.css">
+    <meta charset="utf-8" />
+    <!-- 页面适应手机屏幕和电脑屏幕，宽度是设备宽度，用户是否可以设置缩放比例，初始缩放比例，最大最小缩放比例 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>我的课表</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
 
-        </html>
+        .one {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 10vh;
+        }
+
+        .two {
+            height: 10vh;
+            width: 100vw;
+            border: 0.1px solid #B2B2B2;
+        }
+
+        .three {
+            border-collapse: collapse;
+
+            height: 80vh;
+            width: 100vw;
+            display: flex;
+            border: 1px solid #B2B2B2;
+        }
+
+        #week {
+            height: 5vh;
+            display: flex;
+        }
+
+        .week_span {
+            flex: 1;
+            text-align: center;
+        }
+
+        #month {
+            display: flex;
+            height: 5vh;
+
+        }
+
+        .month_span {
+            flex: 1;
+            text-align: center;
+        }
+
+        .week_columns {
+            flex: 1;
+            border: 1px solid #B2B2B2;
+            display: block;
+            border-collapse: collapse;
+
+        }
+
+        .class_row {
+            border-collapse: collapse;
+
+            border: 1px solid #B2B2B2;
+
+            height: 13vh;
+        }
     </style>
 </head>
 <body>
+<div class="one">
+    <h3>我的课表</h3>
+</div>
+<div class="two">
+    <div>
+        <div id="week">
+            <span class="week_span">Mon</span>
+            <span class="week_span">Tue</span>
+            <span class="week_span">Wen</span>
+            <span class="week_span">Thur</span>
+            <span class="week_span">Fri</span>
+            <span class="week_span">Sat</span>
+            <span class="week_span">Sun</span>
 
+        </div>
+        <div id="month">
+            <span class="month_span">9/11</span>
+            <span class="month_span">9/11</span>
+            <span class="month_span">9/11</span>
+            <span class="month_span">9/11</span>
+            <span class="month_span">9/11</span>
+            <span class="month_span">9/11</span>
+            <span class="month_span">9/11</span>
+        </div>
+    </div>
+</div>
+<div class="three">
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+
+    </div>
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+    </div>
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+    </div>
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+    </div>
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+    </div>
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+    </div>
+    <div class="week_columns">
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+        <div class="class_row"></div>
+    </div>
+
+</div>
 </body>
+</html>
