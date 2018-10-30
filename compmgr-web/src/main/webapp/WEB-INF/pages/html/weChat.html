@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/compmgr/lib/jquery.js"></script>
+</head>
+<body>
+    <div id="text"></div>
+    <div id="text2"></div>
+    <div id="text3"></div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        ajaxUserId();
+    });
+
+    function ajaxUserId(){
+        $.ajax({
+            type: "GET",
+            url: "/compmgr/weChat/getUserId.action",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                // alert(data);
+                $("#text").text(data[0]);
+                $("#text2").text(data[1]);
+                $("#text3").text(data[2]);
+            },
+            error: function (data) {
+                ajaxError(data);
+            }
+        });
+    }
+</script>
+
+</html>
