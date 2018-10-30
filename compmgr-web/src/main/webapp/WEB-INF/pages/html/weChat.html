@@ -2,23 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>认证失败</title>
     <script src="/compmgr/lib/jquery.js"></script>
 </head>
 <body>
-    <div id="text"></div>
+    <div id="text">
+        <span>您没有权限使用</span>
+    </div>
     <div id="text2"></div>
     <div id="text3"></div>
+
 </body>
 <script type="text/javascript">
-    $(function () {
-        ajaxUserId();
-    });
+    // $(function () {
+    //     ajaxUserId();
+    // });
 
     function ajaxUserId(){
         $.ajax({
             type: "GET",
-            url: "/compmgr/weChat/getUserId.action",
+            url: "#",
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {

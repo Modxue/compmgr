@@ -2,6 +2,7 @@ package edu.zut.cs.wechat.controller;
 
 import com.alibaba.fastjson.JSON;
 import edu.zut.cs.teacher.service.TeacherService;
+import edu.zut.cs.user.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -47,26 +48,17 @@ public class WeChatController {
                 "access_token="+accessToken+"&code="+code);
         map = JSON.parseObject(infoJson);
         String userId = (String) map.get("UserId");
-//        Teacher teacher = teacherService.getTeacherByUserId(userId);
-        HttpSession session = request.getSession();
-//        session.setAttribute("teacher",teacher);
-        session.setAttribute("userId",userId);
-        session.setAttribute("code",code);
-        session.setAttribute("accessTokenJson",accessTokenJson);
-        session.setAttribute("infoJson",infoJson);
+        if (userId!=null) {
+            Teacher teacher = teacherService.getTeacherByUserId(userId);
+            HttpSession session = request.getSession();
+            if (teacher!=null) {
+                session.setAttribute("teacher",teacher);
+                session.setAttribute("userId",userId);
+                return "redirect:/html/testpage.html";
+            }
+        }
         return "redirect:/html/weChat.html";
     }
-
-    @GetMapping(value = "/getUserId",produces = "application/json;charset=utf-8")
-    public @ResponseBody
-    String getUserId(HttpSession session){
-        String[] str = new String[3];
-        str[0] = (String) session.getAttribute("code");
-        str[1] = (String) session.getAttribute("accessTokenJson");
-        str[2] = (String) session.getAttribute("infoJson");
-        return JSON.toJSONString(str);
-    }
-
 
     /**
      * 向指定URL发送GET方法的请求

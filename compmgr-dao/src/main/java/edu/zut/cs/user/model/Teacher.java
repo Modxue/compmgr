@@ -12,6 +12,7 @@ public class Teacher {
 	private String teacherName;
 	private String teacherEmail;
 	private String password;
+	private String wechatId;
 
 	public Integer getId() {
 		return id;
@@ -53,9 +54,23 @@ public class Teacher {
 		this.teacherName = teacherName;
 	}
 
+	public String getWechatId() {
+		return wechatId;
+	}
+
+	public void setWechatId(String wechatId) {
+		this.wechatId = wechatId;
+	}
+
 	@Override
 	public String toString() {
-		return "Teacher{" + "id=" + id + ", teacherNum='" + teacherNum + '\'' + ", teacherName='" + teacherName + '\''
-				+ ", teacher=" + teacherEmail + ", password=" + password + '}';
+		return "Teacher{" +
+				"id=" + id +
+				", teacherNum='" + teacherNum + '\'' +
+				", teacherName='" + teacherName + '\'' +
+				", teacherEmail='" + teacherEmail + '\'' +
+				", password='" + password + '\'' +
+				", wechatId='" + wechatId + '\'' +
+				'}';
 	}
 }

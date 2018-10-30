@@ -51,7 +51,7 @@ public class LoginController {
             httpSession.setAttribute("teacher",teacher);
             System.out.println("新建一个session！！");
             System.out.println("账号密码正确");
-            return "redirect:/html/testpage.html";
+            return "redirect:/html/apply.html";
         }else{
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().write("<script>alert('密码错误！！');history.back()</script>");

@@ -21,12 +21,12 @@
 
 	<insert id="insertTeacher" parameterType="edu.zut.cs.user.model.Teacher">
 		insert
-		into  t_teacher(teacher_num, teacher_name, teacher_email, password)
-		values (#{teacherNum,jdbcType=VARCHAR},#{teacherName,jdbcType=VARCHAR},#{teacherEmail,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR})
+		into  t_teacher(teacher_num, teacher_name, teacher_email, password,wechat_id)
+		values (#{teacherNum,jdbcType=VARCHAR},#{teacherName,jdbcType=VARCHAR},#{teacherEmail,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR},#{wechatId,jdbcType=VARCHAR})
 	</insert>
 
 	<select id="getOneTeacherById" parameterType="java.lang.Integer" resultType="edu.zut.cs.user.model.Teacher">
-		select id,teacher_num,teacher_name,teacher_email,password
+		select id,teacher_num,teacher_name,teacher_email,wechat_id
 		from t_teacher
 		where id=#{0}
 	</select>
@@ -55,5 +55,14 @@
 		</set>
 		where id = #{id}
 	</update>
+
+    <select id="selectByUserId" resultType="edu.zut.cs.user.model.Teacher">
+        SELECT
+        id,teacher_num,teacher_name,teacher_email,wechat_id
+        FROM
+        t_teacher
+        WHERE
+        wechat_id = #{userId}
+    </select>
 
 </mapper>

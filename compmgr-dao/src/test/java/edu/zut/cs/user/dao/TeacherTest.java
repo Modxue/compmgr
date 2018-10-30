@@ -57,21 +57,6 @@ public class TeacherTest {
 		System.out.println(password);
 	}
 
-	/**
-	 * @author:houjie
-	 * @Description:insert one new teacher
-	 * @date: 2018-08-07 12:47
-	 */
-	@Test
-	public void insertTeacherTest() {
-		Teacher t = new Teacher();
-		t.setTeacherNum("001");
-		t.setTeacherName("王鹏");
-		t.setTeacherEmail("544536");
-		t.setPassword("211222");
-		teacherMapper.insertTeacher(t);
-		// System.out.println("success!");
-	}
 
 	/**
 	 * @author:houjie

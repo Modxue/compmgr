@@ -67,21 +67,6 @@ public class TeacherServiceTest {
             result=0;
     }
     @Test
-    public  void insertTeacherTest(){
-         Integer result=-1;
-         Teacher teacher1=new Teacher();
-         String teacherNum;
-         String teacherName;
-         String teacherEmail;
-         String password;
-         teacher1.setTeacherName("8755");
-         teacher1.setTeacherName("杨先生");
-         teacher1.setTeacherEmail("146843");
-         teacher1.setPassword("53589");
-         teacherMapper.insertTeacher(teacher1);
-         result=0;
-     }
-    @Test
     public void readExcelTest() throws Exception {
 
         List<Teacher> list = new ArrayList<>();

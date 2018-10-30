@@ -57,4 +57,9 @@ public class TeacherServiceImpl implements TeacherService {
 			result=0;
 		return  result;
 	}
+
+	@Override
+	public Teacher getTeacherByUserId(String userId) {
+		return teacherMapper.selectByUserId(userId);
+	}
 }

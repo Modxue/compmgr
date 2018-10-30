@@ -19,5 +19,7 @@ public interface TeacherService {
 
 	Integer updateTeacherInfoById(Integer id,Teacher teacher);
 
-	//Integer insertTeacher(Teacher teacher);
+    Teacher getTeacherByUserId(String userId);
+
+    //Integer insertTeacher(Teacher teacher);
 }
