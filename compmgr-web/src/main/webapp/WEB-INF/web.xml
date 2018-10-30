@@ -48,7 +48,7 @@
                 (login_login_execute|login_2_login).do
                 会在后面有详细的解释
             -->
-            <param-value>/html/login.html,/html/register.html,/login/teacherinfo.action,/login/authentication.action,/login/logout.action,/weChat/login.action,/weChat/getUserId.action,</param-value>
+            <param-value>/html/login.html,/html/register.html,/login/teacherinfo.action,/login/authentication.action,/login/logout.action,/weChat/login.action,/weChat/getUserId.action,/html/weChat.html,</param-value>
         </init-param>
     </filter>
     <!-- /* 表示所有的都要进行过滤-->
