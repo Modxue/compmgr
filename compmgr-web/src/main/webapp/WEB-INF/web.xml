@@ -17,45 +17,45 @@
     </listener>
 
 
-    <!--&lt;!&ndash; 检查用户是否登录了系统的过滤器配置 开始 &ndash;&gt;-->
-    <!--<filter>-->
-        <!--<filter-name>SessionFilter</filter-name>-->
-        <!--<filter-class>edu.zut.cs.filter.MyFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<description>-->
-                <!--将当前登录的用户的信息保存在session 中时使用的key，如果没有配置此参数，则该过滤器不起作用-->
-            <!--</description>-->
-            <!--<param-name>sessionKey</param-name>-->
-            <!--<param-value>teacher</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<description>-->
-                <!--如果用户未登录（即在session 中 key 为 sessionKey 的属性不存在或为空），则将请求重定向到该 url。-->
-                <!--该url 不包含web应用的 ContextPath。如果不配置此参数，则在用户未登录系统的情况下，-->
-                <!--直接重定向到web应用的根路径（/）-->
-            <!--</description>-->
-            <!--<param-name>redirectUrl</param-name>-->
-            <!--<param-value>/compmgr/html/login.html</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<description>-->
-                <!--不需要进行拦截的url 的正则表达式，即：如果当前请求的 url 的 servletPath 能匹配该正则表达式，则直接放行（即使未登录系统）。-->
-                <!--此参数的值一般为loginServlet 和 registServlet 等。另外，参数redirectUrl 的值不用包含在该正则表达式中，因为 redirectUrl 对应的 url 会被自动放行。-->
-                <!--还有一点需要说明的是，该参数的值不包含web应用的ContextPath。-->
-            <!--</description>-->
-            <!--<param-name>uncheckedUrls</param-name>-->
-            <!--&lt;!&ndash; 不需要拦截的路径-->
-                <!--(login_login_execute|login_2_login).do-->
-                <!--会在后面有详细的解释-->
-            <!--&ndash;&gt;-->
-            <!--<param-value>/html/login.html,/html/register.html,/login/teacherinfo.action,/login/authentication.action,/login/logout.action,</param-value>-->
-        <!--</init-param>-->
-    <!--</filter>-->
-    <!--&lt;!&ndash; /* 表示所有的都要进行过滤&ndash;&gt;-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>SessionFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <!-- 检查用户是否登录了系统的过滤器配置 开始 -->
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>edu.zut.cs.filter.MyFilter</filter-class>
+        <init-param>
+            <description>
+                将当前登录的用户的信息保存在session 中时使用的key，如果没有配置此参数，则该过滤器不起作用
+            </description>
+            <param-name>sessionKey</param-name>
+            <param-value>teacher</param-value>
+        </init-param>
+        <init-param>
+            <description>
+                如果用户未登录（即在session 中 key 为 sessionKey 的属性不存在或为空），则将请求重定向到该 url。
+                该url 不包含web应用的 ContextPath。如果不配置此参数，则在用户未登录系统的情况下，
+                直接重定向到web应用的根路径（/）
+            </description>
+            <param-name>redirectUrl</param-name>
+            <param-value>/compmgr/html/login.html</param-value>
+        </init-param>
+        <init-param>
+            <description>
+                不需要进行拦截的url 的正则表达式，即：如果当前请求的 url 的 servletPath 能匹配该正则表达式，则直接放行（即使未登录系统）。
+                此参数的值一般为loginServlet 和 registServlet 等。另外，参数redirectUrl 的值不用包含在该正则表达式中，因为 redirectUrl 对应的 url 会被自动放行。
+                还有一点需要说明的是，该参数的值不包含web应用的ContextPath。
+            </description>
+            <param-name>uncheckedUrls</param-name>
+            <!-- 不需要拦截的路径
+                (login_login_execute|login_2_login).do
+                会在后面有详细的解释
+            -->
+            <param-value>/html/login.html,/html/register.html,/login/teacherinfo.action,/login/authentication.action,/login/logout.action,/weChat/login.action,/weChat/getUserId.action,</param-value>
+        </init-param>
+    </filter>
+    <!-- /* 表示所有的都要进行过滤-->
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
     <!-- 设置字符编码 -->
